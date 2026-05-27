@@ -146,9 +146,6 @@ export default function Home() {
         </div>
 
         {/* Bulle centré sur image hero */}
-        <div style={{
-          position: 'absolute', top: '55%',
-        }}
       </section>
     </main>
   );
