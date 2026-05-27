@@ -1,0 +1,165 @@
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime
+pids/
+*.pid
+*.pid.lock
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output
+
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+
+# Build outputs
+dist/
+build/
+.next/
+.nuxt/
+.svelte-kit/
+out/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Env
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Uploads
+uploads/
+
+# TypeScript
+*.tsbuildinfo
+
+# Data / volumes
+postgres_data/
+volumes/
+docker-data/
+backend_obled/data/anthropic-usage.json
+
+# Documentation / guides (keep locally, don't push)
+docs/
+
+# Rapports / audits locaux (ne pas versionner — sauf exceptions ! ci-dessous)
+reports-temp/
+artifacts/
+tmp/
+qa-output/
+local-audits/
+playwright-report/
+playwright-report-enterprise/
+test-results/
+debug-output/
+coverage/
+*.trace.zip
+
+# Local scripts / one-shots (keep locally — root only; mobile/scripts/ needed for Expo postinstall/EAS)
+/scripts/
+backend_obled/scripts/*
+!backend_obled/scripts/obled-migrate.js
+!backend_obled/scripts/seed-fixtures-maghreb.js
+!backend_obled/scripts/reset-fixtures-maghreb.js
+!backend_obled/scripts/deploy-fixtures-online.js
+!backend_obled/scripts/fixtures/
+
+# Local SQL dumps / training docs / misc exports (do not push)
+*.sql
+*.html
+*.MD
+*.md
+
+# Keep project docs tracked (root + key subfolders)
+!README.md
+!Doc_Docker.MD
+!MARKETING_VIDEO_KIT.md
+!DEPLOYMENT_CHECKLIST.md
+!backend_obled/README.md
+!backend_obled/SECURITY.md
+!frontend/README.md
+!frontend/tests-e2e/README.md
+!frontend/tests-e2e-enterprise/README.md
+!mobile/PLAY_STORE_CHECKLIST.md
+!mobile/e2e/README.md
+!mobile/releases/README.md
+!guide-ultime/README.md
+!rapports/README.md
+!rapports/ELKOLI_GLOBAL_AUDIT.md
+!rapports/ELKOLI_SECURITY_AUDIT.md
+!rapports/ELKOLI_SEO_AUDIT.md
+!rapports/ELKOLI_LEGAL_AUDIT.md
+!rapports/ELKOLI_E2E_REPORT.md
+!rapports/ELKOLI_GEONAMES_AUDIT.md
+!rapports/ELKOLI_SHIPMENT_REQUEST_MARKETPLACE_AUDIT.md
+!rapports/ELKOLI_LIGHT_MATCHING_AUDIT.md
+!rapports/ELKOLI_CLEANUP_AUDIT.md
+!rapports/ELKOLI_JE_CHERCHE_IMPLEMENTATION_PLAN.md
+!rapports/ELKOLI_JE_CHERCHE_IMPLEMENTATION_REPORT.md
+!rapports/ELKOLI_ULTRA_GLOBAL_AUDIT.md
+!rapports/ELKOLI_SECURITY_MATRIX.md
+!rapports/ELKOLI_RGPD_CGU_DIFF.md
+!rapports/ELKOLI_UX_MOBILE_REVIEW.md
+!rapports/ELKOLI_INFRA_DEPLOYMENT_AUDIT.md
+!rapports/ELKOLI_SEO_MARKETPLACE_AUDIT.md
+!rapports/ELKOLI_DOCUMENTATION_CLEANUP.md
+!rapports/FINAL_TRUST_MARKETPLACE_IMPLEMENTATION_REPORT.md
+!rapports/TRUST_MARKETPLACE_ADMIN_IMPLEMENTATION_PLAN.md
+!rapports/WHATSAPP_ENV_AUDIT.md
+!rapports/archive/README.md
+!archive/
+!archive/**
+
+# Outil tests humains (Express + MySQL)
+!tests-humains-deploy/
+!tests-humains-deploy/**
+!tests-humains-deploy/README.md
+!tests-humains-deploy/GUIDE_TESTEURS.md
+!tests-humains-deploy/IDENTIFIANTS_QA.md
+!tests-humains-deploy/data/qa-users.json
+!tests-humains-deploy/migrations/*.sql
+
+# QA locale (checklists SQLite, screenshots)
+rapports/tests_humains/
+
+# Keep schema + migrations tracked
+!backend_obled/src/db/*.sql
+!backend_obled/db/migrations/*.sql
+!backend_obled/db/migrations/**/*.sql
+
+# Analyses / notes locales (ne pas versionner)
+workflow/
+
+# Misc
+.npm
+.yarn-integrity
+
+# LibreOffice / Office lock files
+.~lock.*
+
+# Office exports
+*.docx
