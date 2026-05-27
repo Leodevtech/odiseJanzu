@@ -17,7 +17,7 @@ const COOKIE_OPTIONS = {
   httpOnly: true,
   //(protection XSS) inccaessible au JS du nav
   secure: process.env.NODE_ENV === "prodution",
-  sameSite: "strict",
+  sameSite: "none",
   maxAge: 7 * 24 * 60 * 60 * 1000,
   // 7jours en millisecondes
 };
@@ -102,7 +102,7 @@ export const login = async (req, res) => {
 
 // POST /api/auth/refresh génère un accesToken depuis le refreshToken en cookie
 export const refresh = async (req, res) => {
-  console.log('Cookie reçu:', req.cookies) // a supprimer --------
+  console.log("Cookie reçu:", req.cookies); // a supprimer --------
   try {
     const refreshToken = req.cookies.refreshToken;
 
