@@ -349,32 +349,29 @@ export default function Home() {
       </section>
 
 
-      {/* Prestations - 4 cartes statiques
-          A connecter a l'api /param plus tard */}
-
+      {/* Prestations — données dynamiques depuis site_content */}
       <section style={{ padding: '80px 40px', maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-        <div style={{ display: 'flex', gap: '30px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {[
-            { titre: 'Prestation 1', duree: '0.45h', prix: '100€', img: '/assets/perso-1.jpg' },
-            { titre: 'Prestation 2', duree: '1h',    prix: '100€', img: '/assets/perso-3.jpg' },
-            { titre: 'Forfait 1',    duree: '2h',    prix: '200€', img: '/assets/perso-1.jpg' },
-            { titre: 'Forfait 2',    duree: '2h',    prix: '200€', img: '/assets/perso-1.jpg' },
-          ].map((p) => (
-            <div key={p.titre} style={{ flex: '0 0 220px', textAlign: 'center' }}>
-              <Image
-                src={p.img}
-                alt={p.titre}
-                width={220}
-                height={200}
-                style={{ borderRadius: '12px', objectFit: 'cover', width: '220px', height: '200px' }}
-              />
-              <p style={{ marginTop: '12px', fontWeight: 500 }}>{p.titre}</p>
-              <p style={{ color: '#888', fontSize: '0.9rem', margin: '2px 0' }}>{p.duree}</p>
-              <p style={{ color: '#2d3748', fontWeight: 600 }}>{p.prix}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+  <div style={{ display: 'flex', gap: '30px', justifyContent: 'center', flexWrap: 'wrap' }}>
+    {[
+      { titre: siteContent?.prestation1_titre || 'Prestation 1', duree: siteContent?.prestation1_duree || '0.45h', prix: siteContent?.prestation1_prix || '100€', img: '/assets/perso-1.jpg' },
+      { titre: siteContent?.prestation2_titre || 'Prestation 2', duree: siteContent?.prestation2_duree || '1h',    prix: siteContent?.prestation2_prix || '100€', img: '/assets/perso-3.jpg' },
+      { titre: siteContent?.prestation3_titre || 'Prestation 3', duree: siteContent?.prestation3_duree || '2h',    prix: siteContent?.prestation3_prix || '200€', img: '/assets/perso-2.jpg' },
+      { titre: siteContent?.prestation4_titre || 'Prestation 4', duree: siteContent?.prestation4_duree || '2h',    prix: siteContent?.prestation4_prix || '200€', img: '/assets/perso-4.jpg' },
+    ].map((p) => (
+      <div key={p.titre} style={{ flex: '0 0 220px', textAlign: 'center' }}>
+        {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
+        <img
+          src={p.img}
+          alt={p.titre}
+          style={{ borderRadius: '12px', objectFit: 'cover', width: '220px', height: '200px' }}
+        />
+        <p style={{ marginTop: '12px', fontWeight: 500 }}>{p.titre}</p>
+        <p style={{ color: '#888', fontSize: '0.9rem', margin: '2px 0' }}>{p.duree}</p>
+        <p style={{ color: '#2d3748', fontWeight: 600 }}>{p.prix}</p>
+      </div>
+    ))}
+  </div>
+</section>
 
           {/* Séparateur algues */}
       <div style={{ textAlign: 'center', padding: '10px 0' }}>
