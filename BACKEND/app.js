@@ -9,6 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import "dotenv/config";
 import { authMiddleware, authorize } from "./middleware/auth.middleware.js";
+import avisRoutes from './routes/avis.routes.js'
 
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -24,6 +25,7 @@ app.use(
 );
 
 //Routes
+app.use('/api/avis', avisRoutes)
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/photos", photoRoutes);
@@ -31,6 +33,7 @@ app.use("/api/site-content", siteContentRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
+//Privée
 app.get("/", authMiddleware, authorize(["ADMIN", "USER"]), (req, res) =>
   res.send("Mon API fonctionne bien"),
 );
