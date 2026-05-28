@@ -18,8 +18,8 @@ const isProduction = process.env.NODE_ENV === "production";
 const COOKIE_OPTIONS = {
   httpOnly: true,
   //(protection XSS) inccaessible au JS du nav
-  secure: isProduction,
-  sameSite: isProduction ? "none" : "lax",
+  secure: process.env.NODE_ENV === "prodution",
+  sameSite: "strict",
   maxAge: 7 * 24 * 60 * 60 * 1000,
   // 7jours en millisecondes
 };
