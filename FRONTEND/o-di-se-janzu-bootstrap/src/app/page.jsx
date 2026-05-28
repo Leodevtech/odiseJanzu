@@ -9,6 +9,7 @@ export default function Home() {
   // états
   const [photos, setPhotos] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [siteContent, setSiteContent] = useState(null)
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
