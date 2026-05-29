@@ -26,9 +26,7 @@ export default function DashboardLayout({ children }) {
     <div className="dashboard-wrapper">
       <div className="dashboard-container">
         {/*sidebar*/}
-        <div
-          className="dashboard-sidebar"
-        >
+        <div className="dashboard-sidebar">
           {/*Logo*/}
           <div className="text-center mb-4 logo-crapper">
             <Image
@@ -46,6 +44,12 @@ export default function DashboardLayout({ children }) {
               className={`btn btn-sm text-start ${isActive("/admin/dashboard") ? "btn-primary" : "btn-outline-secondary"}`}
             >
               Accueil
+            </Link>
+            <Link
+              href="/admin/dashboard/avis"
+              className={`sidebar-btn ${isActive("/admin/dashboard/avis") ? "active" : "inactive"}`}
+            >
+              Avis
             </Link>
             <Link
               href="/admin/dashboard/galerie"
@@ -78,9 +82,7 @@ export default function DashboardLayout({ children }) {
           </div>
         </div>
 
-        <div className="dashboard-content">
-          {children}
-        </div>
+        <div className="dashboard-content">{children}</div>
       </div>
     </div>
   );
