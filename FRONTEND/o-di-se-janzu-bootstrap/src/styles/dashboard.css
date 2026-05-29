@@ -138,6 +138,13 @@
   gap: 10px;
 }
 
+.photo-grid-gallery {
+  max-height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #a78bfa #f0e6ff;
+}
+
 .photo-item {
   position: relative;
   width: 100%;

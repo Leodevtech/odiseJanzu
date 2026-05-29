@@ -129,47 +129,48 @@ export default function GaleriePage() {
       <h3 className="dashboard-title">Galerie Photos</h3>
 
       {/*Grille des photos */}
-      <div
-        className="dashboard-card mb-4"
-      >
-        {photos.length === 0 ? (
-          <p className="text-muted">Aucune photo pour le moment.</p>
-        ) : (
-          <div className="photo-grid">
-            {photos.map((photo) => (
-              <div
-                key={photo.id}
-                className="photo-item">
-
-                <div
-                  className="rounded overflow-hidden"
-                  style={{ aspectRatio: "1", position: "relative" }}
-                >
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_URL}${photo.filepath}`}
-                    alt={photo.alt || "Photo galerie"}
-                    fill // prop de nextJS sans lui obliger d'utiliser width/height
-                    unoptimized
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                {/*Bouton suppr en haut a droite de l'image */}
-                <button
-                  className="photo-delete-btn"
-                  onClick={() => handleDelete(photo.id)}
-                >
-                  <i className="bi bi-trash" />
-                </button>
-                {photo.description && (
-                  <small className="text-muted d-block mt-1 text-truncate">
-                    {photo.description}
-                  </small>
-                )}
-              </div>
-            ))}
+      <div className="dashboard-card mb-4">
+  {photos.length === 0 ? (
+    <p className="text-muted">Aucune photo pour le moment.</p>
+  ) : (
+    <div style={{
+      maxHeight: '300px',
+      overflowY: 'scroll',
+      scrollbarWidth: 'thin',
+      scrollbarColor: '#a78bfa #f0e6ff'
+    }}>
+      <div className="photo-grid">
+        {photos.map((photo) => (
+          <div key={photo.id} className="photo-item">
+            <div
+              className="rounded overflow-hidden"
+              style={{ aspectRatio: "1", position: "relative" }}
+            >
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${photo.filepath}`}
+                alt={photo.alt || "Photo galerie"}
+                fill
+                unoptimized
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <button
+              className="photo-delete-btn"
+              onClick={() => handleDelete(photo.id)}
+            >
+              <i className="bi bi-trash" />
+            </button>
+            {photo.description && (
+              <small className="text-muted d-block mt-1 text-truncate">
+                {photo.description}
+              </small>
+            )}
           </div>
-        )}
+        ))}
       </div>
+    </div>
+  )}
+</div>
 
       {/* Form d'upload */}
       <div
