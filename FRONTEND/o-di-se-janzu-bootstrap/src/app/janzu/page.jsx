@@ -11,7 +11,7 @@
 //   const [ formData, setFormData] = useState({ nom: '', email: '', message: '' })
 //   const [formStatus, setFormStatus] = useState(null)
 
-//   const handleChange = (e) => 
+//   const handleChange = (e) =>
 //     setFormData({ ...formData, [e.target.name]: e.target.value })
 
 //   const handleSubmit = async (e) => {
