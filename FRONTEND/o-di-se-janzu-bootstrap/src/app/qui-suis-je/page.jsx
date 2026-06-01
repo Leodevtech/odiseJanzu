@@ -243,7 +243,7 @@ export default function QuiSuisJePage() {
           fontStyle: 'italic',
           lineHeight: 1.7
         }}>
-          Laissez parler votre curiosité<br />contactez moi
+          Laissez parler votre curiosité<br />contactez-moi
         </div>
         {/* logo bulle */}
         <div style={{ marginBottom: '40px' }}>
