@@ -19,7 +19,7 @@ const COOKIE_OPTIONS = {
   httpOnly: true,
   //(protection XSS) inccaessible au JS du nav
   secure: process.env.NODE_ENV === "prodution",
-  sameSite: "true",
+  sameSite: "none",
   maxAge: 7 * 24 * 60 * 60 * 1000,
   // 7jours en millisecondes
 };
