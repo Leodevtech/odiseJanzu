@@ -8,16 +8,19 @@ import api from "@/api/axios.js";
 export default function Home() {
   // états
   const [photos, setPhotos] = useState([]);
-  const [avis, setAvis] = useState([])
+  const [avis, setAvis] = useState([]);
   const [currentAvis, setCurrentAvis] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [siteContent, setSiteContent] = useState(null)
+  const [siteContent, setSiteContent] = useState(null);
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
     message: "",
   });
   const [formStatus, setFormStatus] = useState(null);
+
+  // état du menu burger
+  const [navOpen, setNavOpen] = useState(false);
 
   // CHARGEMENT DES PHOTOS
   useEffect(() => {
@@ -40,12 +43,12 @@ export default function Home() {
     };
     const fetchAvis = async () => {
       try {
-    const res = await api.get('/avis/public')
-    setAvis(res.data)
-  } catch (e) {
-    console.error('Erreur chargement avis', e)
-  }
-    }
+        const res = await api.get("/avis/public");
+        setAvis(res.data);
+      } catch (e) {
+        console.error("Erreur chargement avis", e);
+      }
+    };
 
     fetchPhotos();
     fetchContent();
@@ -60,10 +63,10 @@ export default function Home() {
     setCurrentSlide((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
 
   const prevAvis = () =>
-    setCurrentAvis((prev) => (prev === 0 ? avis.length - 1 : prev - 1))
+    setCurrentAvis((prev) => (prev === 0 ? avis.length - 1 : prev - 1));
 
   const nextAvis = () =>
-    setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1))
+    setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1));
 
   // Formulaire
   const handleChange = (e) =>
@@ -94,44 +97,63 @@ export default function Home() {
       {/*Navbar*/}
 
       <nav
+        className="navbar navbar-expand-md"
         style={{
           position: "absolute",
           top: 0,
           left: 0,
           right: 0,
           zIndex: 10,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "16px 40px",
           background: "transparent",
+          padding: "12px 24px",
         }}
       >
-        <div style={{ display: "flex", gap: "28px" }}>
-          {[
-            { label: "🏠", href: "/" },
-            { label: "Qui suis-je ?", href: "/qui-suis-je" },
-            { label: "Janzu", href: "/janzu" },
-            { label: "Galerie Photo", href: "/galerie" },
-            { label: "Contactez-moi", href: "#contact" },
-            { label: "Liens", href: "#liens" },
-          ].map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              style={{
-                color: "white",
-                textDecoration: "none",
-                fontSize: "0.9rem",
-                letterSpacing: "0.03em",
-                textShadow: "0 1px 4px rgba(0,0,0,0.4)",
-              }}
-              onMouseEnter={(e) => (e.target.style.opacity = "0.75")}
-              onMouseLeave={(e) => (e.target.style.opacity = "1")}
-            >
-              {item.label}
-            </a>
-          ))}
+        <Link className="navbar-brand" href="/">
+          <img
+            src="/assets/logo_bulle.jpg"
+            alt="Logo"
+            width={40}
+            height={40}
+            style={{ borderRadius: "50%" }}
+          />
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setNavOpen(!navOpen)}
+          style={{
+            border: "1px solid rgba(255,255,255,0.5)",
+            padding: "4px 8px",
+          }}
+        >
+          <span style={{ color: "white", fontSize: "1.4rem" }}>☰</span>
+        </button>
+        <div className={`collapse navbar-collapse ${navOpen ? "show" : ""}`}>
+          <ul className="navbar-nav mx-auto gap-md-3">
+            {[
+              { label: "🏠", href: "/" },
+              { label: "Qui suis-je ?", href: "/qui-suis-je" },
+              { label: "Janzu", href: "/janzu" },
+              { label: "Galerie Photo", href: "/galerie" },
+              { label: "Contactez-moi", href: "/#contact" },
+              { label: "Liens", href: "/#liens" },
+            ].map((item) => (
+              <li className="nav-item" key={item.label}>
+                <a
+                  href={item.href}
+                  className="nav-link"
+                  onClick={() => setNavOpen(false)}
+                  style={{
+                    color: "white",
+                    fontSize: "0.9rem",
+                    textShadow: "0 1px 4px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </nav>
 
@@ -255,10 +277,10 @@ export default function Home() {
             par hasard, la vidéo d&apos;une séance sur un réseau social.
             Impressionnée et fortement attirée par ce que je voyais, je
             reservais, quelques semaines plus tard, ma première séance...
-            Depuis, le Janzu ne m&apos;a pas quittée et poursuit son chemin dans ma
-            vie, telle une rivière pacifique. Je m&apos;appelle Nathalie, je suis
-            dotée d&apos;une grande sensibilité émotionnelle et relationnelle et
-            depuis toujours, l&apos;eau m&apos;est familière.
+            Depuis, le Janzu ne m&apos;a pas quittée et poursuit son chemin dans
+            ma vie, telle une rivière pacifique. Je m&apos;appelle Nathalie, je
+            suis dotée d&apos;une grande sensibilité émotionnelle et
+            relationnelle et depuis toujours, l&apos;eau m&apos;est familière.
           </p>
           {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
           <Link
@@ -325,13 +347,20 @@ export default function Home() {
           </h2>
           <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
             Le Janzu est un soin aquatique qui se pratique en eau chaude et
-            permet un relâchement profond de l&apos;esprit et du corps. L&apos;eau chaude
-            - et le soutien qu&apos;elle offre - est idéale pour libérer la colonne
-            vertébrale, enlever le poids sur les vertèbres et les articulations
-            et relâcher les muscles. Le flux, induit par la mise en mouvement,
-            contribue à calmer la respiration.
+            permet un relâchement profond de l&apos;esprit et du corps.
+            L&apos;eau chaude - et le soutien qu&apos;elle offre - est idéale
+            pour libérer la colonne vertébrale, enlever le poids sur les
+            vertèbres et les articulations et relâcher les muscles. Le flux,
+            induit par la mise en mouvement, contribue à calmer la respiration.
           </p>
-          <Link href="/janzu" style={{ color: '#5b9bd5', fontSize: '0.875rem', fontStyle: 'italic' }}>
+          <Link
+            href="/janzu"
+            style={{
+              color: "#5b9bd5",
+              fontSize: "0.875rem",
+              fontStyle: "italic",
+            }}
+          >
             (En savoir plus)
           </Link>
         </div>
@@ -339,239 +368,494 @@ export default function Home() {
 
       {/*Douceur du savoir - citation dynamique depuis le dash/param/ titre_section2 */}
 
-      <section style={{ background: '#f7fbfe', padding: '60px 40px', textAlign: 'center' }}>
-        <p style={{ fontSize: '0.85rem', letterSpacing: '0.08em', color: '#888', marginBottom: '16px', textTransform: 'uppercase' }}>
+      <section
+        style={{
+          background: "#f7fbfe",
+          padding: "60px 40px",
+          textAlign: "center",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "0.85rem",
+            letterSpacing: "0.08em",
+            color: "#888",
+            marginBottom: "16px",
+            textTransform: "uppercase",
+          }}
+        >
           La douceur du savoir
         </p>
-        <p style={{ maxWidth: '600px', margin: '0 auto', lineHeight: 1.9, color: '#555', fontStyle: 'italic', fontSize: '1rem' }}>
-          {siteContent?.titre_section2 || 'Janzu signifie en Chinois « rivière pacifique » et le but d\'une séance est de vous apaiser...'}
+        <p
+          style={{
+            maxWidth: "600px",
+            margin: "0 auto",
+            lineHeight: 1.9,
+            color: "#555",
+            fontStyle: "italic",
+            fontSize: "1rem",
+          }}
+        >
+          {siteContent?.titre_section2 ||
+            "Janzu signifie en Chinois « rivière pacifique » et le but d'une séance est de vous apaiser..."}
         </p>
       </section>
 
-
       {/* Prestations — données dynamiques depuis site_content */}
-      <section style={{ padding: '80px 40px', maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-  <div style={{ display: 'flex', gap: '30px', justifyContent: 'center', flexWrap: 'wrap' }}>
-    {[
-      { titre: siteContent?.prestation1_titre || 'Prestation 1', duree: siteContent?.prestation1_duree || '0.45h', prix: siteContent?.prestation1_prix || '100€', img: '/assets/perso-1.jpg' },
-      { titre: siteContent?.prestation2_titre || 'Prestation 2', duree: siteContent?.prestation2_duree || '1h',    prix: siteContent?.prestation2_prix || '100€', img: '/assets/perso-3.jpg' },
-      { titre: siteContent?.prestation3_titre || 'Prestation 3', duree: siteContent?.prestation3_duree || '2h',    prix: siteContent?.prestation3_prix || '200€', img: '/assets/perso-2.jpg' },
-      { titre: siteContent?.prestation4_titre || 'Prestation 4', duree: siteContent?.prestation4_duree || '2h',    prix: siteContent?.prestation4_prix || '200€', img: '/assets/perso-4.jpg' },
-    ].map((p) => (
-      <div key={p.titre} style={{ flex: '0 0 220px', textAlign: 'center' }}>
-        {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
-        <img
-          src={p.img}
-          alt={p.titre}
-          style={{ borderRadius: '12px', objectFit: 'cover', width: '220px', height: '200px' }}
-        />
-        <p style={{ marginTop: '12px', fontWeight: 500 }}>{p.titre}</p>
-        <p style={{ color: '#888', fontSize: '0.9rem', margin: '2px 0' }}>{p.duree}</p>
-        <p style={{ color: '#2d3748', fontWeight: 600 }}>{p.prix}</p>
-      </div>
-    ))}
-  </div>
-</section>
+      <section
+        style={{
+          padding: "80px 40px",
+          maxWidth: "900px",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            gap: "30px",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {[
+            {
+              titre: siteContent?.prestation1_titre || "Prestation 1",
+              duree: siteContent?.prestation1_duree || "0.45h",
+              prix: siteContent?.prestation1_prix || "100€",
+              img: "/assets/perso-1.jpg",
+            },
+            {
+              titre: siteContent?.prestation2_titre || "Prestation 2",
+              duree: siteContent?.prestation2_duree || "1h",
+              prix: siteContent?.prestation2_prix || "100€",
+              img: "/assets/perso-3.jpg",
+            },
+            {
+              titre: siteContent?.prestation3_titre || "Prestation 3",
+              duree: siteContent?.prestation3_duree || "2h",
+              prix: siteContent?.prestation3_prix || "200€",
+              img: "/assets/perso-2.jpg",
+            },
+            {
+              titre: siteContent?.prestation4_titre || "Prestation 4",
+              duree: siteContent?.prestation4_duree || "2h",
+              prix: siteContent?.prestation4_prix || "200€",
+              img: "/assets/perso-4.jpg",
+            },
+          ].map((p) => (
+            <div
+              key={p.titre}
+              style={{ flex: "0 0 220px", textAlign: "center" }}
+            >
+              {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
+              <img
+                src={p.img}
+                alt={p.titre}
+                style={{
+                  borderRadius: "12px",
+                  objectFit: "cover",
+                  width: "220px",
+                  height: "200px",
+                }}
+              />
+              <p style={{ marginTop: "12px", fontWeight: 500 }}>{p.titre}</p>
+              <p style={{ color: "#888", fontSize: "0.9rem", margin: "2px 0" }}>
+                {p.duree}
+              </p>
+              <p style={{ color: "#2d3748", fontWeight: 600 }}>{p.prix}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-          {/* Séparateur algues */}
-      <div style={{ textAlign: 'center', padding: '10px 0' }}>
+      {/* Séparateur algues */}
+      <div style={{ textAlign: "center", padding: "10px 0" }}>
         <Image
           src="/assets/banière v2.png"
           alt="séparateur décoratif"
           width={500}
           height={80}
-          style={{ maxWidth: '100%', opacity: 0.85 }}
+          style={{ maxWidth: "100%", opacity: 0.85 }}
         />
       </div>
 
-          {/* Galerie carousel 5dernières photos upload */}
-      
-      <section id="galerie" style={{ padding: '60px 40px', maxWidth: '800px', margin: '0 auto' }}>
-        <h2 style={{ fontSize: '1.8rem', fontWeight: 400, marginBottom: '24px' }}>Galerie photo</h2>
+      {/* Galerie carousel 5dernières photos upload */}
+
+      <section
+        id="galerie"
+        style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
+      >
+        <h2
+          style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}
+        >
+          Galerie photo
+        </h2>
 
         {/* affiche le carousel seulment si photo, sinon un message vide */}
         {photos.length > 0 ? (
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center' }}>
-              <button onClick={prevSlide}
-              style={{ background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#5b9bd5' }}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                justifyContent: "center",
+              }}
             >
-              ←
-            </button>
+              <button
+                onClick={prevSlide}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "#5b9bd5",
+                }}
+              >
+                ←
+              </button>
 
-            <div style={{ width: '360px', height: '240px', borderRadius: '16px', overflow: 'hidden', margin: '0 auto' }}>
-              <img // construit url complet vers image sur serveur back
-              src={`${process.env.NEXT_PUBLIC_API_URL.replace('/api', '')}/${photos[currentSlide]?.filepath.replace(/^\//, '')}`}
-              alt={photos[currentSlide]?.alt || 'photo galerie'}
-              fill
-              style={{width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            </div>
-            <button onClick={nextSlide}
-            style={{ background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#5b9bd5' }}
-            >
-             → 
+              <div
+                style={{
+                  width: "360px",
+                  height: "240px",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  margin: "0 auto",
+                }}
+              >
+                <img // construit url complet vers image sur serveur back
+                  src={`${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${photos[currentSlide]?.filepath.replace(/^\//, "")}`}
+                  alt={photos[currentSlide]?.alt || "photo galerie"}
+                  fill
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <button
+                onClick={nextSlide}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "#5b9bd5",
+                }}
+              >
+                →
               </button>
             </div>
 
             {/* dots de nav */}
-            <div style={{ display:'flex', justifyContent: 'center', gap: '8px', marginTop: '16px' }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "8px",
+                marginTop: "16px",
+              }}
+            >
               {/* _ signifique ignorer la valeur pour avoir juste l'index i */}
               {photos.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentSlide(i)} // clic sur dot = aller directe a ce slide
                   style={{
-                    width: '8px', height: '8px', borderRadius: '50%',
-                    border: 'none', padding: 0, cursor: 'pointer',
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
                     // actif = bleue, inatcfi = gris
-                    background: i === currentSlide ? '#5b9bd5' : '#ccc'
+                    background: i === currentSlide ? "#5b9bd5" : "#ccc",
                   }}
                 />
               ))}
             </div>
           </div>
         ) : (
-          <p style={{ color: '#aaa', fontStyle: 'italic' }}>Aucune photo disponible.</p>
+          <p style={{ color: "#aaa", fontStyle: "italic" }}>
+            Aucune photo disponible.
+          </p>
         )}
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Link href="/galerie" style={{ color: '#5b9bd5', fontSize: '0.875rem', fontStyle: 'italic' }}>
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <Link
+            href="/galerie"
+            style={{
+              color: "#5b9bd5",
+              fontSize: "0.875rem",
+              fontStyle: "italic",
+            }}
+          >
             (En découvrir plus...)
           </Link>
         </div>
       </section>
 
       {/*Avis CLIENT - placeholder carousel avec img plus tard */}
-      <section style={{ padding: '60px 40px', maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '1.8rem', fontWeight: 400, letterSpacing: '0.1em', marginBottom: '30px', textTransform: 'uppercase' }}>
+      <section
+        style={{
+          padding: "60px 40px",
+          maxWidth: "700px",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "1.8rem",
+            fontWeight: 400,
+            letterSpacing: "0.1em",
+            marginBottom: "30px",
+            textTransform: "uppercase",
+          }}
+        >
           Avis Client
         </h2>
 
         {avis.length > 0 ? (
-    <div>
-      {/* Flèches + carte avis centrale */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center' }}>
-        <button
-          onClick={prevAvis}
-          style={{ background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#5b9bd5' }}
-        >
-          ←
-        </button>
-
-        {/* Carte avis */}
-        <div style={{
-          flex: 1, background: '#f7fbfe', borderRadius: '12px',
-          padding: '30px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)'
-        }}>
-          {/* Contenu de l'avis */}
-          <p style={{ fontStyle: 'italic', lineHeight: 1.8, color: '#555', fontSize: '1rem', marginBottom: '16px' }}>
-            &ldquo;{avis[currentAvis]?.contenu}&rdquo;
-          </p>
-          {/* Nom du client */}
-          <p style={{ fontWeight: 600, color: '#2d3748', fontSize: '0.9rem' }}>
-            — {avis[currentAvis]?.nom}
-          </p>
-        </div>
-
-        <button
-          onClick={nextAvis}
-          style={{ background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#5b9bd5' }}
-        >
-          →
-        </button>
-      </div>
-      {/* Dots de navigation — un point par avis */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '16px' }}>
-            {avis.map((_, i) => (
+          <div>
+            {/* Flèches + carte avis centrale */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                justifyContent: "center",
+              }}
+            >
               <button
-                key={i}
-                onClick={() => setCurrentAvis(i)}
+                onClick={prevAvis}
                 style={{
-                  width: '8px', height: '8px', borderRadius: '50%',
-                  border: 'none', padding: 0, cursor: 'pointer',
-                  // Actif = bleu, inactif = gris
-                  background: i === currentAvis ? '#5b9bd5' : '#ccc'
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "#5b9bd5",
                 }}
-              />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <p style={{ color: '#aaa', fontStyle: 'italic' }}>Aucun avis pour le moment.</p>
-      )}
-    </section>
+              >
+                ←
+              </button>
 
-      {/* Lieux de pratique - 4placeholder avant photo - titre dynamiques via dashboard */}
-      <section style={{ padding: '60px 40px', maxWidth: '800px', margin: '0 auto' }}>
-        <h2 style={{ fontSize: '1.8rem', fontWeight: 400, marginBottom: '24px' }}>Mes lieux de pratiques</h2>
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+              {/* Carte avis */}
+              <div
+                style={{
+                  flex: 1,
+                  background: "#f7fbfe",
+                  borderRadius: "12px",
+                  padding: "30px",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+                }}
+              >
+                {/* Contenu de l'avis */}
+                <p
+                  style={{
+                    fontStyle: "italic",
+                    lineHeight: 1.8,
+                    color: "#555",
+                    fontSize: "1rem",
+                    marginBottom: "16px",
+                  }}
+                >
+                  &ldquo;{avis[currentAvis]?.contenu}&rdquo;
+                </p>
+                {/* Nom du client */}
+                <p
+                  style={{
+                    fontWeight: 600,
+                    color: "#2d3748",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  — {avis[currentAvis]?.nom}
+                </p>
+              </div>
+
+              <button
+                onClick={nextAvis}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "#5b9bd5",
+                }}
+              >
+                →
+              </button>
+            </div>
+            {/* Dots de navigation — un point par avis */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "8px",
+                marginTop: "16px",
+              }}
+            >
+              {avis.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentAvis(i)}
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    background: i === currentAvis ? "#5b9bd5" : "#ccc",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p style={{ color: "#aaa", fontStyle: "italic" }}>
+            Aucun avis pour le moment.
+          </p>
+        )}
+      </section>
+
+      {/* Lieux de pratique - titre dynamiques via dashboard */}
+      <section
+        style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
+      >
+        <h2
+          style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}
+        >
+          Mes lieux de pratiques
+        </h2>
+        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
           {[
-            siteContent?.titre_lieux1 || 'Lieu 1',
-            siteContent?.titre_lieux2 || 'Lieu 2',
-            siteContent?.titre_lieux3 || 'Lieu 3',
-            siteContent?.titre_lieux4 || 'Lieu 4',
+            siteContent?.titre_lieux1 || "Lieu 1",
+            siteContent?.titre_lieux2 || "Lieu 2",
+            siteContent?.titre_lieux3 || "Lieu 3",
+            siteContent?.titre_lieux4 || "Lieu 4",
           ].map((titre, i) => (
-            <div key={i} style={{
-              flex: '0 0 220px', height: '160px', borderRadius: '12px',
-              background: '#dce8f0', display: 'flex', alignItems: 'center',
-              justifyContent: 'center', color: '#555', fontStyle: 'italic', fontSize: '0.9rem'
-            }}>
+            <div
+              key={i}
+              style={{
+                flex: "0 0 220px",
+                height: "160px",
+                borderRadius: "12px",
+                background: "#dce8f0",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#555",
+                fontStyle: "italic",
+                fontSize: "0.9rem",
+              }}
+            >
               {titre}
             </div>
           ))}
         </div>
       </section>
-       {/* Séparateur algues */}
-      <div style={{ textAlign: 'center', padding: '10px 0' }}>
+      {/* Séparateur algues */}
+      <div style={{ textAlign: "center", padding: "10px 0" }}>
         <Image
           src="/assets/banière v2.png"
           alt="séparateur décoratif"
           width={500}
           height={80}
-          style={{ maxWidth: '100%', opacity: 0.85 }}
+          style={{ maxWidth: "100%", opacity: 0.85 }}
         />
       </div>
 
-      {/* Form contact envoie vers POST /api/messages */}
-      <section id="contact" style={{ padding: '60px 40px', maxWidth: '800px', margin: '0 auto' }}>
-        <div style={{
-          background: '#6b7fa3', borderRadius: '16px', padding: '40px',
-          display: 'flex', gap: '40px', color: 'white', flexWrap: 'wrap'
-        }}>
-
+      {/* Form  /api/messages */}
+      <section
+        id="contact"
+        style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
+      >
+        <div
+          style={{
+            background: "#6b7fa3",
+            borderRadius: "16px",
+            padding: "40px",
+            display: "flex",
+            gap: "40px",
+            color: "white",
+            flexWrap: "wrap",
+          }}
+        >
           {/* Colonne infos de contact */}
-          <div style={{ flex: '0 0 200px' }}>
-            <h3 style={{ fontSize: '1.4rem', fontWeight: 400, marginBottom: '20px' }}>Contact</h3>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>👤 Ô di Sé Janzu</p>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>📍 Adresse de l&apos;entreprise<br />64340 Boucau</p>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>📞 06.12.12.12.12</p>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>✉️ lemail@test.com</p>
-            <div style={{ marginTop: '16px', display: 'flex', gap: '10px' }}>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>f</a>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>ig</a>
+          <div style={{ flex: "0 0 200px" }}>
+            <h3
+              style={{
+                fontSize: "1.4rem",
+                fontWeight: 400,
+                marginBottom: "20px",
+              }}
+            >
+              Contact
+            </h3>
+            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
+              👤 Ô di Sé Janzu
+            </p>
+            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
+              📍 Adresse de l&apos;entreprise
+              <br />
+              64340 Boucau
+            </p>
+            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
+              📞 06.12.12.12.12
+            </p>
+            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
+              ✉️ lemail@test.com
+            </p>
+            <div style={{ marginTop: "16px", display: "flex", gap: "10px" }}>
+              <a
+                href="#"
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                  fontSize: "1.2rem",
+                }}
+              >
+                f
+              </a>
+              <a
+                href="#"
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                  fontSize: "1.2rem",
+                }}
+              >
+                ig
+              </a>
             </div>
           </div>
 
-          {/* Colonne formulaire on gère l'envoi avec handleSubmit sur le bouton */}
-          <div style={{ flex: 1, minWidth: '240px' }}>
-
-            {/* Message de succès après envoi */}
-            {formStatus === 'success' && (
-              <div className="alert alert-success">Message envoyé avec succès !</div>
+          <div style={{ flex: 1, minWidth: "240px" }}>
+            {formStatus === "success" && (
+              <div className="alert alert-success">
+                Message envoyé avec succès !
+              </div>
             )}
-            {/* Message d'erreur si l'envoi échoue */}
-            {formStatus === 'error' && (
-              <div className="alert alert-danger">Une erreur est survenue, réessayez.</div>
+            {formStatus === "error" && (
+              <div className="alert alert-danger">
+                Une erreur est survenue, réessayez.
+              </div>
             )}
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {/* name correspond à la clé dans formData — handleChange cible le bon champ */}
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+            >
               <input
                 name="nom"
                 value={formData.nom}
                 onChange={handleChange}
                 placeholder="Nom & Prénom"
-                style={{ padding: '8px 12px', borderRadius: '6px', border: 'none', fontSize: '0.9rem' }}
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: "6px",
+                  border: "none",
+                  fontSize: "0.9rem",
+                }}
               />
               <input
                 name="email"
@@ -579,7 +863,12 @@ export default function Home() {
                 onChange={handleChange}
                 placeholder="Email"
                 type="email"
-                style={{ padding: '8px 12px', borderRadius: '6px', border: 'none', fontSize: '0.9rem' }}
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: "6px",
+                  border: "none",
+                  fontSize: "0.9rem",
+                }}
               />
               <textarea
                 name="message"
@@ -587,14 +876,25 @@ export default function Home() {
                 onChange={handleChange}
                 placeholder="Votre message"
                 rows={4}
-                style={{ padding: '8px 12px', borderRadius: '6px', border: 'none', fontSize: '0.9rem', resize: 'vertical' }}
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: "6px",
+                  border: "none",
+                  fontSize: "0.9rem",
+                  resize: "vertical",
+                }}
               />
               <button
                 onClick={handleSubmit}
                 style={{
-                  background: '#5b9bd5', color: 'white', border: 'none',
-                  padding: '10px 20px', borderRadius: '6px', cursor: 'pointer',
-                  fontSize: '0.9rem', alignSelf: 'flex-end'
+                  background: "#5b9bd5",
+                  color: "white",
+                  border: "none",
+                  padding: "10px 20px",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "0.9rem",
+                  alignSelf: "flex-end",
                 }}
               >
                 Envoyer ma demande
@@ -603,18 +903,30 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Footer avec lien secret pour dashboard */}
-      <footer style={{
-        background: '#5b6f8a', color: 'white', textAlign: 'center',
-        padding: '24px 40px', fontSize: '0.85rem'
-      }}>
-        <p style={{ margin: '0 0 6px' }}> 2026 Ô di Sé Janzu par Nathalie</p>
-        <p style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
-          created with {' '}
-          <Link href="/admin/login" style={{ color: '#7ec8e3', textDecoration: 'none', fontSize: '1rem' }}>
+      {/* Footer  */}
+      <footer
+        style={{
+          background: "#5b6f8a",
+          color: "white",
+          textAlign: "center",
+          padding: "24px 40px",
+          fontSize: "0.85rem",
+        }}
+      >
+        <p style={{ margin: "0 0 6px" }}> 2026 Ô di Sé Janzu par Nathalie</p>
+        <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
+          created with{" "}
+          <Link
+            href="/admin/login"
+            style={{
+              color: "#7ec8e3",
+              textDecoration: "none",
+              fontSize: "1rem",
+            }}
+          >
             💙
-          </Link>
-          {' '}by leodevtech
+          </Link>{" "}
+          by leodevtech
         </p>
       </footer>
     </main>
