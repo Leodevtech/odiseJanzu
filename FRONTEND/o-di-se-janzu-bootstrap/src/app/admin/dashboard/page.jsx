@@ -184,8 +184,6 @@ export default function DashboardPage() {
                       <button
                         className="btn btn-sm btn-outline-secondary"
                         onClick={() => setSelectedMessage(msg)}
-                        data-bs-toggle="modal"
-                        data-bs-target="#messageModal"
                       >
                         Voir
                       </button>
@@ -213,56 +211,89 @@ export default function DashboardPage() {
         )}
       </div>
 
+      {/* Modale récupèrer - React pure — remplace la modale Bootstrap qui bloquait l'écran */}
       {/*Modale affiche le message complet quand on clique sur voir */}
-      <div className="modal fade" id="messageModal" tabIndex="-1">
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Message de {selectedMessage?.nom}</h5>
+      {selectedMessage && (
+        <div
+          onClick={() => setSelectedMessage(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            background: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+        >
+          {/* stopPropagation empêche la fermeture au clic sur la modale */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "white",
+              borderRadius: "12px",
+              padding: "24px",
+              width: "100%",
+              maxWidth: "500px",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+            }}
+          >
+            {/* Header */}
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h5 className="mb-0">Message de {selectedMessage.nom}</h5>
+              {/* Bouton fermer — remet selectedMessage à null */}
               <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-              />
+                onClick={() => setSelectedMessage(null)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.4rem",
+                  cursor: "pointer",
+                  lineHeight: 1,
+                }}
+              >
+                ✕
+              </button>
             </div>
-            <div className="modal-body">
-              {selectedMessage && (
-                <>
-                  <p>
-                    <strong>Email :</strong> {selectedMessage.email}
-                  </p>
-                  <p>
-                    <strong>Date :</strong>{" "}
-                    {new Date(selectedMessage.created_at).toLocaleDateString(
-                      "fr-FR",
-                    )}
-                  </p>
-                  <hr />
-                  {/*Affiche le message complet */}
-                  <p style={{ whiteSpace: "pre-wrap" }}>
-                    {selectedMessage.message}
-                  </p>
-                </>
-              )}
-            </div>
-            <div className="model-footer">
-              {/*marquer comme lu depuis la modale si pas encore lu */}
-              {selectedMessage?.lu === 0 && (
+
+            {/* Body */}
+            <p>
+              <strong>Email :</strong> {selectedMessage.email}
+            </p>
+            <p>
+              <strong>Date :</strong>{" "}
+              {new Date(selectedMessage.created_at).toLocaleDateString("fr-FR")}
+            </p>
+            <hr />
+            {/* Message complet — pre-wrap conserve les sauts de ligne */}
+            <p style={{ whiteSpace: "pre-wrap" }}>{selectedMessage.message}</p>
+
+            {/* Footer */}
+            <div className="d-flex gap-2 justify-content-end mt-3">
+              {/* Marquer lu — visible uniquement si non lu */}
+              {selectedMessage.lu === 0 && (
                 <button
-                  className="btn btn-primary"
-                  data-bd-dismiss="modal"
-                  onClick={() => handleMarkAsRead(selectedMessage.id)}
+                  className="btn btn-primary btn-sm"
+                  onClick={() => {
+                    handleMarkAsRead(selectedMessage.id);
+                    // Met à jour l'état local de la modale aussi
+                    setSelectedMessage({ ...selectedMessage, lu: 1 });
+                  }}
                 >
                   Marquer comme lu
                 </button>
               )}
-              <button className="btn btn-secondary" data-bs-dismiss="modal">
+              <button
+                className="btn btn-secondary btn-sm"
+                onClick={() => setSelectedMessage(null)}
+              >
                 Fermer
               </button>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

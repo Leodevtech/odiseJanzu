@@ -1,0 +1,133 @@
+/* 
+   RESPONSIVE MOBILE DASHBOARD
+  */
+
+/* Header mobile — caché sur pc*/
+.dashboard-mobile-header {
+  display: none;
+}
+
+/* Mobile — max 768px */
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    padding: 0;
+    align-items: flex-start;
+    background-attachment: scroll;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+    border-radius: 0;
+    min-height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  /* Header mobile visible */
+  .dashboard-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(220, 232, 240, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+  }
+
+  /* Bouton hamburger */
+  .dashboard-hamburger {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #2d3748;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .dashboard-hamburger:hover {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  /* Sidebar cachée par défaut — slide depuis la gauche */
+  .dashboard-sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100vh;
+    z-index: 200;
+    transition: left 0.3s ease;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+  }
+
+  /* Sidebar ouverte */
+  .dashboard-sidebar.sidebar-open {
+    left: 0;
+  }
+
+  /* Logo desktop caché sur mobile */
+  .sidebar-logo-desktop {
+    display: none;
+  }
+
+  /* Overlay sombre derrière le menu */
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 150;
+  }
+
+  /* Contenu pleine largeur */
+  .dashboard-content {
+    width: 100%;
+    padding: 16px;
+    min-height: calc(100vh - 65px);
+  }
+
+  /* Cards stats en 1 colonne */
+  .row.g-3 .col-md-4 {
+    width: 100% !important;
+  }
+
+  /* Photo grid en 2 colonnes */
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Tableau scrollable */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Très petit mobile — max 480px */
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 12px;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .photo-item {
+    height: 90px;
+  }
+
+  .stat-card {
+    height: auto;
+  }
+
+  .dashboard-title {
+    font-size: 1.1rem;
+  }
+}
