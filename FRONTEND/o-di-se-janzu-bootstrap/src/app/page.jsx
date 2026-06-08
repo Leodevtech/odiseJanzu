@@ -163,10 +163,11 @@ export default function Home() {
         style={{ position: "relative", height: "100vh", overflow: "hidden" }}
       >
         <Image
-          src="/assets/4K-sous-eau.jpg"
+          src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          unoptimized
+          style={{ objectFit: "cover", objectPosition: "50% 40%" }}
           priority
         />
 
@@ -236,63 +237,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* QUI SUIS JE 2 colonnes */}
-      <section
-        style={{
-          padding: "80px 40px",
-          maxWIdth: "1000px",
-          margin: "0 auto",
-          display: "flex",
-          gap: "60px",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ flex: "0 0 300px" }}>
-          <Image
-            src="/assets/perso-3.jpg"
-            alt="Qui suis-je"
-            width={300}
-            height={380}
-            style={{
-              borderRadius: "16px",
-              objectFit: "cover",
-              width: "100%",
-              height: "380px",
-            }}
-          />
-        </div>
-        {/* flex: 1 = prend tout l'espace restant */}
-        <div style={{ flex: 1 }}>
-          <h2
-            style={{
-              fontSize: "2.2rem",
-              fontWeight: 400,
-              marginBottom: "20px",
-            }}
-          >
-            Qui suis-je ?
-          </h2>
-          <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
-            Le Janzu est entré dans ma vie, sans que je le sache, en découvrant,
-            par hasard, la vidéo d&apos;une séance sur un réseau social.
-            Impressionnée et fortement attirée par ce que je voyais, je
-            reservais, quelques semaines plus tard, ma première séance...
-            Depuis, le Janzu ne m&apos;a pas quittée et poursuit son chemin dans
-            ma vie, telle une rivière pacifique. Je m&apos;appelle Nathalie, je
-            suis dotée d&apos;une grande sensibilité émotionnelle et
-            relationnelle et depuis toujours, l&apos;eau m&apos;est familière.
-          </p>
-          {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
-          <Link
-            href="/qui-suis-je"
-            style={{
-              color: "#5b9bd5",
-              fontSize: "0.875rem",
-              fontStyle: "italic",
-            }}
-          >
-            (En savoir plus...)
-          </Link>
+      {/* QUI SUIS JE ? */}
+      <section className="container py-5">
+        <div className="row align-items-center g-4">
+          <div className="col-12 col-md-5">
+            <img
+              src="/assets/perso-3.jpg"
+              alt="Qui suis-je"
+              className="img-fluid rounded"
+              style={{ objectFit: "cover", width: "100%", height: "380px" }}
+            />
+          </div>
+          <div className="col-12 col-md-7">
+            <h2
+              style={{
+                fontSize: "2.2rem",
+                fontWeight: 400,
+                marginBottom: "20px",
+              }}
+            >
+              Qui suis-je ?
+            </h2>
+            <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
+              Le Janzu est entré dans ma vie, sans que je le sache, en
+              découvrant, par hasard, la vidéo d&apos;une séance sur un réseau
+              social. Impressionnée et fortement attirée par ce que je voyais,
+              je reservais, quelques semaines plus tard, ma première séance...
+              Depuis, le Janzu ne m&apos;a pas quittée et poursuit son chemin
+              dans ma vie, telle une rivière pacifique. Je m&apos;appelle
+              Nathalie, je suis dotée d&apos;une grande sensibilité émotionnelle
+              et relationnelle et depuis toujours, l&apos;eau m&apos;est
+              familière.
+            </p>
+            {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
+            <Link
+              href="/qui-suis-je"
+              style={{
+                color: "#5b9bd5",
+                fontSize: "0.875rem",
+                fontStyle: "italic",
+              }}
+            >
+              (En savoir plus...)
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -308,41 +296,27 @@ export default function Home() {
         />
       </div>
 
-      {/* LE JANZU - 2colonne inversé */}
+      {/* LE JANZU -  */}
 
-      <section
-        style={{
-          padding: "80px 40px",
-          maxWidth: "1000px",
-          margin: "0 auto",
-          display: "flex",
-          gap: "60px",
-          alignItems: "center",
-          flexDirection: "row-reverse",
-        }}
-      >
-        <div style={{ flex: "0 0 300px" }}>
-          <Image
-            src="/assets/perso-1.jpg"
-            alt="Le Janzu"
-            width={300}
-            height={380}
-            style={{
-              borderRadius: "16px",
-              objectFit: "cover",
-              width: "100%",
-              height: "380px",
-            }}
-          />
-        </div>
-        <div style={{ flex: 1, textAlign: "right" }}>
+      <section className="container py-5">
+        <div className="row align-items-center g-4">
+          <div className="col-12 col-md-5 order-md-2">
+            <img
+              src="/assets/perso-1.jpg"
+              alt="Le Janzu"
+              className="img-fluid rounded"
+              style={{ objectFit: "cover", width: "100%", height: "380px" }}
+            />
+          </div>
+          <div className="col-12 col-md-7 order-md-1 text-md-end">
+
           <h2
             style={{
               fontSize: "2.2rem",
               fontWeight: 400,
               marginBottom: "20px",
             }}
-          >
+            >
             Le Janzu
           </h2>
           <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
@@ -360,15 +334,17 @@ export default function Home() {
               fontSize: "0.875rem",
               fontStyle: "italic",
             }}
-          >
+            >
             (En savoir plus)
           </Link>
         </div>
+      </div>
       </section>
 
       {/*Douceur du savoir - citation dynamique depuis le dash/param/ titre_section2 */}
 
       <section
+        className="py-5 text-center"
         style={{
           background: "#f7fbfe",
           padding: "60px 40px",
@@ -403,6 +379,7 @@ export default function Home() {
 
       {/* Prestations — données dynamiques depuis site_content */}
       <section
+        className="container py-5 text-center"
         style={{
           padding: "80px 40px",
           maxWidth: "900px",
@@ -411,6 +388,7 @@ export default function Home() {
         }}
       >
         <div
+          className="row g-4 justify-content-center"
           style={{
             display: "flex",
             gap: "30px",
@@ -446,6 +424,7 @@ export default function Home() {
           ].map((p) => (
             <div
               key={p.titre}
+              className="col-6 col-md-3"
               style={{ flex: "0 0 220px", textAlign: "center" }}
             >
               {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
@@ -455,7 +434,7 @@ export default function Home() {
                 style={{
                   borderRadius: "12px",
                   objectFit: "cover",
-                  width: "220px",
+                  width: "100%",
                   height: "200px",
                 }}
               />
@@ -484,6 +463,7 @@ export default function Home() {
 
       <section
         id="galerie"
+        className="container py-5"
         style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
       >
         <h2
@@ -496,6 +476,7 @@ export default function Home() {
         {photos.length > 0 ? (
           <div>
             <div
+              className="d-flex align-items-center justify-content-center gap-3"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -517,6 +498,7 @@ export default function Home() {
               </button>
 
               <div
+                className="overflow-hidden rounded"
                 style={{
                   width: "360px",
                   height: "240px",
@@ -595,6 +577,7 @@ export default function Home() {
 
       {/*Avis CLIENT - placeholder carousel avec img plus tard */}
       <section
+        className="container py5 text-center"
         style={{
           padding: "60px 40px",
           maxWidth: "700px",
@@ -618,6 +601,7 @@ export default function Home() {
           <div>
             {/* Flèches + carte avis centrale */}
             <div
+              className="d-flex align-items-center justify-content-center gap-3"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -640,6 +624,7 @@ export default function Home() {
 
               {/* Carte avis */}
               <div
+                className="flex-grow-1 rounded p-4"
                 style={{
                   flex: 1,
                   background: "#f7fbfe",
@@ -720,6 +705,7 @@ export default function Home() {
 
       {/* Lieux de pratique - titre dynamiques via dashboard */}
       <section
+        className="container py-5"
         style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
       >
         <h2
@@ -727,29 +713,28 @@ export default function Home() {
         >
           Mes lieux de pratiques
         </h2>
-        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+        <div
+          className="row g-3"
+          style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}
+        >
           {[
             siteContent?.titre_lieux1 || "Lieu 1",
             siteContent?.titre_lieux2 || "Lieu 2",
             siteContent?.titre_lieux3 || "Lieu 3",
             siteContent?.titre_lieux4 || "Lieu 4",
           ].map((titre, i) => (
-            <div
-              key={i}
-              style={{
-                flex: "0 0 220px",
-                height: "160px",
-                borderRadius: "12px",
-                background: "#dce8f0",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#555",
-                fontStyle: "italic",
-                fontSize: "0.9rem",
-              }}
-            >
-              {titre}
+            <div key={i} className="col-6 col-md-3">
+              <div
+                className="rounded d-flex align-items-center justify-content-center"
+                style={{
+                  height: "140px",
+                  background: "#dce8f0",
+                  color: "#555",
+                  fontStyle: "italic",
+                }}
+              >
+                {titre}
+              </div>
             </div>
           ))}
         </div>
@@ -765,7 +750,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Form  /api/messages */}
+      {/* contact form  /api/messages */}
       <section
         id="contact"
         style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
