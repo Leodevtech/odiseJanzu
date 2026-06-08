@@ -38,14 +38,15 @@ function generateTokens(payload) {
 // créé un user
 export const register = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, role = "USER" } = req.body;
+
     const existing = await findUserByUsername(username);
     if (existing) return res.status(400).json({ message: "Déja utilisé " });
 
     const passwordHash = await argon2.hash(password);
     const verifyToken = uuid4();
 
-    await createUser(username, passwordHash, verifyToken);
+    await createUser(username, passwordHash, verifyToken, role);
 
     await sendVerificationMail(username, verifyToken);
 

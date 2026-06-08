@@ -18,13 +18,14 @@ transporter.verify((err, sucess) => {
 });
 
 export const sendVerificationMail = async (email, token) => {
+  console.log("Envoi mail à :", email, "token :", token);
   await transporter.sendMail({
-    from: "Authentification API <nathalieanneloc@gmail.com>",
+    from: "Ô di Sé Janzu <aa225d001@smtp-brevo.com>",
     to: email,
     subject: "Confirmez votre email",
     html: `<h2> Bienvenue ${email} ! </h2>
     <p> Merci pour votre inscription , veuillez cliquez sur le lien ci dessous pour vérifier votre email: </p> <br/>
-    <a href="http://localhost:3000/api/auth/verify=${token}">Vérifier mon email</a>
+    <a href="${process.env.BACKEND_URL}/api/auth/verify?token=${token}">Vérifier mon email</a>
     `,
   });
 };

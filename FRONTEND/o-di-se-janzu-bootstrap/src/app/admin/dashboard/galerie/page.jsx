@@ -12,6 +12,7 @@ export default function GaleriePage() {
   const [preview, setPreview] = useState(null); // aperçu avant upload
   const [loading, setLoading] = useState(true); // chargement initial
   const [uploading, setUploading] = useState(false); //upload en cours
+  const [selectedPhoto, setSelectedPhoto] = useState(null); //lightbox pour voirs les photos
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const inputRef = useRef(null); // ref a l'input file caché
@@ -36,6 +37,10 @@ export default function GaleriePage() {
     };
     fetchData();
   }, []);
+
+  // construit l'url complet vers l'image du serveurbackend
+  const getImageUrl = (filepath) =>
+    `${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${filepath?.replace(/^\//, "")}`;
 
   // quand l'admin sélectionne un fichier
   const handleFileChange = (e) => {
@@ -69,8 +74,10 @@ export default function GaleriePage() {
 
     try {
       //renouvelle le token avant upload pour eviter l'erreur token présent a l'upload
-      const refreshRes = await api.post('/auth/refresh', null, { withCredentials: true})
-      setAccessToken(refreshRes.data.accessToken)
+      const refreshRes = await api.post("/auth/refresh", null, {
+        withCredentials: true,
+      });
+      setAccessToken(refreshRes.data.accessToken);
 
       // formdata est pour envoyer un fichier via axios
       const formData = new FormData();
@@ -128,54 +135,8 @@ export default function GaleriePage() {
     <div>
       <h3 className="dashboard-title">Galerie Photos</h3>
 
-      {/*Grille des photos */}
-      <div className="dashboard-card mb-4">
-  {photos.length === 0 ? (
-    <p className="text-muted">Aucune photo pour le moment.</p>
-  ) : (
-    <div style={{
-      maxHeight: '300px',
-      overflowY: 'scroll',
-      scrollbarWidth: 'thin',
-      scrollbarColor: '#a78bfa #f0e6ff'
-    }}>
-      <div className="photo-grid">
-        {photos.map((photo) => (
-          <div key={photo.id} className="photo-item">
-            <div
-              className="rounded overflow-hidden"
-              style={{ aspectRatio: "1", position: "relative" }}
-            >
-              <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_URL}${photo.filepath}`}
-                alt={photo.alt || "Photo galerie"}
-                fill
-                unoptimized
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <button
-              className="photo-delete-btn"
-              onClick={() => handleDelete(photo.id)}
-            >
-              <i className="bi bi-trash" />
-            </button>
-            {photo.description && (
-              <small className="text-muted d-block mt-1 text-truncate">
-                {photo.description}
-              </small>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  )}
-</div>
-
       {/* Form d'upload */}
-      <div
-        className="dashboard-card"
-      >
+      <div className="dashboard-card">
         <h5 className="mb-3">Ajouter une photo</h5>
 
         {error && <div className="alert alert-danger py-2">{error}</div>}
@@ -223,13 +184,13 @@ export default function GaleriePage() {
                 }}
               >
                 {/*Aperçu de l'image sélectionnée 
-                J'ai utilisé la balise <img> native pour l'aperçu avant upload
-                 car l'image vient d'une URL temporaire blob: générée par URL.createObjectURL()
-                 Le composant <Image> de Next.js est prévu pour optimiser des images distantes ou statiques
-                  pas des URLs blob temporaires. J'ai fait ce choix conscient pour éviter une configuration 
-                  supplémentaire dans next.config.mjs sur un élément purement fonctionnel côté admin
-                
-                */}
+                  J'ai utilisé la balise <img> native pour l'aperçu avant upload
+                   car l'image vient d'une URL temporaire blob: générée par URL.createObjectURL()
+                   Le composant <Image> de Next.js est prévu pour optimiser des images distantes ou statiques
+                    pas des URLs blob temporaires. J'ai fait ce choix conscient pour éviter une configuration 
+                    supplémentaire dans next.config.mjs sur un élément purement fonctionnel côté admin
+                  
+                  */}
                 {preview ? (
                   <img
                     src={preview}
@@ -288,6 +249,152 @@ export default function GaleriePage() {
             </button>
           </div>
         </form>
+      </div>
+      {/* LIGHTBOX — s'affiche par dessus tout quand une photo est sélectionnée */}
+      {selectedPhoto && (
+        <div
+          onClick={() => setSelectedPhoto(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            background: "rgba(0,0,0,0.9)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+        >
+          {/* Bouton fermer */}
+          <button
+            onClick={() => setSelectedPhoto(null)}
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              background: "none",
+              border: "none",
+              color: "white",
+              fontSize: "2rem",
+              cursor: "pointer",
+              lineHeight: 1,
+            }}
+          >
+            ✕
+          </button>
+
+          {/* Image agrandie — stopPropagation empêche la fermeture au clic sur l'image */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: "90vw", maxHeight: "85vh" }}
+          >
+            <img
+              src={getImageUrl(selectedPhoto.filepath)}
+              alt={selectedPhoto.alt || "photo"}
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "85vh",
+                objectFit: "contain",
+                borderRadius: "8px",
+                display: "block",
+              }}
+            />
+            {/* Légende */}
+            {selectedPhoto.alt && (
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.8)",
+                  textAlign: "center",
+                  marginTop: "12px",
+                  fontStyle: "italic",
+                  fontSize: "0.9rem",
+                }}
+              >
+                {selectedPhoto.alt}
+              </p>
+            )}
+          </div>
+
+          {/* Flèche gauche — photo précédente */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              const idx = photos.findIndex((p) => p.id === selectedPhoto.id);
+              setSelectedPhoto(photos[idx === 0 ? photos.length - 1 : idx - 1]);
+            }}
+            style={{
+              position: "absolute",
+              left: "20px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "none",
+              color: "white",
+              fontSize: "2rem",
+              cursor: "pointer",
+            }}
+          >
+            ←
+          </button>
+
+          {/* Flèche droite — photo suivante */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              const idx = photos.findIndex((p) => p.id === selectedPhoto.id);
+              setSelectedPhoto(photos[idx === photos.length - 1 ? 0 : idx + 1]);
+            }}
+            style={{
+              position: "absolute",
+              right: "60px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "none",
+              color: "white",
+              fontSize: "2rem",
+              cursor: "pointer",
+            }}
+          >
+            →
+          </button>
+        </div>
+      )}
+      {/*Grille des photos */}
+      <div className="photo-grid">
+        {photos.map((photo) => (
+          <div key={photo.id} className="photo-item">
+            <div
+              className="rounded overflow-hidden"
+              style={{
+                aspectRatio: "1",
+                position: "relative",
+                cursor: "pointer",
+              }}
+              // clic ouvre la lightbox
+              onClick={() => setSelectedPhoto(photo)}
+            >
+              <img
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${photo.filepath}`}
+                alt={photo.alt || "Photo galerie"}
+                fill
+                unoptimized
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <button
+              className="photo-delete-btn"
+              onClick={() => handleDelete(photo.id)}
+            >
+              <i className="bi bi-trash" />
+            </button>
+            {photo.description && (
+              <small className="text-muted d-block mt-1 text-truncate">
+                {photo.description}
+              </small>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

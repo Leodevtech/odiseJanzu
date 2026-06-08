@@ -29,6 +29,13 @@ export default function ParametresPage() {
   const [prestation4Duree, setPrestation4Duree] = useState("");
   const [prestation4Prix, setPrestation4Prix] = useState("");
 
+  const [newUsername, setNewUsername] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newRole, setNewRole] = useState('USER');
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [savingUser, setSavingUser ] = useState(false);
+  const [successUser, setSuccessUser] = useState('');
+  const [errorUser, setErrorUser] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState("");
@@ -79,6 +86,7 @@ export default function ParametresPage() {
     };
     fetchData();
   }, []);
+
 
   // Soumet les modifications vers le back en une seul requete avec PUT
   const handleSubmit = async (e) => {
@@ -135,6 +143,27 @@ export default function ParametresPage() {
     );
   }
 
+    // création user uniquement par un admin
+  const handleCreateUser = async () => {
+    setSavingUser(true)
+    setSuccessUser('')
+    setErrorUser('')
+    try {
+      await api.post('/auth/register',
+        { username: newUsername, password: newPassword, confirmPassword: confirmPassword, role: newRole },
+        {withCredentials: true}
+      )
+      setSuccessUser(`Compte "${newUsername}" créé avec succès ! Un mail de vérification a été envoyé.`)
+      setNewUsername('')
+      setNewPassword('')
+      setNewRole('USER')
+    } catch (err) {
+      setErrorUser(err.response?.data?.message || 'Erreur lors de la création')
+    } finally {
+      setSavingUser(false)
+    }
+  }
+
   return (
     <div>
       <h3 className="dashboard-title">Paramètres du site</h3>
@@ -165,47 +194,25 @@ export default function ParametresPage() {
                 </small>
               </div>
             </div>
-
-            {/* Lieux de pratique */}
-            <div
-              className="card shadow-sm border-0 p-4 mb-4"
-              style={{ borderRadius: "12px" }}
-            >
-              <h5 className="mb-3">Lieux de pratique</h5>
-              <div className="row g-3">
-                {[
-                  {
-                    label: "Lieu 1",
-                    value: titreLieux1,
-                    setter: setTitreLieux1,
-                  },
-                  {
-                    label: "Lieu 2",
-                    value: titreLieux2,
-                    setter: setTitreLieux2,
-                  },
-                  {
-                    label: "Lieu 3",
-                    value: titreLieux3,
-                    setter: setTitreLieux3,
-                  },
-                  {
-                    label: "Lieu 4",
-                    value: titreLieux4,
-                    setter: setTitreLieux4,
-                  },
-                ].map((lieux) => (
-                  <div className="col-md-6" key={lieux.label}>
-                    <label className="form-label">{lieux.label} :</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={lieux.value}
-                      onChange={(e) => lieux.setter(e.target.value)}
-                      placeholder={`Nom du ${lieux.label.toLowerCase()}`}
-                    />
-                  </div>
-                ))}
+            {/*Pensée du jour */}
+            <div className="col-md-6">
+              <div
+                className="card p-3 border-0"
+                style={{ backgroundColor: "#f8f9fa", borderRadius: "10px" }}
+              >
+                <label className="form-label fw-semibold">
+                  Pensée du jour :
+                </label>
+                <textarea
+                  className="form-control"
+                  rows={4}
+                  value={titreSection2}
+                  onChange={(e) => setTitreSection2(e.target.value)}
+                  placeholder="Une pensée inspirante..."
+                />
+                <small className="text-muted mt-1">
+                  Text affiché dans la section secondaire
+                </small>
               </div>
             </div>
 
@@ -299,31 +306,6 @@ export default function ParametresPage() {
                 ))}
               </div>
             </div>
-
-            {/* Bouton sauvegarde */}
-            
-
-            {/*Pensée du jour */}
-            <div className="col-md-6">
-              <div
-                className="card p-3 border-0"
-                style={{ backgroundColor: "#f8f9fa", borderRadius: "10px" }}
-              >
-                <label className="form-label fw-semibold">
-                  Pensée du jour :
-                </label>
-                <textarea
-                  className="form-control"
-                  rows={4}
-                  value={titreSection2}
-                  onChange={(e) => setTitreSection2(e.target.value)}
-                  placeholder="Une pensée inspirante..."
-                />
-                <small className="text-muted mt-1">
-                  Text affiché dans la section secondaire
-                </small>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -378,6 +360,90 @@ export default function ParametresPage() {
           </button>
         </div>
       </form>
+        {/* ── CRÉER un user admins connectés ── */}
+        <div
+          className="card shadow-sm border-0 p-4 mb-4"
+          style={{ borderRadius: "12px" }}
+        >
+          <h5 className="mb-3">Créer un compte</h5>
+          <div className="row g-3">
+            <div className="col-md-4">
+              <label className="form-label">Identifiant</label>
+              <input
+                type="text"
+                className="form-control"
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
+                placeholder="nom d'utilisateur"
+              />
+            </div>
+
+            <div className="col-md-4">
+              <label className="form-label">Mot de passe</label>
+              <input
+                type="password"
+                className="form-control"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="••••••••"
+              />
+            </div>
+            <div className="col-md-4">
+              <label className="form-label">Confirmer mot de passe</label>
+              <input
+                type="password"
+                className="form-control"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+              />
+            </div>
+
+            <div className="col-md-4">
+              <label className="form-label">Rôle</label>
+              {/* Seul ADMIN peut être sélectionné depuis le dashboard */}
+              <select
+                className="form-select"
+                value={newRole}
+                onChange={(e) => setNewRole(e.target.value)}
+              >
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="d-flex justify-content-end mt-3">
+            <button
+              type="button"
+              className="btn btn-success px-4"
+              onClick={handleCreateUser}
+              disabled={savingUser}
+            >
+              {savingUser ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                  />
+                  Création...
+                </>
+              ) : (
+                <>
+                  <i className="bi bi-person-plus me-2" />
+                  Créer le compte
+                </>
+              )}
+            </button>
+          </div>
+
+          {successUser && (
+            <div className="alert alert-success mt-3">{successUser}</div>
+          )}
+          {errorUser && (
+            <div className="alert alert-danger mt-3">{errorUser}</div>
+          )}
+        </div>
     </div>
   );
 }

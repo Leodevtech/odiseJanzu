@@ -29,13 +29,15 @@ export default function DashboardLayout({ children }) {
         <div className="dashboard-sidebar">
           {/*Logo*/}
           <div className="text-center mb-4 logo-crapper">
+            <Link href="/">
             <Image
               src="/assets/logo_bulle.jpg"
               alt="Ô di Sé Janzu"
               width={100}
               height={100}
               style={{ borderRadius: "50%" }}
-            />
+              />
+              </Link>
           </div>
           {/* Navigation - le lien actif prends la classe btn-primary, les autres btn-outline-secondary */}
           <nav className="nav flex-column gap-2">

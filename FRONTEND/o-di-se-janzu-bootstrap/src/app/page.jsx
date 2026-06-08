@@ -112,7 +112,7 @@ export default function Home() {
             { label: "🏠", href: "/" },
             { label: "Qui suis-je ?", href: "/qui-suis-je" },
             { label: "Janzu", href: "/janzu" },
-            { label: "Galerie Photo", href: "#galerie" },
+            { label: "Galerie Photo", href: "/galerie" },
             { label: "Contactez-moi", href: "#contact" },
             { label: "Liens", href: "#liens" },
           ].map((item) => (

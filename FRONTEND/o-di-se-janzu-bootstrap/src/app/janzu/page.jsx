@@ -377,10 +377,7 @@ export default function JanzuPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          DÉROULÉ D'UNE SÉANCE — fond blanc, bloc texte + image alternés
-          Même style que qui-suis-je
-      ══════════════════════════════ */}
+      {/*DÉROULÉ D'UNE SÉANCE   */}
       <section style={{ backgroundColor: "#fff", padding: "20px 0" }}>
         {/* Bloc 1 — texte gauche, image droite */}
         <div
@@ -494,10 +491,8 @@ export default function JanzuPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          FIN DE PAGE — fond sous-marin qui continue
-          Texte incitation + logo + formulaire + footer
-      ══════════════════════════════ */}
+      {/*
+          FIN DE PAGE — Texte incitation + logo + formulaire + footer*/}
       <section style={{ position: "relative", overflow: "hidden" }}>
         {/* Fond sous-marin qui reprend */}
         <Image
@@ -711,7 +706,7 @@ export default function JanzuPage() {
           >
             <p style={{ margin: "0 0 6px" }}>2026 Ô di Sé Janzu par Nathalie</p>
             <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
-              created with {/* Lien discret vers le login admin */}
+              created with
               <Link
                 href="/admin/login"
                 style={{
