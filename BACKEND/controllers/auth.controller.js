@@ -96,6 +96,12 @@ export const login = async (req, res) => {
     const { accessToken, refreshToken } = generateTokens(payload);
 
     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
+    re.cookie('sessions', '1', {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+      maxAge: 7 * 24 * 60 * 60 * 1000
+    })
     // accessToken renvoyé dans le body — stocké en mémoire JS côté front
     return res.status(200).json({ accessToken });
   } catch (error) {
@@ -131,6 +137,12 @@ export const refresh = async (req, res) => {
       generateTokens(newPayload);
 
     res.cookie("refreshToken", newRefreshToken, COOKIE_OPTIONS);
+    res.cookie('session', '1', {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+      maxAge: 7 * 24 * 60 * 60 * 1000
+    })
     res.json({ accessToken });
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur" });
@@ -140,6 +152,11 @@ export const refresh = async (req, res) => {
 // POST /api/auth/logout supprime le cookie refreshToken pour déco
 export const logout = async (req, res) => {
   res.clearCookie("refreshToken", COOKIE_OPTIONS);
+  res.clearCookie('session', {
+    httpOnly: false,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'none',
+  })
   res.json({ message: "Déconnecté" });
 };
 
