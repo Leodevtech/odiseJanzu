@@ -11,12 +11,15 @@ export function AuthProvider({ children }) {
     const payload = JSON.parse(atob(accessToken.split('.')[1]))
     setUser(payload)
     setAccessToken(accessToken)
+    // Cookie lisible par le middleware Next.js (pas httpOnly)
+  document.cookie = `session=1; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax; Secure`
   }
 
   // Appelée a la déconnexion vide le state et le token en mémoire
   const logout = () => {
     setUser(null)
     setAccessToken(null)
+    document.cookie = 'session=; path=/; max-age=0'
   }
 
   return (
