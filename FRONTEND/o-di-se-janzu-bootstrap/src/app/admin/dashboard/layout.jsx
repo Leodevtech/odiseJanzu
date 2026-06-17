@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }) {
       console.error("Erreur logout", error);
     }
     // supprime le cookie session 
-    document.cookie= 'session=; path=/; max-age=0'
+    document.cookie= 'session=; path=/; max-age=0; SameSite=Lax; Secure'
     router.push("/admin/login");
   };
 
