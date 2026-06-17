@@ -96,7 +96,7 @@ export const login = async (req, res) => {
     const { accessToken, refreshToken } = generateTokens(payload);
 
     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
-    re.cookie('sessions', '1', {
+    res.cookie('sessions', '1', {
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'none',
