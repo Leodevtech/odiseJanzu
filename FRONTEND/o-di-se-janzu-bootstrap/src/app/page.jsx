@@ -309,36 +309,36 @@ export default function Home() {
             />
           </div>
           <div className="col-12 col-md-7 order-md-1 text-md-end">
-
-          <h2
-            style={{
-              fontSize: "2.2rem",
-              fontWeight: 400,
-              marginBottom: "20px",
-            }}
+            <h2
+              style={{
+                fontSize: "2.2rem",
+                fontWeight: 400,
+                marginBottom: "20px",
+              }}
             >
-            Le Janzu
-          </h2>
-          <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
-            Le Janzu est un soin aquatique qui se pratique en eau chaude et
-            permet un relâchement profond de l&apos;esprit et du corps.
-            L&apos;eau chaude - et le soutien qu&apos;elle offre - est idéale
-            pour libérer la colonne vertébrale, enlever le poids sur les
-            vertèbres et les articulations et relâcher les muscles. Le flux,
-            induit par la mise en mouvement, contribue à calmer la respiration.
-          </p>
-          <Link
-            href="/janzu"
-            style={{
-              color: "#5b9bd5",
-              fontSize: "0.875rem",
-              fontStyle: "italic",
-            }}
+              Le Janzu
+            </h2>
+            <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
+              Le Janzu est un soin aquatique qui se pratique en eau chaude et
+              permet un relâchement profond de l&apos;esprit et du corps.
+              L&apos;eau chaude - et le soutien qu&apos;elle offre - est idéale
+              pour libérer la colonne vertébrale, enlever le poids sur les
+              vertèbres et les articulations et relâcher les muscles. Le flux,
+              induit par la mise en mouvement, contribue à calmer la
+              respiration.
+            </p>
+            <Link
+              href="/janzu"
+              style={{
+                color: "#5b9bd5",
+                fontSize: "0.875rem",
+                fontStyle: "italic",
+              }}
             >
-            (En savoir plus)
-          </Link>
+              (En savoir plus)
+            </Link>
+          </div>
         </div>
-      </div>
       </section>
 
       {/*Douceur du savoir - citation dynamique depuis le dash/param/ titre_section2 */}

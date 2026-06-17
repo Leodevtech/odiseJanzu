@@ -36,7 +36,7 @@ export default function QuiSuisJePage() {
           { label: '🏠', href: '/' },
           { label: 'Qui suis-je ?', href: '/qui-suis-je' },
           { label: 'Janzu', href: '/janzu' },
-          { label: 'Galerie Photo', href: '/#galerie' },
+          { label: 'Galerie Photo', href: '/galerie' },
           { label: 'Contactez-moi', href: '#contact' },
           { label: 'Liens', href: '/#liens' },
         ].map((item) => (
@@ -60,7 +60,7 @@ export default function QuiSuisJePage() {
     {/* Hero */}
     <section style={{ position: 'relative', height: '50vh', overflow: 'hidden' }}>
         <Image
-          src="/assets/4K-sous-eau.jpg"
+          src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center' }}

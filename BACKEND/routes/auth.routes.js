@@ -20,6 +20,7 @@ router.post("/login", validateLogin, login);
 router.get("/verify", verifyEmail);
 router.post("/refresh", refresh);
 
+// ADMIN
 router.post("/logout", logout);
 router.delete("/me", authMiddleware, removeUser);
 router.post("/register", authMiddleware, authorize(["ADMIN"]), validateRegister, register); //admin

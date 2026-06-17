@@ -19,8 +19,8 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use((response) => response,
 async (error) => {
+  // double verrou flag once anti boucle
   const originalRequest = error.config
-
   if (error.response?.status === 401 && !originalRequest.once && !originalRequest.url.includes('/auth/refresh'))
   {
     originalRequest.once = true

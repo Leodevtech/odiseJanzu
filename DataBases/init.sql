@@ -1,17 +1,23 @@
 CREATE DATABASE IF NOT EXISTS odise_project;
 USE odise_project;
 
-CREATE TABLE users (
+CREATE TABLE avis (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  username varchar(191)  NOT NULL,
-  password_hash varchar(255)  NOT NULL,
-  role enum('USER','ADMIN')  NOT NULL DEFAULT 'USER',
-  is_verified tinyint(1) NOT NULL DEFAULT '0',
-  verify_token varchar(36)  DEFAULT NULL,
-  reset_token varchar(36)  DEFAULT NULL,
-  created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  nom VARCHAR(100) NOT NULL,
+  contenu TEXT NOT NULL,
+  actif TINYINT(1) DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  message TEXT NOT NULL,
+  lu TINYINT(1) DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 
 CREATE TABLE photos (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,23 +34,24 @@ CREATE TABLE photos (
 
 CREATE TABLE site_content (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  titre_section1 TEXT DEFAULT 'Bienvenue sur Ô di Sé Janzu pour un voyage aquatique',
-  titre_section2 TEXT DEFAULT 'Janzu signifie en Chinois « rivière pacifique »...',
-  titre_lieux1 VARCHAR(100) DEFAULT 'Lieu 1',
-  titre_lieux2 VARCHAR(100) DEFAULT 'Lieu 2',
-  titre_lieux3 VARCHAR(100) DEFAULT 'Lieu 3',
-  titre_lieux4 VARCHAR(100) DEFAULT 'Lieu 4',
-  prestation1_titre VARCHAR(100) DEFAULT 'Prestation 1',
-  prestation1_duree VARCHAR(20)  DEFAULT '0.45h',
-  prestation1_prix  VARCHAR(20)  DEFAULT '100€',
-  prestation2_titre VARCHAR(100) DEFAULT 'Prestation 2',
-  prestation2_duree VARCHAR(20)  DEFAULT '1h',
-  prestation2_prix  VARCHAR(20)  DEFAULT '100€',
-  prestation3_titre VARCHAR(100) DEFAULT 'Forfait 1',
-  prestation3_duree VARCHAR(20)  DEFAULT '2h',
-  prestation3_prix  VARCHAR(20)  DEFAULT '200€',
-  prestation4_titre VARCHAR(100) DEFAULT 'Forfait 2',
-  prestation4_duree VARCHAR(20)  DEFAULT '2h',
-  prestation4_prix  VARCHAR(20)  DEFAULT '200€'
+  titre_section1 VARCHAR(500),
+  titre_section2 VARCHAR(500),
+  titre_lieux1 VARCHAR(500),
+  titre_lieux2 VARCHAR(500),
+  titre_lieux3 VARCHAR(500),
+  titre_lieux4 VARCHAR(500) 
 );
-INSERT INTO site_content (id) VALUES (1);
+
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username varchar(191)  NOT NULL,
+  password_hash varchar(255)  NOT NULL,
+  role enum('USER','ADMIN')  NOT NULL DEFAULT 'USER',
+  is_verified tinyint(1) NOT NULL DEFAULT '0',
+  verify_token varchar(36)  DEFAULT NULL,
+  reset_token varchar(36)  DEFAULT NULL,
+  created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+);

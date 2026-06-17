@@ -68,7 +68,7 @@ export default function GaleriePage() {
       {/* HERO */}
       <section style={{ position: 'relative', height: '50vh', overflow: 'hidden' }}>
         <Image
-          src="/assets/4K-sous-eau.jpg"
+          src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center' }}

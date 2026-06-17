@@ -10,8 +10,10 @@ import { fileURLToPath } from "url";
 import "dotenv/config";
 import { authMiddleware, authorize } from "./middleware/auth.middleware.js";
 import avisRoutes from './routes/avis.routes.js'
+import rateLimit from 'express-rate-limit';
 
 const app = express();
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(cookieParser());
@@ -23,6 +25,13 @@ app.use(
     credentials: true,
   }),
 );
+
+const limiter = rateLimit({ // 15min 100req max par ip
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { error: 'Trop de requêtes, réessayer plus tard.'}
+});
+app.use(limiter);
 
 //Routes
 app.use('/api/avis', avisRoutes)
