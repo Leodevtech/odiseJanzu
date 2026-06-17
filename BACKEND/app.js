@@ -30,17 +30,21 @@ app.use(cookieParser());
 app.use(express.json());
 
 // CORS — autorise uniquement le frontend défini dans .env
-app.use(cors({
-  origin: process.env.CORS,
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: process.env.CORS,
+    credentials: true,
+  }),
+);
 
 // Rate limiting — max 100 requêtes par IP par 15 minutes
-app.use(rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: { error: "Trop de requêtes, réessayez plus tard." }
-}));
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: { error: "Trop de requêtes, réessayez plus tard." },
+  }),
+);
 
 // ── FICHIERS STATIQUES ──
 // Sert les images uploadées depuis public/uploads
@@ -48,14 +52,14 @@ app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
 // ── ROUTES PUBLIQUES ──
 app.use("/api/auth", authRoutes);
-app.use("/api/photos", photoRoutes);
 app.use("/api/site-content", siteContentRoutes);
+app.use("/api/photos", photoRoutes);
 app.use("/api/avis", avisRoutes);
 app.use("/api/messages", messageRoutes);
 
 // ── ROUTE TEST PRIVÉE ──
 app.get("/", authMiddleware, authorize(["ADMIN", "USER"]), (req, res) =>
-  res.send("Mon API fonctionne bien")
+  res.send("Mon API fonctionne bien"),
 );
 
 export default app;
