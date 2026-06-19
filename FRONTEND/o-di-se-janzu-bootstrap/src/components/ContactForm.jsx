@@ -174,13 +174,13 @@ export default function ContactForm() {
               <input
                 type="checkbox"
                 name="rgpd"
-                id="rgpd-consent"
+                id="rgpd-check"
                 checked={formData.rgpd}
                 onChange={handleChange}
                 style={{ marginTop: "4px" }}
               />
               <label
-                htmlFor="rgpd-consent"
+                htmlFor="rgpd-check"
                 style={{
                   fontSize: "0.8rem",
                   lineHeight: 1.4,
