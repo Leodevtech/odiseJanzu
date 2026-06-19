@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
@@ -74,14 +74,16 @@ export default function LoginPage() {
         style={{ width: "420px", borderRadius: "16px" }}
       >
         {/*Logo centré haut */}
-        <div className="text-center mb-3">
-          <Image
-            src="/assets/logo_bulle.jpg"
-            alt="ô di sé Janzu"
-            width={90}
-            height={90}
-            style={{ borderRadius: "50%" }}
-          />
+        <div className="text-center mb-4 logo-crapper">
+          <Link href="/">
+            <Image
+              src="/assets/logo_bulle.jpg"
+              alt="ô di sé Janzu"
+              width={90}
+              height={90}
+              style={{ borderRadius: "50%" }}
+            />
+          </Link>
         </div>
 
         <h4 className="text-center mb-1">Connexion au Compte</h4>
