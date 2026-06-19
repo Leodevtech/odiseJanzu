@@ -15,10 +15,10 @@ export const getMessageById = async (id) => {
 };
 
 // Insère le message dans la db depuis le form
-export const createMessage = async (nom, email, message) => {
+export const createMessage = async (nom, email, message, rgpdConsent) => {
   const [result] = await db.query(
-    "INSERT INTO messages (nom, email, message) VALUES (?, ?, ?)",
-    [nom, email, message],
+    "INSERT INTO messages (nom, email, message, rgpd_consent) VALUES (?, ?, ?, ?)",
+    [nom, email, message, rgpdConsent],
   );
   return result;
 };

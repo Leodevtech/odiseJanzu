@@ -30,8 +30,13 @@ export const getMessage = async (req, res) => {
 //(public) POST /api/messages
 export const sendMessage = async (req, res) => {
   try {
-    const { nom, email, message } = req.body;
-    await createMessage(nom, email, message);
+    const { nom, email, message, rgpd } = req.body;
+
+    // consentement rgpd obligatoire pour enregister le message
+    if (!rgpd) {
+      return res.status(400).json({ message: "Consentement RGPD requis" });
+    }
+    await createMessage(nom, email, message, rgpd);
     res.status(201).json({ message: "Message envoyé avec succès" });
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur", error: error.message });

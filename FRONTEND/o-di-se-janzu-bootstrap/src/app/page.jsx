@@ -16,6 +16,7 @@ export default function Home() {
     nom: "",
     email: "",
     message: "",
+    rgpd: false,
   });
   const [formStatus, setFormStatus] = useState(null);
 
@@ -69,15 +70,21 @@ export default function Home() {
     setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1));
 
   // Formulaire
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // empeche le comportement du nav (rechargement de page)
+    e.preventDefault();
+    if (!formData.rgpd) {
+      setFormStatus("rgpd");
+      return;
+    }
     try {
       await api.post("/messages", formData);
       setFormStatus("success");
-      setFormData({ nom: "", email: "", message: "" }); // reset les champs
+      setFormData({ nom: "", email: "", message: "", rgpd: false });
     } catch (err) {
       setFormStatus("error");
     }
@@ -826,6 +833,11 @@ export default function Home() {
                 Une erreur est survenue, réessayez.
               </div>
             )}
+            {formStatus === "rgpd" && (
+              <div className="alert alert-warning">
+                Merci de cocher la case de consentement avant d&apos;envoyer.
+              </div>
+            )}
 
             <div
               style={{ display: "flex", flexDirection: "column", gap: "12px" }}
@@ -869,6 +881,40 @@ export default function Home() {
                   resize: "vertical",
                 }}
               />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "8px",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="rgpd"
+                  id="rgpd-consent"
+                  checked={formData.rgpd}
+                  onChange={handleChange}
+                  style={{ marginTop: "4px" }}
+                />
+                <label
+                  htmlFor="rgpd-consent"
+                  style={{
+                    fontSize: "0.8rem",
+                    lineHeight: 1.4,
+                    color: "white",
+                  }}
+                >
+                  J&apos;accepte que mes données soient collectées et utilisées
+                  uniquement pour répondre à ma demande. Voir notre{" "}
+                  <Link
+                    href="/mentions-legales"
+                    style={{ color: "#7ec8e3", textDecoration: "underline" }}
+                  >
+                    politique de confidentialité
+                  </Link>
+                  .
+                </label>
+              </div>
               <button
                 onClick={handleSubmit}
                 style={{
