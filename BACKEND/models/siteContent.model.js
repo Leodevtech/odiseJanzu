@@ -16,6 +16,18 @@ export const updateSiteContent = async (data) => {
     titre_lieux2,
     titre_lieux3,
     titre_lieux4,
+    prestation1_titre,
+    prestation1_duree,
+    prestation1_prix,
+    prestation2_titre,
+    prestation2_duree,
+    prestation2_prix,
+    prestation3_titre,
+    prestation3_duree,
+    prestation3_prix,
+    prestation4_titre,
+    prestation4_duree,
+    prestation4_prix,
   } = data
 
   await db.query(
@@ -25,8 +37,26 @@ export const updateSiteContent = async (data) => {
     titre_lieux1 = ?,
     titre_lieux2 = ?,
     titre_lieux3 = ?,
-    titre_lieux4 = ?
+    titre_lieux4 = ?,
+    prestation1_titre = ?,
+    prestation1_duree = ?,
+    prestation1_prix = ?,
+    prestation2_titre = ?,
+    prestation2_duree = ?,
+    prestation2_prix = ?,
+    prestation3_titre = ?,
+    prestation3_duree = ?,
+    prestation3_prix = ?,
+    prestation4_titre = ?,
+    prestation4_duree = ?,
+    prestation4_prix = ?
   WHERE id = 1`,
-  [titre_section1, titre_section2, titre_lieux1, titre_lieux2, titre_lieux3, titre_lieux4]
+  [titre_section1, titre_section2,
+    titre_lieux1, titre_lieux2, titre_lieux3, titre_lieux4,
+    prestation1_titre, prestation1_duree, prestation1_prix,
+    prestation2_titre, prestation2_duree, prestation2_prix,
+    prestation3_titre, prestation3_duree, prestation3_prix,
+    prestation4_titre, prestation4_duree, prestation4_prix,
+  ]
   )
 };

@@ -36,7 +36,7 @@ export default function DashboardLayout({ children }) {
         {/*Header mobile visible que sur mobile - css cahé */}
         <div className="dashboard-mobile-header">
           <Link href="/">
-            <img
+            <Image
               src="/assets/logo_bulle.jpg"
               alt="Logo"
               width={40}
@@ -60,7 +60,7 @@ export default function DashboardLayout({ children }) {
           {/*Logo*/}
           <div className="text-center mb-4 logo-crapper">
             <Link href="/">
-              <img
+              <Image
                 src="/assets/logo_bulle.jpg"
                 alt="Ô di Sé Janzu"
                 width={100}
