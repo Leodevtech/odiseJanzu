@@ -1,61 +1,20 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
+import Navbar from '@/components/Navbar'
+import ContactForm from '@/components/ContactForm'
+import Footer from '@/components/Footer'
 import { useState } from 'react'
 import api from '@/api/axios.js'
 
 export default function QuiSuisJePage() {
-  // Form contact
-  const [formData, setFormData] = useState({ nom: '', email: '', message: '' })
-  const [formStatus, setFormStatus] = useState(null)
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      await api.post('/messages', formData)
-      setFormStatus('success')
-      setFormData({ nom: '', email: '', message: '' })
-    } catch (err) {
-      setFormStatus('error')
-    }
-  }
+  
 
   return (
     <main style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: '#2d3748', backgroundColor: '#fff' }}>
 
   {/* navbar */}
-    <nav style={{
-      position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10,
-      display:'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '16px 40px', nackground: 'transparent'
-    }}>
-      <div style={{ display: 'flex', gap: '28px' }}>
-        {[
-          { label: '🏠', href: '/' },
-          { label: 'Qui suis-je ?', href: '/qui-suis-je' },
-          { label: 'Janzu', href: '/janzu' },
-          { label: 'Galerie Photo', href: '/galerie' },
-          { label: 'Contactez-moi', href: '#contact' },
-          { label: 'Liens', href: '/#liens' },
-        ].map((item) => (
-          <a
-          key={item.label}
-          href={item.href}
-          style={{
-            color: 'white', textDecoration: 'none', fontSize: '0.9rem',
-            letterSpacing: '0.03em', textShadow: '0 1px 4px rgba(0,0,0,0.4)',
-            transition: 'opacity 0.2s'
-          }}
-          onMouseEnter={e => e.target.style.opacity = '0.75'}
-          onMouseLeave={e => e.target.style.opacity = '1'}
-        >
-          {item.label}
-          </a>
-        ))}
-      </div>
-    </nav>
+    <Navbar />
 
     {/* Hero */}
     <section style={{ position: 'relative', height: '50vh', overflow: 'hidden' }}>
@@ -258,86 +217,10 @@ export default function QuiSuisJePage() {
       </section>
 
       {/* form de contact  */}
-      <section id="contact" style={{ padding: '0 40px 60px', maxWidth: '800px', margin: '0 auto' }}>
-        <div style={{
-          background: '#6b7fa3', borderRadius: '16px', padding: '40px',
-          display: 'flex', gap: '40px', color: 'white', flexWrap: 'wrap'
-        }}>
-
-          {/* Colonne infos */}
-          <div style={{ flex: '0 0 200px' }}>
-            <h3 style={{ fontSize: '1.4rem', fontWeight: 400, marginBottom: '20px' }}>Contact</h3>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>👤 Ô di Sé Janzu</p>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>📍 Adresse de l&apos;entreprise<br />64340 Boucau</p>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>📞 06.12.12.12.12</p>
-            <p style={{ margin: '8px 0', fontSize: '0.9rem' }}>✉️ lemail@test.com</p>
-            <div style={{ marginTop: '16px', display: 'flex', gap: '10px' }}>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>f</a>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1.2rem' }}>ig</a>
-            </div>
-          </div>
-
-           {/* Colonne formulaire */}
-          <div style={{ flex: 1, minWidth: '240px' }}>
-            {formStatus === 'success' && (
-              <div className="alert alert-success">Message envoyé avec succès !</div>
-            )}
-            {formStatus === 'error' && (
-              <div className="alert alert-danger">Une erreur est survenue, réessayez.</div>
-            )}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <input
-                name="nom"
-                value={formData.nom}
-                onChange={handleChange}
-                placeholder="Nom & Prénom"
-                style={{ padding: '8px 12px', borderRadius: '6px', border: 'none', fontSize: '0.9rem' }}
-              />
-              <input
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email"
-                type="email"
-                style={{ padding: '8px 12px', borderRadius: '6px', border: 'none', fontSize: '0.9rem' }}
-              />
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Votre message"
-                rows={4}
-                style={{ padding: '8px 12px', borderRadius: '6px', border: 'none', fontSize: '0.9rem', resize: 'vertical' }}
-              />
-              <button
-                onClick={handleSubmit}
-                style={{
-                  background: '#5b9bd5', color: 'white', border: 'none',
-                  padding: '10px 20px', borderRadius: '6px', cursor: 'pointer',
-                  fontSize: '0.9rem', alignSelf: 'flex-end'
-                }}
-              >
-                Envoyer ma demande
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactForm />
 
       {/* Footer */}
-      <footer style={{
-        background: '#5b6f8a', color: 'white', textAlign: 'center',
-        padding: '24px 40px', fontSize: '0.85rem'
-      }}>
-        <p style={{ margin: '0 0 6px' }}>2026 Ô di Sé Janzu par Nathalie</p>
-        <p style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
-          created with{' '}
-          <Link href="/" style={{ color: '#7ec8e3', textDecoration: 'none', fontSize: '1rem' }}>
-            💙
-          </Link>
-          {' '}by leodevtech
-        </p>
-      </footer>
+      <Footer />
     </main>
   )  
 }

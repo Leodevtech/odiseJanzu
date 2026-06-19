@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import api from "@/api/axios.js";
+import Navbar from "@/components/Navbar";
+import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   // états
@@ -12,16 +15,9 @@ export default function Home() {
   const [currentAvis, setCurrentAvis] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [siteContent, setSiteContent] = useState(null);
-  const [formData, setFormData] = useState({
-    nom: "",
-    email: "",
-    message: "",
-    rgpd: false,
-  });
-  const [formStatus, setFormStatus] = useState(null);
+  
 
-  // état du menu burger
-  const [navOpen, setNavOpen] = useState(false);
+
 
   // CHARGEMENT DES PHOTOS
   useEffect(() => {
@@ -69,26 +65,7 @@ export default function Home() {
   const nextAvis = () =>
     setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1));
 
-  // Formulaire
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.rgpd) {
-      setFormStatus("rgpd");
-      return;
-    }
-    try {
-      await api.post("/messages", formData);
-      setFormStatus("success");
-      setFormData({ nom: "", email: "", message: "", rgpd: false });
-    } catch (err) {
-      setFormStatus("error");
-    }
-  };
+ 
 
   // Rendu jsx
 
@@ -103,66 +80,7 @@ export default function Home() {
     >
       {/*Navbar*/}
 
-      <nav
-        className="navbar navbar-expand-md"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 10,
-          background: "transparent",
-          padding: "12px 24px",
-        }}
-      >
-        <Link className="navbar-brand" href="/">
-          <img
-            src="/assets/logo_bulle.jpg"
-            alt="Logo"
-            width={40}
-            height={40}
-            style={{ borderRadius: "50%" }}
-          />
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setNavOpen(!navOpen)}
-          style={{
-            border: "1px solid rgba(255,255,255,0.5)",
-            padding: "4px 8px",
-          }}
-        >
-          <span style={{ color: "white", fontSize: "1.4rem" }}>☰</span>
-        </button>
-        <div className={`collapse navbar-collapse ${navOpen ? "show" : ""}`}>
-          <ul className="navbar-nav mx-auto gap-md-3">
-            {[
-              { label: "🏠", href: "/" },
-              { label: "Qui suis-je ?", href: "/qui-suis-je" },
-              { label: "Janzu", href: "/janzu" },
-              { label: "Galerie Photo", href: "/galerie" },
-              { label: "Contactez-moi", href: "/#contact" },
-              { label: "Liens", href: "/#liens" },
-            ].map((item) => (
-              <li className="nav-item" key={item.label}>
-                <a
-                  href={item.href}
-                  className="nav-link"
-                  onClick={() => setNavOpen(false)}
-                  style={{
-                    color: "white",
-                    fontSize: "0.9rem",
-                    textShadow: "0 1px 4px rgba(0,0,0,0.4)",
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero image plein écran avec logo */}
 
@@ -758,208 +676,9 @@ export default function Home() {
       </div>
 
       {/* contact form  /api/messages */}
-      <section
-        id="contact"
-        style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
-      >
-        <div
-          style={{
-            background: "#6b7fa3",
-            borderRadius: "16px",
-            padding: "40px",
-            display: "flex",
-            gap: "40px",
-            color: "white",
-            flexWrap: "wrap",
-          }}
-        >
-          {/* Colonne infos de contact */}
-          <div style={{ flex: "0 0 200px" }}>
-            <h3
-              style={{
-                fontSize: "1.4rem",
-                fontWeight: 400,
-                marginBottom: "20px",
-              }}
-            >
-              Contact
-            </h3>
-            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-              👤 Ô di Sé Janzu
-            </p>
-            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-              📍 Adresse de l&apos;entreprise
-              <br />
-              64340 Boucau
-            </p>
-            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-              📞 06.12.12.12.12
-            </p>
-            <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-              ✉️ lemail@test.com
-            </p>
-            <div style={{ marginTop: "16px", display: "flex", gap: "10px" }}>
-              <a
-                href="#"
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                  fontSize: "1.2rem",
-                }}
-              >
-                f
-              </a>
-              <a
-                href="#"
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                  fontSize: "1.2rem",
-                }}
-              >
-                ig
-              </a>
-            </div>
-          </div>
-
-          <div style={{ flex: 1, minWidth: "240px" }}>
-            {formStatus === "success" && (
-              <div className="alert alert-success">
-                Message envoyé avec succès !
-              </div>
-            )}
-            {formStatus === "error" && (
-              <div className="alert alert-danger">
-                Une erreur est survenue, réessayez.
-              </div>
-            )}
-            {formStatus === "rgpd" && (
-              <div className="alert alert-warning">
-                Merci de cocher la case de consentement avant d&apos;envoyer.
-              </div>
-            )}
-
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "12px" }}
-            >
-              <input
-                name="nom"
-                value={formData.nom}
-                onChange={handleChange}
-                placeholder="Nom & Prénom"
-                style={{
-                  padding: "8px 12px",
-                  borderRadius: "6px",
-                  border: "none",
-                  fontSize: "0.9rem",
-                }}
-              />
-              <input
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email"
-                type="email"
-                style={{
-                  padding: "8px 12px",
-                  borderRadius: "6px",
-                  border: "none",
-                  fontSize: "0.9rem",
-                }}
-              />
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Votre message"
-                rows={4}
-                style={{
-                  padding: "8px 12px",
-                  borderRadius: "6px",
-                  border: "none",
-                  fontSize: "0.9rem",
-                  resize: "vertical",
-                }}
-              />
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: "8px",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  name="rgpd"
-                  id="rgpd-consent"
-                  checked={formData.rgpd}
-                  onChange={handleChange}
-                  style={{ marginTop: "4px" }}
-                />
-                <label
-                  htmlFor="rgpd-consent"
-                  style={{
-                    fontSize: "0.8rem",
-                    lineHeight: 1.4,
-                    color: "white",
-                  }}
-                >
-                  J&apos;accepte que mes données soient collectées et utilisées
-                  uniquement pour répondre à ma demande. Voir notre{" "}
-                  <Link
-                    href="/mentions-legales"
-                    style={{ color: "#7ec8e3", textDecoration: "underline" }}
-                  >
-                    politique de confidentialité
-                  </Link>
-                  .
-                </label>
-              </div>
-              <button
-                onClick={handleSubmit}
-                style={{
-                  background: "#5b9bd5",
-                  color: "white",
-                  border: "none",
-                  padding: "10px 20px",
-                  borderRadius: "6px",
-                  cursor: "pointer",
-                  fontSize: "0.9rem",
-                  alignSelf: "flex-end",
-                }}
-              >
-                Envoyer ma demande
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+          <ContactForm />
       {/* Footer  */}
-      <footer
-        style={{
-          background: "#5b6f8a",
-          color: "white",
-          textAlign: "center",
-          padding: "24px 40px",
-          fontSize: "0.85rem",
-        }}
-      >
-        <p style={{ margin: "0 0 6px" }}> 2026 Ô di Sé Janzu par Nathalie</p>
-        <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
-          created with{" "}
-          <Link
-            href="/admin/login"
-            style={{
-              color: "#7ec8e3",
-              textDecoration: "none",
-              fontSize: "1rem",
-            }}
-          >
-            💙
-          </Link>{" "}
-          by leodevtech
-        </p>
-      </footer>
+          <Footer />
     </main>
   );
 }

@@ -1,0 +1,32 @@
+import Link from "next/link";
+
+// Footer commun à toutes les pages du site
+export default function Footer() {
+  return (
+    <footer
+      style={{
+        background: "#5b6f8a",
+        color: "white",
+        textAlign: "center",
+        padding: "24px 40px",
+        fontSize: "0.85rem",
+      }}
+    >
+      <p style={{ margin: "0 0 6px" }}>2026 Ô di Sé Janzu par Nathalie</p>
+      <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
+        created with{" "}
+        <Link
+          href="/admin/login"
+          style={{
+            color: "#7ec8e3",
+            textDecoration: "none",
+            fontSize: "1rem",
+          }}
+        >
+          💙
+        </Link>{" "}
+        by leodevtech
+      </p>
+    </footer>
+  );
+}
