@@ -82,7 +82,7 @@ export default function DashboardPage() {
         {/*Card total messages */}
         <div className="col-md-4">
           <div className="stat-card">
-            <div ClassName="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center">
               <span className="text-muted">Total Messages</span>
               {/*icone enveloppe bootstrap */}
               <span
@@ -90,7 +90,7 @@ export default function DashboardPage() {
                 style={{ backgroundColor: "#fff3cd" }}
               >
                 <i
-                  className="bi bi-enveloppe-fill"
+                  className="bi bi-envelope-fill"
                   style={{ color: "#f59e0b", fontSize: "1.2rem" }}
                 />
               </span>

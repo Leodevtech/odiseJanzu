@@ -67,24 +67,25 @@ export default function ContactForm() {
             Contact
           </h3>
           <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-            👤 Ô di Sé Janzu
+            💧Ô di Sé Janzu
           </p>
           <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-            📍 Adresse de l&apos;entreprise
+          📍64340 Boucau  
             <br />
-            64340 Boucau
           </p>
           <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-            📞 06.12.12.12.12
+            📞 06.78.95.71.28
           </p>
           <p style={{ margin: "8px 0", fontSize: "0.9rem" }}>
-            ✉️ lemail@test.com
+             nathalieanne.loc@gmail.com 
           </p>
           <div style={{ marginTop: "16px", display: "flex", gap: "10px" }}>
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61579396826909"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                color: "white",
+                color: "#cfe3ee",
                 textDecoration: "none",
                 fontSize: "1.2rem",
               }}
@@ -92,9 +93,11 @@ export default function ContactForm() {
               facebook
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/odisejanzu/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                color: "white",
+                color: "#cfe3ee",
                 textDecoration: "none",
                 fontSize: "1.2rem",
               }}
@@ -191,6 +194,8 @@ export default function ContactForm() {
                 utilisées uniquement pour répondre à ma demande. Voir notre{" "}
                 <Link
                   href="/mentions-legales"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ color: "#7ec8e3", textDecoration: "underline" }}
                 >
                   politique de confidentialité

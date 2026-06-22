@@ -13,10 +13,20 @@ export default function Footer() {
       }}
     >
       <p style={{ margin: "0 0 6px" }}>2026 Ô di Sé Janzu par Nathalie</p>
+       <p style={{ margin: "0 0 6px" }}>
+        <Link
+          href="/mentions-legales"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#cfe3ee", textDecoration: "underline" }}
+        >
+          Mentions légales
+        </Link>
+      </p>
       <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
         created with{" "}
         <Link
-          href="/admin/login"
+          href="#"
           style={{
             color: "#7ec8e3",
             textDecoration: "none",
