@@ -22,7 +22,7 @@ export default function QuiSuisJePage() {
           src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
           fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          style={{ objectFit: 'cover', objectPosition: '50% 40%' }}
           priority
         />
         {/* Overlay sombre */}

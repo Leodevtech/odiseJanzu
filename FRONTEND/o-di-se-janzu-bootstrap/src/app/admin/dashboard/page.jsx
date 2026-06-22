@@ -37,18 +37,23 @@ export default function DashboardPage() {
 
     fetchData();
   }, []);
-  // marque message comme lu + maj affichage
-  const handleMarkAsRead = async (id) => {
+  // Bascule le statut lu/non lu + maj affichage
+  const handleToggleLu = async (id, luActuel) => {
     try {
-      await api.patch(`/messages/${id}/lu`, null, { withCredentials: true });
+      await api.patch(
+        `/messages/${id}/lu`,
+        { lu: luActuel === 1 ? 0 : 1 },
+        { withCredentials: true },
+      );
       setMessages((prev) =>
-        prev.map((msg) => (msg.id === id ? { ...msg, lu: 1 } : msg)),
+        prev.map((msg) =>
+          msg.id === id ? { ...msg, lu: luActuel === 1 ? 0 : 1 } : msg,
+        ),
       );
     } catch (error) {
-      console.error("Erreur marquage message", error);
+      console.error("Erreur toggle message", error);
     }
   };
-
   // Supprime un message et le retire de l'affichage
   const handleDelete = async (id) => {
     try {
@@ -187,15 +192,14 @@ export default function DashboardPage() {
                       >
                         Voir
                       </button>
-                      {/* bouton marquer lu - visible uniquement si non lu */}
-                      {msg.lu === 0 && (
-                        <button
-                          className="btn btn-sm btn-outline-primary"
-                          onClick={() => handleMarkAsRead(msg.id)}
-                        >
-                          Marquer lu
-                        </button>
-                      )}
+
+                      {/* Toggle — change le texte et la couleur selon l'état actuel */}
+                      <button
+                        className={`btn btn-sm ${msg.lu === 1 ? "btn-outline-warning" : "btn-outline-success"}`}
+                        onClick={() => handleToggleLu(msg.id, msg.lu)}
+                      >
+                        {msg.lu === 1 ? "Marquer non lu" : "Marquer lu"}
+                      </button>
                       <button
                         className="btn btn-sm btn-outline-danger"
                         onClick={() => handleDelete(msg.id)}
@@ -272,18 +276,17 @@ export default function DashboardPage() {
             {/* Footer */}
             <div className="d-flex gap-2 justify-content-end mt-3">
               {/* Marquer lu — visible uniquement si non lu */}
-              {selectedMessage.lu === 0 && (
-                <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() => {
-                    handleMarkAsRead(selectedMessage.id);
-                    // Met à jour l'état local de la modale aussi
-                    setSelectedMessage({ ...selectedMessage, lu: 1 });
-                  }}
-                >
-                  Marquer comme lu
-                </button>
-              )}
+              {/* Toggle lu/non lu — toujours visible, met à jour aussi l'état local de la modale */}
+              <button
+                className={`btn btn-sm ${selectedMessage.lu === 1 ? "btn-outline-warning" : "btn-outline-success"}`}
+                onClick={() => {
+                  const nouveauLu = selectedMessage.lu === 1 ? 0 : 1;
+                  handleToggleLu(selectedMessage.id, selectedMessage.lu);
+                  setSelectedMessage({ ...selectedMessage, lu: nouveauLu });
+                }}
+              >
+                {selectedMessage.lu === 1 ? "Marquer non lu" : "Marquer lu"}
+              </button>
               <button
                 className="btn btn-secondary btn-sm"
                 onClick={() => setSelectedMessage(null)}

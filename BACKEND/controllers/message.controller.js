@@ -2,7 +2,7 @@ import {
   getAllMessages,
   getMessageById,
   createMessage,
-  markAsRead,
+  setMessageLu,
   deleteMessage
 } from '../models/message.model.js'
 
@@ -43,11 +43,12 @@ export const sendMessage = async (req, res) => {
   }
 };
 
-//(admin) PATCH /api/messages/:id/lu - marque comme lu
+//(admin) PATCH /api/messages/:id/lu - bascule lu/non lu
 export const readMessage = async (req, res) => {
   try {
-    await markAsRead(req.params.id);
-    res.status(200).json({ message: "Message marqué comme lu " });
+    const { lu } = req.body;
+    await setMessageLu(req.params.id, lu);
+    res.status(200).json({ message: "Statut du message mis à jour" });
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur", error: error.message });
   }

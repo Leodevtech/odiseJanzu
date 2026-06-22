@@ -24,8 +24,8 @@ export const createMessage = async (nom, email, message, rgpdConsent) => {
 };
 
 // Marque un message comme lu
-export const markAsRead = async (id) => {
-  await db.query("UPDATE messages SET lu = 1 WHERE id = ?", [id]);
+export const setMessageLu = async (id, lu) => {
+  await db.query("UPDATE messages SET lu = ? WHERE id = ?", [lu, id]);
 };
 
 export const deleteMessage = async (id) => {

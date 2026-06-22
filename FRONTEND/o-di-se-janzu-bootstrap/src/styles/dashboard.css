@@ -84,7 +84,7 @@
   flex: 1;
   padding: 28px;
   overflow-y: auto;
-  background: rgba(240, 244, 248, 0.6);
+  background: rgba(210, 220, 230, 0.8);
 }
 
 /* Cards stats identique sur toute les pages*/
@@ -95,10 +95,10 @@
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   border: none;
-  height: 120px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 8px;
 }
 
 .stat-card .stat-header {

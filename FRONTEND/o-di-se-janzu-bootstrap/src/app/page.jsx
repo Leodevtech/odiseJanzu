@@ -15,9 +15,6 @@ export default function Home() {
   const [currentAvis, setCurrentAvis] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [siteContent, setSiteContent] = useState(null);
-  
-
-
 
   // CHARGEMENT DES PHOTOS
   useEffect(() => {
@@ -64,8 +61,6 @@ export default function Home() {
 
   const nextAvis = () =>
     setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1));
-
- 
 
   // Rendu jsx
 
@@ -120,7 +115,7 @@ export default function Home() {
             alt="Logo Ô di Sé Janzu"
             width={130}
             height={130}
-            style={{ borderRadius: "50%" }}
+            style={{ borderRadius: "50%", objectFit: "cover" }}
           />
         </div>
 
@@ -676,9 +671,9 @@ export default function Home() {
       </div>
 
       {/* contact form  /api/messages */}
-          <ContactForm />
+      <ContactForm />
       {/* Footer  */}
-          <Footer />
+      <Footer />
     </main>
   );
 }
