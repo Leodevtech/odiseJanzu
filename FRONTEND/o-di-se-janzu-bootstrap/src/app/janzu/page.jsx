@@ -9,8 +9,6 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 export default function JanzuPage() {
-  
-
   return (
     <main
       style={{
@@ -18,14 +16,10 @@ export default function JanzuPage() {
         color: "#2d3748",
       }}
     >
-      {/* ══════════════════════════════
-          NAVBAR
-      ══════════════════════════════ */}
+      {/* NAVBAR*/}
       <Navbar />
 
-      {/* ══════════════════════════════
-          HERO — image sous-marin avec logo
-      ══════════════════════════════ */}
+      {/* HERO — image sous-marin avec logo */}
       <section
         style={{ position: "relative", height: "50vh", overflow: "hidden" }}
       >
@@ -33,9 +27,10 @@ export default function JanzuPage() {
           src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "50% 40%" }}
           priority
         />
+        {/* Overlay sombre*/}
         <div
           style={{
             position: "absolute",
@@ -43,6 +38,7 @@ export default function JanzuPage() {
             background: "rgba(0,30,60,0.3)",
           }}
         />
+        {/* Logo centré*/}
         <div
           style={{
             position: "absolute",
@@ -114,14 +110,18 @@ export default function JanzuPage() {
           position: relative sur le fond pour pouvoir positionner les bulles
       ══════════════════════════════ */}
       <section
-        style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}
+        style={{
+          position: "relative",
+          minHeight: "clamp(500px, 70vh, 800px)",
+          overflow: "hidden",
+        }}
       >
         {/* Image de fond sous-marin */}
         <Image
-          src="/assets/fond_mer.jpg"
+          src="/assets/fond_mer2.jpg"
           alt="Fond marin"
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "50% 40%" }}
         />
         {/* Overlay léger pour améliorer la lisibilité */}
         <div
@@ -146,15 +146,20 @@ export default function JanzuPage() {
         >
           {/* Bulle 1 — Principe — centrée */}
           <div
-            style={{ position: "relative", width: "380px", height: "380px" }}
+            style={{
+              position: "relative",
+              width: "320px",
+              height: "320px",
+              borderRadius: "50%",
+              overflow: "hidden",
+            }}
           >
             {/* Image bulle en fond */}
-            <img
-              src="/assets/bulle_bg.jpg"
+            <Image
+              src="/assets/bulle_bg.png"
               alt="bulle"
+              fill
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
                 borderRadius: "50%",
                 opacity: 0.85,
@@ -168,7 +173,7 @@ export default function JanzuPage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "40px",
+                padding: "36px",
                 textAlign: "center",
               }}
             >
@@ -205,18 +210,18 @@ export default function JanzuPage() {
           <div
             style={{
               position: "relative",
-              width: "360px",
-              height: "360px",
-              alignSelf: "flex-end",
-              marginRight: "10%",
+              width: "320px",
+              height: "320px",
+              borderRadius: "50%",
+              overflow: "hidden",
             }}
           >
-            <img
-              src="/assets/bulle_bg.jpg"
+            {/* Image bulle en fond */}
+            <Image
+              src="/assets/bulle_bg.png"
               alt="bulle"
+              fill
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
                 borderRadius: "50%",
                 opacity: 0.85,
@@ -268,16 +273,16 @@ export default function JanzuPage() {
               position: "relative",
               width: "320px",
               height: "320px",
-              alignSelf: "flex-start",
-              marginLeft: "10%",
+              borderRadius: "50%",
+              overflow: "hidden",
             }}
           >
-            <img
-              src="/assets/bulle_bg.jpg"
+            {/* Image bulle en fond */}
+            <Image
+              src="/assets/bulle_bg.png"
               alt="bulle"
+              fill
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
                 borderRadius: "50%",
                 opacity: 0.85,
@@ -290,7 +295,7 @@ export default function JanzuPage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "36px",
+                padding: "40px",
                 textAlign: "center",
               }}
             >
@@ -356,14 +361,16 @@ export default function JanzuPage() {
             </p>
           </div>
           <div style={{ flex: "0 0 300px" }}>
-            <img
+            <Image
               src="/assets/perso-1.jpg"
               alt="Séance Janzu"
+              width={300}
+              height={380}
               style={{
                 borderRadius: "16px",
                 objectFit: "cover",
-                width: "300px",
-                height: "380px",
+                width: "100%",
+                height: "auto",
               }}
             />
           </div>
@@ -390,14 +397,16 @@ export default function JanzuPage() {
             </p>
           </div>
           <div style={{ flex: "0 0 300px" }}>
-            <img
+            <Image
               src="/assets/perso-3.jpg"
               alt="Séance Janzu immersion"
+              width={300}
+              height={380}
               style={{
                 borderRadius: "16px",
                 objectFit: "cover",
-                width: "300px",
-                height: "380px",
+                width: "100%",
+                height: "auto",
               }}
             />
           </div>
@@ -424,14 +433,16 @@ export default function JanzuPage() {
             </p>
           </div>
           <div style={{ flex: "0 0 300px" }}>
-            <img
+            <Image
               src="/assets/perso-5.jpg"
               alt="Fin de séance"
+              width={300}
+              height={380}
               style={{
                 borderRadius: "16px",
                 objectFit: "cover",
-                width: "300px",
-                height: "380px",
+                width: "100%",
+                height: "auto",
               }}
             />
           </div>
@@ -492,35 +503,11 @@ export default function JanzuPage() {
           </div>
 
           {/* Formulaire contact */}
-          
-            <ContactForm />
+
+          <ContactForm />
 
           {/* Footer */}
-          <footer
-            style={{
-              color: "white",
-              textAlign: "center",
-              padding: "24px 40px",
-              fontSize: "0.85rem",
-              borderTop: "1px solid rgba(255,255,255,0.2)",
-            }}
-          >
-            <p style={{ margin: "0 0 6px" }}>2026 Ô di Sé Janzu par Nathalie</p>
-            <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
-              created with
-              <Link
-                href="/admin/login"
-                style={{
-                  color: "#7ec8e3",
-                  textDecoration: "none",
-                  fontSize: "1rem",
-                }}
-              >
-                💙
-              </Link>{" "}
-              by leodevtech
-            </p>
-          </footer>
+          <Footer />
         </div>
       </section>
     </main>

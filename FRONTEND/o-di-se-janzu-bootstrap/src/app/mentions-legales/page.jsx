@@ -43,7 +43,7 @@ export default function MentionsLegalesPage() {
             Éditeur du site
           </h2>
           <p>
-            Le présent site est édité par Nathalie, praticienne aquatique
+            Le présent site est édité par Nathalie ANNE, praticienne aquatique
             exerçant sous le statut d&apos;auto-entrepreneur (micro-entreprise).
           </p>
           <p>
@@ -140,9 +140,9 @@ export default function MentionsLegalesPage() {
           </p>
           <p>
             Conformément au Règlement Général sur la Protection des Données
-            (RGPD), vous disposez d&apos;un droit d&apos;accès, de
-            rectification et de suppression de vos données. Pour exercer ce
-            droit, contactez-nous à l&apos;adresse :{" "}
+            (RGPD), vous disposez d&apos;un droit d&apos;accès, de rectification
+            et de suppression de vos données. Pour exercer ce droit,
+            contactez-nous à l&apos;adresse :{" "}
             <a
               href="mailto:nathalieanne.loc@gmail.com"
               style={{ color: "#5b9bd5" }}

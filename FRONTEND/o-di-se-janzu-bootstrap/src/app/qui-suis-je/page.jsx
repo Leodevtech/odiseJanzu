@@ -45,7 +45,7 @@ export default function QuiSuisJePage() {
 
         {/* Titre + texte intro même que accueil */}
 
-        <section style={{ padding: '60px 40px', maxWidth: '700px', margin: '0auto', textAlign: 'center' }}>
+        <section style={{ padding: '60px 40px', maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
           <h1 style={{ fontSize: '2.4rem', fontWeight: 400, marginBottom: '24px' }}>Qui suis-je ?</h1>
           <p style={{ lineHeight: 1.9, color: '#555', fontSize: '1rem' }}>
             Le Janzu est entré dans ma vie, sans que je le sache, en découvrant, par hasard, la vidéo
