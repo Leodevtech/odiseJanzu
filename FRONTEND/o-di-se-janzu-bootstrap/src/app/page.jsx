@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import api from "@/api/axios.js";
 import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
+import AlgueSeparator from "@/components/AlgueSeparator";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -50,17 +51,13 @@ export default function Home() {
   }, []);
 
   //Fonctions carousel
-  const prevSlide = () =>
-    setCurrentSlide((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
+  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
 
-  const nextSlide = () =>
-    setCurrentSlide((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
+  const nextSlide = () => setCurrentSlide((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
 
-  const prevAvis = () =>
-    setCurrentAvis((prev) => (prev === 0 ? avis.length - 1 : prev - 1));
+  const prevAvis = () => setCurrentAvis((prev) => (prev === 0 ? avis.length - 1 : prev - 1));
 
-  const nextAvis = () =>
-    setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1));
+  const nextAvis = () => setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1));
 
   // Rendu jsx
 
@@ -79,9 +76,8 @@ export default function Home() {
 
       {/* Hero image plein écran avec logo */}
 
-      <section
-        style={{ position: "relative", height: "100vh", overflow: "hidden" }}
-      >
+      {/* Hero image plein écran avec logo */}
+      <section style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
         <Image
           src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
@@ -96,7 +92,7 @@ export default function Home() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(0,30,60,0.35",
+            background: "rgba(0,30,60,0.20)",
           }}
         />
 
@@ -119,7 +115,8 @@ export default function Home() {
           />
         </div>
 
-        {/* Bulle centré sur image hero */}
+        {/* Rectangle glassmorphism */}
+        {/* Rectangle glassmorphism premium */}
         <div
           style={{
             position: "absolute",
@@ -127,32 +124,31 @@ export default function Home() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             zIndex: 2,
-            background: "rgba(255,255,255,0.18)",
-            backdropFilter: "blur(10px",
-            borderRadius: "50%",
-            width: "320px",
-            height: "220px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
+            background: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)",
+            backdropFilter: "blur(16px) brightness(1.1)",
+            WebkitBackdropFilter: "blur(16px) brightness(1.1)",
+            borderRadius: "16px",
+            width: "min(520px, 82%)",
+            padding: "32px 48px",
+            border: "1px solid rgba(255,255,255,0.3)",
+            borderTop: "1px solid rgba(255,255,255,0.5)",
+            borderLeft: "1px solid rgba(255,255,255,0.5)",
+            boxShadow: "0 8px 32px rgba(0,20,60,0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
             textAlign: "center",
-            padding: "20px",
-            border: "1px solid rgba(255,255,255,0.35)",
-            boxShadow: "0 8px 32px rgba(0,60,100,0.2)",
           }}
         >
           <p
             style={{
               color: "white",
-              fontSize: "1rem",
+              fontSize: "1.1rem",
               margin: 0,
-              lineHeight: 1.6,
-              textShadow: "0 1px 6px rgba(0,0,0,0.5)",
+              lineHeight: 1.9,
+              fontStyle: "italic",
+              letterSpacing: "0.03em",
+              textShadow: "0 1px 8px rgba(0,0,0,0.6)",
             }}
           >
-            {siteContent?.titre_section1 ||
-              "Bienvenue sur Ô di Sé Janzu pour un voyage aquatique"}
+            {siteContent?.titre_section1 || "Bienvenue sur Ô di Sé Janzu pour un voyage aquatique"}
           </p>
         </div>
       </section>
@@ -161,10 +157,12 @@ export default function Home() {
       <section className="container py-5">
         <div className="row align-items-center g-4">
           <div className="col-12 col-md-5">
-            <img
+            <Image
               src="/assets/perso-3.jpg"
               alt="Qui suis-je"
               className="img-fluid rounded"
+              width={600}
+              height={380}
               style={{ objectFit: "cover", width: "100%", height: "380px" }}
             />
           </div>
@@ -179,15 +177,11 @@ export default function Home() {
               Qui suis-je ?
             </h2>
             <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
-              Le Janzu est entré dans ma vie, sans que je le sache, en
-              découvrant, par hasard, la vidéo d&apos;une séance sur un réseau
-              social. Impressionnée et fortement attirée par ce que je voyais,
-              je reservais, quelques semaines plus tard, ma première séance...
-              Depuis, le Janzu ne m&apos;a pas quittée et poursuit son chemin
-              dans ma vie, telle une rivière pacifique. Je m&apos;appelle
-              Nathalie, je suis dotée d&apos;une grande sensibilité émotionnelle
-              et relationnelle et depuis toujours, l&apos;eau m&apos;est
-              familière.
+              Le Janzu est entré dans ma vie, sans que je le sache, en découvrant, par hasard, la vidéo d&apos;une
+              séance sur un réseau social. Impressionnée et fortement attirée par ce que je voyais, je reservais,
+              quelques semaines plus tard, ma première séance... Depuis, le Janzu ne m&apos;a pas quittée et poursuit
+              son chemin dans ma vie, telle une rivière pacifique. Je m&apos;appelle Nathalie, je suis dotée d&apos;une
+              grande sensibilité émotionnelle et relationnelle et depuis toujours, l&apos;eau m&apos;est familière.
             </p>
             {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
             <Link
@@ -206,25 +200,19 @@ export default function Home() {
 
       {/* séparateur algues */}
 
-      <div style={{ textAlign: "center", padding: "10px 0" }}>
-        <Image
-          src="/assets/banière v2.png"
-          alt="séparateur décoratif"
-          width={500}
-          height={80}
-          style={{ maxWidth: "100%", opacity: 0.85 }}
-        />
-      </div>
+      <AlgueSeparator />
 
       {/* LE JANZU -  */}
 
       <section className="container py-5">
         <div className="row align-items-center g-4">
           <div className="col-12 col-md-5 order-md-2">
-            <img
+            <Image
               src="/assets/perso-1.jpg"
               alt="Le Janzu"
               className="img-fluid rounded"
+              width={600}
+              height={380}
               style={{ objectFit: "cover", width: "100%", height: "380px" }}
             />
           </div>
@@ -239,13 +227,10 @@ export default function Home() {
               Le Janzu
             </h2>
             <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
-              Le Janzu est un soin aquatique qui se pratique en eau chaude et
-              permet un relâchement profond de l&apos;esprit et du corps.
-              L&apos;eau chaude - et le soutien qu&apos;elle offre - est idéale
-              pour libérer la colonne vertébrale, enlever le poids sur les
-              vertèbres et les articulations et relâcher les muscles. Le flux,
-              induit par la mise en mouvement, contribue à calmer la
-              respiration.
+              Le Janzu est un soin aquatique qui se pratique en eau chaude et permet un relâchement profond de
+              l&apos;esprit et du corps. L&apos;eau chaude - et le soutien qu&apos;elle offre - est idéale pour libérer
+              la colonne vertébrale, enlever le poids sur les vertèbres et les articulations et relâcher les muscles. Le
+              flux, induit par la mise en mouvement, contribue à calmer la respiration.
             </p>
             <Link
               href="/janzu"
@@ -342,15 +327,13 @@ export default function Home() {
               img: "/assets/perso-4.jpg",
             },
           ].map((p) => (
-            <div
-              key={p.titre}
-              className="col-6 col-md-3"
-              style={{ flex: "0 0 220px", textAlign: "center" }}
-            >
+            <div key={p.titre} className="col-6 col-md-3" style={{ flex: "0 0 220px", textAlign: "center" }}>
               {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
-              <img
+              <Image
                 src={p.img}
                 alt={p.titre}
+                width={220}
+                height={200}
                 style={{
                   borderRadius: "12px",
                   objectFit: "cover",
@@ -359,9 +342,7 @@ export default function Home() {
                 }}
               />
               <p style={{ marginTop: "12px", fontWeight: 500 }}>{p.titre}</p>
-              <p style={{ color: "#888", fontSize: "0.9rem", margin: "2px 0" }}>
-                {p.duree}
-              </p>
+              <p style={{ color: "#888", fontSize: "0.9rem", margin: "2px 0" }}>{p.duree}</p>
               <p style={{ color: "#2d3748", fontWeight: 600 }}>{p.prix}</p>
             </div>
           ))}
@@ -369,15 +350,7 @@ export default function Home() {
       </section>
 
       {/* Séparateur algues */}
-      <div style={{ textAlign: "center", padding: "10px 0" }}>
-        <Image
-          src="/assets/banière v2.png"
-          alt="séparateur décoratif"
-          width={500}
-          height={80}
-          style={{ maxWidth: "100%", opacity: 0.85 }}
-        />
-      </div>
+      <AlgueSeparator />
 
       {/* Galerie carousel 5dernières photos upload */}
 
@@ -386,11 +359,7 @@ export default function Home() {
         className="container py-5"
         style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
       >
-        <h2
-          style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}
-        >
-          Galerie photo
-        </h2>
+        <h2 style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}>Galerie photo</h2>
 
         {/* affiche le carousel seulment si photo, sinon un message vide */}
         {photos.length > 0 ? (
@@ -420,6 +389,7 @@ export default function Home() {
               <div
                 className="overflow-hidden rounded"
                 style={{
+                  position: "relative",
                   width: "360px",
                   height: "240px",
                   borderRadius: "16px",
@@ -427,11 +397,12 @@ export default function Home() {
                   margin: "0 auto",
                 }}
               >
-                <img // construit url complet vers image sur serveur back
+                <Image // construit url complet vers image sur serveur back
                   src={`${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${photos[currentSlide]?.filepath.replace(/^\//, "")}`}
                   alt={photos[currentSlide]?.alt || "photo galerie"}
                   fill
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  unoptimized
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               <button
@@ -477,9 +448,7 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          <p style={{ color: "#aaa", fontStyle: "italic" }}>
-            Aucune photo disponible.
-          </p>
+          <p style={{ color: "#aaa", fontStyle: "italic" }}>Aucune photo disponible.</p>
         )}
         <div style={{ textAlign: "center", marginTop: "20px" }}>
           <Link
@@ -617,33 +586,21 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          <p style={{ color: "#aaa", fontStyle: "italic" }}>
-            Aucun avis pour le moment.
-          </p>
+          <p style={{ color: "#aaa", fontStyle: "italic" }}>Aucun avis pour le moment.</p>
         )}
       </section>
 
       {/* Lieux de pratique - titre dynamiques via dashboard */}
-      <section
-        className="container py-5"
-        style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}
-      >
-        <h2
-          style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}
-        >
-          Mes lieux de pratiques
-        </h2>
-        <div
-          className="row g-3"
-          style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}
-        >
+      <section className="container py-5" style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}>
+        <h2 style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}>Mes lieux de pratiques</h2>
+        <div className="row g-3">
           {[
             siteContent?.titre_lieux1 || "Lieu 1",
             siteContent?.titre_lieux2 || "Lieu 2",
             siteContent?.titre_lieux3 || "Lieu 3",
             siteContent?.titre_lieux4 || "Lieu 4",
           ].map((titre, i) => (
-            <div key={i} className="col-6 col-md-3">
+            <div key={i} className="col-6">
               <div
                 className="rounded d-flex align-items-center justify-content-center"
                 style={{
@@ -651,6 +608,8 @@ export default function Home() {
                   background: "#dce8f0",
                   color: "#555",
                   fontStyle: "italic",
+                  textAlign: "center",
+                  padding: "12px",
                 }}
               >
                 {titre}
@@ -660,15 +619,7 @@ export default function Home() {
         </div>
       </section>
       {/* Séparateur algues */}
-      <div style={{ textAlign: "center", padding: "10px 0" }}>
-        <Image
-          src="/assets/banière v2.png"
-          alt="séparateur décoratif"
-          width={500}
-          height={80}
-          style={{ maxWidth: "100%", opacity: 0.85 }}
-        />
-      </div>
+      <AlgueSeparator />
 
       {/* contact form  /api/messages */}
       <ContactForm />

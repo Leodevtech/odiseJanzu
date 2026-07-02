@@ -6,6 +6,7 @@ import { useState } from "react";
 import api from "@/api/axios.js";
 import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
+import AlgueSeparator from "@/components/AlgueSeparator";
 import Footer from "@/components/Footer";
 
 export default function JanzuPage() {
@@ -20,9 +21,7 @@ export default function JanzuPage() {
       <Navbar />
 
       {/* HERO — image sous-marin avec logo */}
-      <section
-        style={{ position: "relative", height: "50vh", overflow: "hidden" }}
-      >
+      <section style={{ position: "relative", height: "50vh", overflow: "hidden" }}>
         <Image
           src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
@@ -48,13 +47,7 @@ export default function JanzuPage() {
             zIndex: 2,
           }}
         >
-          <Image
-            src="/assets/logo_bulle.jpg"
-            alt="Logo"
-            width={110}
-            height={110}
-            style={{ borderRadius: "50%" }}
-          />
+          <Image src="/assets/logo_bulle.jpg" alt="Logo" width={110} height={110} style={{ borderRadius: "50%" }} />
         </div>
       </section>
 
@@ -70,39 +63,18 @@ export default function JanzuPage() {
           backgroundColor: "#fff",
         }}
       >
-        <h1
-          style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}
-        >
-          Le Janzu
-        </h1>
+        <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Le Janzu</h1>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
-          Janzu signifie en Chinois « rivière pacifique » et le but d&apos;une
-          séance est de vous apaiser, de relaxer votre corps grâce à la portance
-          de l&apos;eau et aux mouvements fluides initiés par le thérapeute. Le
-          Janzu est dit-la « thérapie de la renaissance » et repose sur les
-          vertus thérapeutiques de l&apos;élément. Il s&apos;apparente à une
-          danse où la personne se laisse bercer comme une algue à la surface de
-          l&apos;eau, par des mouvements doux, souples et au rythme de son
-          souffle.
+          Janzu signifie en Chinois « rivière pacifique » et le but d&apos;une séance est de vous apaiser, de relaxer
+          votre corps grâce à la portance de l&apos;eau et aux mouvements fluides initiés par le thérapeute. Le Janzu
+          est dit-la « thérapie de la renaissance » et repose sur les vertus thérapeutiques de l&apos;élément. Il
+          s&apos;apparente à une danse où la personne se laisse bercer comme une algue à la surface de l&apos;eau, par
+          des mouvements doux, souples et au rythme de son souffle.
         </p>
       </section>
 
       {/* Séparateur algues */}
-      <div
-        style={{
-          textAlign: "center",
-          padding: "10px 0",
-          backgroundColor: "#fff",
-        }}
-      >
-        <Image
-          src="/assets/banière v2.png"
-          alt="séparateur décoratif"
-          width={500}
-          height={80}
-          style={{ maxWidth: "100%", opacity: 0.85 }}
-        />
-      </div>
+      <AlgueSeparator />
 
       {/* ══════════════════════════════
           SECTION BULLES — fond sous-marin avec bulles jpg
@@ -197,10 +169,9 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Le Janzu est un soin aquatique qui se pratique en eau chaude
-                  et permet un relâchement profond de l&apos;esprit et du corps.
-                  L&apos;eau chaude est idéale pour libérer la colonne
-                  vertébrale et relâcher les muscles.
+                  Le Janzu est un soin aquatique qui se pratique en eau chaude et permet un relâchement profond de
+                  l&apos;esprit et du corps. L&apos;eau chaude est idéale pour libérer la colonne vertébrale et relâcher
+                  les muscles.
                 </p>
               </div>
             </div>
@@ -258,10 +229,8 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Le Janzu tire son origine de multiples pratiques, dont celles
-                  des chamanes mexicains. Son fondateur, Juan Villatoro, dans
-                  les années 80, a créé le Janzu, qui signifie « rivière
-                  pacifique ».
+                  Le Janzu tire son origine de multiples pratiques, dont celles des chamanes mexicains. Son fondateur,
+                  Juan Villatoro, dans les années 80, a créé le Janzu, qui signifie « rivière pacifique ».
                 </p>
               </div>
             </div>
@@ -319,9 +288,8 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  De nombreux esprits bénéfiques sont liés à l&apos;eau et
-                  habitent lacs, rivières et autres plans d&apos;eau. Les
-                  habitants leur contèrent des propriétés extraordinaires.
+                  De nombreux esprits bénéfiques sont liés à l&apos;eau et habitent lacs, rivières et autres plans
+                  d&apos;eau. Les habitants leur contèrent des propriétés extraordinaires.
                 </p>
               </div>
             </div>
@@ -329,122 +297,73 @@ export default function JanzuPage() {
         </div>
       </section>
 
-      {/*DÉROULÉ D'UNE SÉANCE   */}
+      {/* DÉROULÉ D'UNE SÉANCE */}
       <section style={{ backgroundColor: "#fff", padding: "20px 0" }}>
         {/* Bloc 1 — texte gauche, image droite */}
-        <div
-          style={{
-            padding: "60px 40px",
-            maxWidth: "1000px",
-            margin: "0 auto",
-            display: "flex",
-            gap: "60px",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ flex: 1 }}>
-            <h2
-              style={{
-                fontSize: "2rem",
-                fontWeight: 400,
-                marginBottom: "20px",
-              }}
-            >
-              Déroulé d&apos;une séance
-            </h2>
-            <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-              Tout d&apos;abord je vous accueille et nous prenons le temps
-              d&apos;échanger sur le déroulé de la séance et vos besoins et
-              éventuelles contraintes de santé. Je vous équipe de flotteurs aux
-              jambes, d&apos;un pince-nez et d&apos;une veste néoprène pour un
-              confort maximum.
-            </p>
-          </div>
-          <div style={{ flex: "0 0 300px" }}>
-            <Image
-              src="/assets/perso-1.jpg"
-              alt="Séance Janzu"
-              width={300}
-              height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "auto",
-              }}
-            />
+        <div className="container py-5">
+          <div className="row align-items-center g-4">
+            <div className="col-12 col-md-7">
+              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Déroulé d&apos;une séance</h2>
+              <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                Tout d&apos;abord je vous accueille et nous prenons le temps d&apos;échanger sur le déroulé de la séance
+                et vos besoins et éventuelles contraintes de santé. Je vous équipe de flotteurs aux jambes, d&apos;un
+                pince-nez et d&apos;une veste néoprène pour un confort maximum.
+              </p>
+            </div>
+            <div className="col-12 col-md-5">
+              <Image
+                src="/assets/perso-1.jpg"
+                alt="Séance Janzu"
+                width={300}
+                height={380}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "380px" }}
+              />
+            </div>
           </div>
         </div>
 
         {/* Bloc 2 — image gauche, texte droite */}
-        <div
-          style={{
-            padding: "60px 40px",
-            maxWidth: "1000px",
-            margin: "0 auto",
-            display: "flex",
-            gap: "60px",
-            alignItems: "center",
-            flexDirection: "row-reverse",
-          }}
-        >
-          <div style={{ flex: 1, textAlign: "right" }}>
-            <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-              En flottaison, je vous soutiens et mets votre corps en mouvement,
-              à la surface de l&apos;eau, puis également en immersion. Les
-              mouvements sont doux, fluides, pour favoriser la détente et le
-              lâcher-prise du corps et du mental.
-            </p>
-          </div>
-          <div style={{ flex: "0 0 300px" }}>
-            <Image
-              src="/assets/perso-3.jpg"
-              alt="Séance Janzu immersion"
-              width={300}
-              height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "auto",
-              }}
-            />
+        <div className="container py-5">
+          <div className="row align-items-center g-4">
+            <div className="col-12 col-md-5 order-md-1">
+              <Image
+                src="/assets/perso-3.jpg"
+                alt="Séance Janzu immersion"
+                width={300}
+                height={380}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "380px" }}
+              />
+            </div>
+            <div className="col-12 col-md-7 order-md-2 text-md-end">
+              <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                En flottaison, je vous soutiens et mets votre corps en mouvement, à la surface de l&apos;eau, puis
+                également en immersion. Les mouvements sont doux, fluides, pour favoriser la détente et le lâcher-prise
+                du corps et du mental.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Bloc 3 — texte gauche, image droite */}
-        <div
-          style={{
-            padding: "60px 40px",
-            maxWidth: "1000px",
-            margin: "0 auto",
-            display: "flex",
-            gap: "60px",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ flex: 1 }}>
-            <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-              Les mouvements en immersion ne sont pas systématiques, ils sont
-              amenés progressivement, si vous le souhaitez et permettent une
-              expérience aquatique et intérieure complète. La séance se termine
-              par le temps qui vous est nécessaire afin de « revenir à vous » en
-              douceur et reprendre contact lentement avec la position debout.
-            </p>
-          </div>
-          <div style={{ flex: "0 0 300px" }}>
-            <Image
-              src="/assets/perso-5.jpg"
-              alt="Fin de séance"
-              width={300}
-              height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "auto",
-              }}
-            />
+        <div className="container py-5">
+          <div className="row align-items-center g-4">
+            <div className="col-12 col-md-7">
+              <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                Les mouvements en immersion ne sont pas systématiques, ils sont amenés progressivement, si vous le
+                souhaitez et permettent une expérience aquatique et intérieure complète. La séance se termine par le
+                temps qui vous est nécessaire afin de « revenir à vous » en douceur et reprendre contact lentement avec
+                la position debout.
+              </p>
+            </div>
+            <div className="col-12 col-md-5">
+              <Image
+                src="/assets/perso-5.jpg"
+                alt="Fin de séance"
+                width={300}
+                height={380}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "380px" }}
+              />
+            </div>
           </div>
         </div>
       </section>

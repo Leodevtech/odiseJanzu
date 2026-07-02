@@ -1,11 +1,10 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 // Liens de navigation communs à toutes les pages
 const NAV_LINKS = [
-  { label: "🏠", href: "/" },
   { label: "Qui suis-je ?", href: "/qui-suis-je" },
   { label: "Janzu", href: "/janzu" },
   { label: "Galerie Photo", href: "/galerie" },
@@ -31,7 +30,7 @@ export default function Navbar() {
       }}
     >
       <Link className="navbar-brand" href="/">
-        <img
+        <Image
           src="/assets/logo_bulle.jpg"
           alt="Logo"
           width={40}

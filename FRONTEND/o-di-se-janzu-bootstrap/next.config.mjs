@@ -11,6 +11,11 @@ const nextConfig = {
         port: "3000",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "backendodise.vercel.app",
+        pathname: "/uploads/**",
+      },
     ],
   },
 };
