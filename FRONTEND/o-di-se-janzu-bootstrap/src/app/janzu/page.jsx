@@ -131,6 +131,7 @@ export default function JanzuPage() {
               src="/assets/bulle_bg.png"
               alt="bulle"
               fill
+              sizes="368px"
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
@@ -192,6 +193,7 @@ export default function JanzuPage() {
               src="/assets/bulle_bg.png"
               alt="bulle"
               fill
+              sizes="368px"
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
@@ -251,6 +253,7 @@ export default function JanzuPage() {
               src="/assets/bulle_bg.png"
               alt="bulle"
               fill
+              sizes="368px"
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
@@ -316,7 +319,7 @@ export default function JanzuPage() {
                 alt="Séance Janzu"
                 width={300}
                 height={380}
-                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "380px" }}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
           </div>
@@ -331,7 +334,7 @@ export default function JanzuPage() {
                 alt="Séance Janzu immersion"
                 width={300}
                 height={380}
-                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "380px" }}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
             <div className="col-12 col-md-7 order-md-2 text-md-end">
@@ -361,7 +364,7 @@ export default function JanzuPage() {
                 alt="Fin de séance"
                 width={300}
                 height={380}
-                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "380px" }}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
           </div>
@@ -370,10 +373,10 @@ export default function JanzuPage() {
 
       {/*
           FIN DE PAGE — Texte incitation + logo + formulaire + footer*/}
-      <section style={{ position: "relative", overflow: "hidden" }}>
+      <section style={{ position: "relative", overflow: "hidden", minHeight: "100vh" }}>
         {/* Fond sous-marin qui reprend */}
         <Image
-          src="/assets/fond_mer.jpg"
+          src="/assets/fond_mer2.jpg"
           alt="Fond marin"
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
