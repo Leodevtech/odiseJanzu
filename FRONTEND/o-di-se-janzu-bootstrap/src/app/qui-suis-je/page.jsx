@@ -91,6 +91,13 @@ export default function QuiSuisJePage() {
       {/* Bloc 2 — image gauche, texte droite */}
       <section className="container py-5">
         <div className="row align-items-center g-4">
+              <div className="col-12 col-md-7 order-md-2 text-md-end">
+                <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                  Professionnellement, slasheuse mais pas lâcheuse, mes activités sont multiples et souvent simultanées.
+                  Salariée ou indépendante, les mots clés qui caractérisent mon parcours sont : accompagner, soutenir,
+                  transmettre.
+                </p>
+              </div>
           <div className="col-12 col-md-5 order-md-1">
             <Image
               src="/assets/perso-2.jpg"
@@ -104,13 +111,6 @@ export default function QuiSuisJePage() {
                 height: "380px",
               }}
             />
-          </div>
-          <div className="col-12 col-md-7 order-md-2 text-md-end">
-            <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-              Professionnellement, slasheuse mais pas lâcheuse, mes activités sont multiples et souvent simultanées.
-              Salariée ou indépendante, les mots clés qui caractérisent mon parcours sont : accompagner, soutenir,
-              transmettre.
-            </p>
           </div>
         </div>
       </section>
@@ -147,6 +147,13 @@ export default function QuiSuisJePage() {
       {/* Bloc 4 — image gauche, texte droite */}
       <section className="container py-5">
         <div className="row align-items-center g-4">
+              <div className="col-12 col-md-7 order-md-2 text-md-end">
+                <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                  Ma rencontre avec le Janzu est une expérience incroyable ! Dès ma première séance, j&apos;en découvre les
+                  bienfaits et la puissance. C&apos;est un voyage aquatique inédit ! Ressentant le besoin de partager cette
+                  expérience, je deviens praticienne certifiée, formée par l&apos;école française Ojanzu.
+                </p>
+              </div>
           <div className="col-12 col-md-5 order-md-1">
             <Image
               src="/assets/perso-4.jpg"
@@ -160,13 +167,6 @@ export default function QuiSuisJePage() {
                 height: "380px",
               }}
             />
-          </div>
-          <div className="col-12 col-md-7 order-md-2 text-md-end">
-            <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-              Ma rencontre avec le Janzu est une expérience incroyable ! Dès ma première séance, j&apos;en découvre les
-              bienfaits et la puissance. C&apos;est un voyage aquatique inédit ! Ressentant le besoin de partager cette
-              expérience, je deviens praticienne certifiée, formée par l&apos;école française Ojanzu.
-            </p>
           </div>
         </div>
       </section>

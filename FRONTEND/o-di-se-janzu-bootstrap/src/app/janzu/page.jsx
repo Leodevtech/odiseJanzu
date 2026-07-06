@@ -328,6 +328,13 @@ export default function JanzuPage() {
         {/* Bloc 2 — image gauche, texte droite */}
         <div className="container py-5">
           <div className="row align-items-center g-4">
+            <div className="col-12 col-md-7 order-md-2 text-md-end">
+              <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                En flottaison, je vous soutiens et mets votre corps en mouvement, à la surface de l&apos;eau, puis
+                également en immersion. Les mouvements sont doux, fluides, pour favoriser la détente et le lâcher-prise
+                du corps et du mental.
+              </p>
+            </div>
             <div className="col-12 col-md-5 order-md-1">
               <Image
                 src="/assets/perso-3.jpg"
@@ -336,13 +343,6 @@ export default function JanzuPage() {
                 height={380}
                 style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
               />
-            </div>
-            <div className="col-12 col-md-7 order-md-2 text-md-end">
-              <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                En flottaison, je vous soutiens et mets votre corps en mouvement, à la surface de l&apos;eau, puis
-                également en immersion. Les mouvements sont doux, fluides, pour favoriser la détente et le lâcher-prise
-                du corps et du mental.
-              </p>
             </div>
           </div>
         </div>
