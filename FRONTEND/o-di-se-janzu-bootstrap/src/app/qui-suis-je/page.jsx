@@ -7,6 +7,8 @@ import AlgueSeparator from "@/components/AlgueSeparator";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import api from "@/api/axios.js";
+import { motion } from 'framer-motion'
+import { fadeUp, fadeIn, staggerContainer, staggerItem } from '@/lib/animations'
 
 export default function QuiSuisJePage() {
   return (

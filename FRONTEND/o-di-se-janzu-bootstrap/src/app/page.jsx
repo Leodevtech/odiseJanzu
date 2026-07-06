@@ -8,6 +8,8 @@ import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
 import AlgueSeparator from "@/components/AlgueSeparator";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
+import { fadeUp, fadeIn, staggerContainer, staggerItem, slideFromLeft, slideFromRight } from "@/lib/animations.js";
 
 export default function Home() {
   // états
@@ -154,7 +156,13 @@ export default function Home() {
       </section>
 
       {/* QUI SUIS JE ? */}
-      <section className="container py-5">
+      <motion.section
+        className="container py-5"
+        variants={slideFromLeft}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className="row align-items-center g-4">
           <div className="col-12 col-md-5">
             <Image
@@ -196,7 +204,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* séparateur algues */}
 
@@ -204,7 +212,13 @@ export default function Home() {
 
       {/* LE JANZU -  */}
 
-      <section className="container py-5">
+      <motion.section
+        className="container py-5"
+        variants={slideFromRight}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className="row align-items-center g-4">
           <div className="col-12 col-md-5 order-md-2">
             <Image
@@ -244,7 +258,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/*La magie de l'eau - citation dynamique depuis le dash/param/ titre_section2 */}
 
@@ -286,7 +300,7 @@ export default function Home() {
       <AlgueSeparator />
 
       {/* Prestations — données dynamiques depuis site_content */}
-      <section
+      <motion.section
         id="prestation"
         className="container py-5 text-center"
         style={{
@@ -295,8 +309,12 @@ export default function Home() {
           margin: "0 auto",
           textAlign: "center",
         }}
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
       >
-        <div
+        <motion.div
           className="row g-4 justify-content-center"
           style={{
             display: "flex",
@@ -331,7 +349,12 @@ export default function Home() {
               img: "/assets/perso-4.jpg",
             },
           ].map((p) => (
-            <div key={p.titre} className="col-6 col-md-3" style={{ flex: "0 0 220px", textAlign: "center" }}>
+            <motion.div
+             key={p.titre} 
+             className="col-6 col-md-3" 
+             style={{ flex: "0 0 220px", textAlign: "center" }}
+             variants={staggerItem}
+             >
               {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
               <Image
                 src={p.img}
@@ -348,165 +371,165 @@ export default function Home() {
               <p style={{ marginTop: "12px", fontWeight: 500 }}>{p.titre}</p>
               <p style={{ color: "#888", fontSize: "0.9rem", margin: "2px 0" }}>{p.duree}</p>
               <p style={{ color: "#2d3748", fontWeight: 600 }}>{p.prix}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section>
+
+      {/*Avis CLIENT - placeholder carousel avec img plus tard */}
+      <section
+        className="container py5 text-center"
+        style={{
+          padding: "60px 40px",
+          maxWidth: "700px",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "1.8rem",
+            fontWeight: 400,
+            letterSpacing: "0.1em",
+            marginBottom: "30px",
+            textTransform: "uppercase",
+          }}
+        >
+          Avis Client
+        </h2>
+
+        {avis.length > 0 ? (
+          <div>
+            {/* Flèches + carte avis centrale */}
+            <div
+              className="d-flex align-items-center justify-content-center gap-3"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                justifyContent: "center",
+              }}
+            >
+              <button
+                onClick={prevAvis}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "#5b9bd5",
+                }}
+              >
+                ←
+              </button>
+
+              {/* Carte avis */}
+              <div
+                className="flex-grow-1 rounded p-4"
+                style={{
+                  flex: 1,
+                  background: "#f7fbfe",
+                  borderRadius: "12px",
+                  padding: "30px",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+                }}
+              >
+                {/* Contenu de l'avis */}
+                <p
+                  style={{
+                    fontStyle: "italic",
+                    lineHeight: 1.8,
+                    color: "#555",
+                    fontSize: "1rem",
+                    marginBottom: "16px",
+                  }}
+                >
+                  &ldquo;{avis[currentAvis]?.contenu}&rdquo;
+                </p>
+                {/* Nom du client */}
+                <p
+                  style={{
+                    fontWeight: 600,
+                    color: "#2d3748",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  — {avis[currentAvis]?.nom}
+                </p>
+              </div>
+
+              <button
+                onClick={nextAvis}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "#5b9bd5",
+                }}
+              >
+                →
+              </button>
+            </div>
+            {/* Dots de navigation — un point par avis */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "8px",
+                marginTop: "16px",
+              }}
+            >
+              {avis.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentAvis(i)}
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    background: i === currentAvis ? "#5b9bd5" : "#ccc",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p style={{ color: "#aaa", fontStyle: "italic" }}>Aucun avis pour le moment.</p>
+        )}
+      </section>
+
+      {/* Lieux de pratique - titre dynamiques via dashboard */}
+      <section className="container py-5" style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}>
+        <h2 style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}>Mes lieux de pratiques</h2>
+        <div className="row g-3">
+          {[
+            siteContent?.titre_lieux1 || "Lieu 1",
+            siteContent?.titre_lieux2 || "Lieu 2",
+            siteContent?.titre_lieux3 || "Lieu 3",
+            siteContent?.titre_lieux4 || "Lieu 4",
+          ].map((titre, i) => (
+            <div key={i} className="col-6">
+              <div
+                className="rounded d-flex align-items-center justify-content-center"
+                style={{
+                  height: "140px",
+                  background: "#dce8f0",
+                  color: "#555",
+                  fontStyle: "italic",
+                  textAlign: "center",
+                  padding: "12px",
+                }}
+              >
+                {titre}
+              </div>
             </div>
           ))}
         </div>
       </section>
-
-              {/*Avis CLIENT - placeholder carousel avec img plus tard */}
-              <section
-                className="container py5 text-center"
-                style={{
-                  padding: "60px 40px",
-                  maxWidth: "700px",
-                  margin: "0 auto",
-                  textAlign: "center",
-                }}
-              >
-                <h2
-                  style={{
-                    fontSize: "1.8rem",
-                    fontWeight: 400,
-                    letterSpacing: "0.1em",
-                    marginBottom: "30px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Avis Client
-                </h2>
-        
-                {avis.length > 0 ? (
-                  <div>
-                    {/* Flèches + carte avis centrale */}
-                    <div
-                      className="d-flex align-items-center justify-content-center gap-3"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "12px",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <button
-                        onClick={prevAvis}
-                        style={{
-                          background: "none",
-                          border: "none",
-                          fontSize: "1.5rem",
-                          cursor: "pointer",
-                          color: "#5b9bd5",
-                        }}
-                      >
-                        ←
-                      </button>
-        
-                      {/* Carte avis */}
-                      <div
-                        className="flex-grow-1 rounded p-4"
-                        style={{
-                          flex: 1,
-                          background: "#f7fbfe",
-                          borderRadius: "12px",
-                          padding: "30px",
-                          boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
-                        }}
-                      >
-                        {/* Contenu de l'avis */}
-                        <p
-                          style={{
-                            fontStyle: "italic",
-                            lineHeight: 1.8,
-                            color: "#555",
-                            fontSize: "1rem",
-                            marginBottom: "16px",
-                          }}
-                        >
-                          &ldquo;{avis[currentAvis]?.contenu}&rdquo;
-                        </p>
-                        {/* Nom du client */}
-                        <p
-                          style={{
-                            fontWeight: 600,
-                            color: "#2d3748",
-                            fontSize: "0.9rem",
-                          }}
-                        >
-                          — {avis[currentAvis]?.nom}
-                        </p>
-                      </div>
-        
-                      <button
-                        onClick={nextAvis}
-                        style={{
-                          background: "none",
-                          border: "none",
-                          fontSize: "1.5rem",
-                          cursor: "pointer",
-                          color: "#5b9bd5",
-                        }}
-                      >
-                        →
-                      </button>
-                    </div>
-                    {/* Dots de navigation — un point par avis */}
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        gap: "8px",
-                        marginTop: "16px",
-                      }}
-                    >
-                      {avis.map((_, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setCurrentAvis(i)}
-                          style={{
-                            width: "8px",
-                            height: "8px",
-                            borderRadius: "50%",
-                            border: "none",
-                            padding: 0,
-                            cursor: "pointer",
-                            background: i === currentAvis ? "#5b9bd5" : "#ccc",
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <p style={{ color: "#aaa", fontStyle: "italic" }}>Aucun avis pour le moment.</p>
-                )}
-              </section>
-        
-              {/* Lieux de pratique - titre dynamiques via dashboard */}
-              <section className="container py-5" style={{ padding: "60px 40px", maxWidth: "800px", margin: "0 auto" }}>
-                <h2 style={{ fontSize: "1.8rem", fontWeight: 400, marginBottom: "24px" }}>Mes lieux de pratiques</h2>
-                <div className="row g-3">
-                  {[
-                    siteContent?.titre_lieux1 || "Lieu 1",
-                    siteContent?.titre_lieux2 || "Lieu 2",
-                    siteContent?.titre_lieux3 || "Lieu 3",
-                    siteContent?.titre_lieux4 || "Lieu 4",
-                  ].map((titre, i) => (
-                    <div key={i} className="col-6">
-                      <div
-                        className="rounded d-flex align-items-center justify-content-center"
-                        style={{
-                          height: "140px",
-                          background: "#dce8f0",
-                          color: "#555",
-                          fontStyle: "italic",
-                          textAlign: "center",
-                          padding: "12px",
-                        }}
-                      >
-                        {titre}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
 
       {/* Séparateur algues */}
       <AlgueSeparator />

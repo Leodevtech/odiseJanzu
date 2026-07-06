@@ -8,6 +8,8 @@ import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
 import AlgueSeparator from "@/components/AlgueSeparator";
 import Footer from "@/components/Footer";
+import { motion } from 'framer-motion'
+import { fadeUp, fadeIn, staggerContainer, staggerItem } from '@/lib/animations'
 
 export default function JanzuPage() {
   return (
