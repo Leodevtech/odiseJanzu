@@ -8,8 +8,8 @@ import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
 import AlgueSeparator from "@/components/AlgueSeparator";
 import Footer from "@/components/Footer";
-import { motion } from 'framer-motion'
-import { fadeUp, fadeIn, staggerContainer, staggerItem } from '@/lib/animations'
+import { motion } from "framer-motion";
+import { fadeUp, fadeIn, staggerContainer, staggerItem, slideFromLeft, slideFromRight } from "@/lib/animations";
 
 export default function JanzuPage() {
   return (
@@ -56,7 +56,7 @@ export default function JanzuPage() {
       {/* ══════════════════════════════
           TITRE + INTRO sur fond blanc
       ══════════════════════════════ */}
-      <section
+      <motion.section
         style={{
           padding: "60px 40px",
           maxWidth: "700px",
@@ -64,6 +64,10 @@ export default function JanzuPage() {
           textAlign: "center",
           backgroundColor: "#fff",
         }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
       >
         <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Le Janzu</h1>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
@@ -73,7 +77,7 @@ export default function JanzuPage() {
           s&apos;apparente à une danse où la personne se laisse bercer comme une algue à la surface de l&apos;eau, par
           des mouvements doux, souples et au rythme de son souffle.
         </p>
-      </section>
+      </motion.section>
 
       {/* Séparateur algues */}
       <AlgueSeparator />
@@ -119,7 +123,7 @@ export default function JanzuPage() {
           }}
         >
           {/* Bulle 1 — Principe — centrée */}
-          <div
+          <motion.div
             style={{
               position: "relative",
               width: "320px",
@@ -127,6 +131,10 @@ export default function JanzuPage() {
               borderRadius: "50%",
               overflow: "hidden",
             }}
+            variants={slideFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
           >
             {/* Image bulle en fond */}
             <Image
@@ -137,7 +145,7 @@ export default function JanzuPage() {
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
-                opacity: 0.85,
+                opacity: 0.65,
               }}
             />
             {/* Texte superposé sur la bulle — position absolute centré */}
@@ -178,10 +186,10 @@ export default function JanzuPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Bulle 2 — Origines — décalée à droite */}
-          <div
+          <motion.div
             style={{
               position: "relative",
               width: "320px",
@@ -189,6 +197,10 @@ export default function JanzuPage() {
               borderRadius: "50%",
               overflow: "hidden",
             }}
+            variants={slideFromRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
           >
             {/* Image bulle en fond */}
             <Image
@@ -199,7 +211,7 @@ export default function JanzuPage() {
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
-                opacity: 0.85,
+                opacity: 0.70,
               }}
             />
             <div
@@ -238,10 +250,10 @@ export default function JanzuPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Bulle 3 — Tibet — décalée à gauche */}
-          <div
+          <motion.div
             style={{
               position: "relative",
               width: "320px",
@@ -249,6 +261,10 @@ export default function JanzuPage() {
               borderRadius: "50%",
               overflow: "hidden",
             }}
+            variants={slideFromLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
           >
             {/* Image bulle en fond */}
             <Image
@@ -259,7 +275,7 @@ export default function JanzuPage() {
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
-                opacity: 0.85,
+                opacity: 0.70,
               }}
             />
             <div
@@ -298,14 +314,20 @@ export default function JanzuPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* DÉROULÉ D'UNE SÉANCE */}
       <section style={{ backgroundColor: "#fff", padding: "20px 0" }}>
         {/* Bloc 1 — texte gauche, image droite */}
-        <div className="container py-5">
+        <motion.div
+          className="container py-5"
+          variants={slideFromLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           <div className="row align-items-center g-4">
             <div className="col-12 col-md-7">
               <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Déroulé d&apos;une séance</h2>
@@ -325,10 +347,16 @@ export default function JanzuPage() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bloc 2 — image gauche, texte droite */}
-        <div className="container py-5">
+        <motion.div
+          className="container py-5"
+          variants={slideFromRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           <div className="row align-items-center g-4">
             <div className="col-12 col-md-7 order-md-2 text-md-end">
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
@@ -347,10 +375,16 @@ export default function JanzuPage() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bloc 3 — texte gauche, image droite */}
-        <div className="container py-5">
+        <motion.div
+          className="container py-5"
+          variants={slideFromLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           <div className="row align-items-center g-4">
             <div className="col-12 col-md-7">
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
@@ -370,7 +404,7 @@ export default function JanzuPage() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/*
@@ -393,7 +427,13 @@ export default function JanzuPage() {
 
         <div style={{ position: "relative", zIndex: 2 }}>
           {/* Texte incitation contact */}
-          <div style={{ padding: "60px 40px", textAlign: "center" }}>
+          <motion.div
+            style={{ padding: "60px 40px", textAlign: "center" }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
             <div
               style={{
                 display: "inline-block",
@@ -424,10 +464,9 @@ export default function JanzuPage() {
                 style={{ borderRadius: "50%" }}
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Formulaire contact */}
-
           <ContactForm />
 
           {/* Footer */}

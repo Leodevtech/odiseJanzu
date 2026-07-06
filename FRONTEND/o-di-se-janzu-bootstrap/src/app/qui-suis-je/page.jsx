@@ -7,8 +7,8 @@ import AlgueSeparator from "@/components/AlgueSeparator";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import api from "@/api/axios.js";
-import { motion } from 'framer-motion'
-import { fadeUp, fadeIn, staggerContainer, staggerItem } from '@/lib/animations'
+import { motion } from "framer-motion";
+import { fadeUp, slideFromLeft, slideFromRight } from "@/lib/animations";
 
 export default function QuiSuisJePage() {
   return (
@@ -25,10 +25,7 @@ export default function QuiSuisJePage() {
           style={{ objectFit: "cover", objectPosition: "50% 40%" }}
           priority
         />
-        {/* Overlay sombre */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(0,30,60,0.35)" }} />
-
-        {/* Logo centré */}
         <div
           style={{
             position: "absolute",
@@ -49,8 +46,13 @@ export default function QuiSuisJePage() {
       </section>
 
       {/* Titre + texte intro même que accueil */}
-
-      <section style={{ padding: "60px 40px", maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
+      <motion.section
+        style={{ padding: "60px 40px", maxWidth: "700px", margin: "0 auto", textAlign: "center" }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Qui suis-je ?</h1>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
           Le Janzu est entré dans ma vie, sans que je le sache, en découvrant, par hasard, la vidéo d&apos;une séance
@@ -58,13 +60,19 @@ export default function QuiSuisJePage() {
           plus tard, ma première séance... Depuis, le Janzu ne m&apos;a pas quittée et poursuit son chemin dans ma vie,
           telle une rivière pacifique.
         </p>
-      </section>
+      </motion.section>
 
       {/*Séparateur algue */}
       <AlgueSeparator />
 
       {/* Bloc 1 — texte gauche, image droite */}
-      <section className="container py-5">
+      <motion.section
+        className="container py-5"
+        variants={slideFromRight}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className="row align-items-center g-4">
           <div className="col-12 col-md-7">
             <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
@@ -79,46 +87,48 @@ export default function QuiSuisJePage() {
               alt="Nathalie"
               width={300}
               height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "380px",
-              }}
+              style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Bloc 2 — image gauche, texte droite */}
-      <section className="container py-5">
+      <motion.section
+        className="container py-5"
+        variants={slideFromLeft}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className="row align-items-center g-4">
-              <div className="col-12 col-md-7 order-md-2 text-md-end">
-                <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                  Professionnellement, slasheuse mais pas lâcheuse, mes activités sont multiples et souvent simultanées.
-                  Salariée ou indépendante, les mots clés qui caractérisent mon parcours sont : accompagner, soutenir,
-                  transmettre.
-                </p>
-              </div>
+          <div className="col-12 col-md-7 order-md-2 text-md-end">
+            <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+              Professionnellement, slasheuse mais pas lâcheuse, mes activités sont multiples et souvent simultanées.
+              Salariée ou indépendante, les mots clés qui caractérisent mon parcours sont : accompagner, soutenir,
+              transmettre.
+            </p>
+          </div>
           <div className="col-12 col-md-5 order-md-1">
             <Image
               src="/assets/perso-2.jpg"
               alt="Nathalie pratique"
               width={300}
               height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "380px",
-              }}
+              style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Bloc 3 — texte gauche, image droite */}
-      <section className="container py-5">
+      <motion.section
+        className="container py-5"
+        variants={slideFromRight}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className="row align-items-center g-4">
           <div className="col-12 col-md-7">
             <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
@@ -135,46 +145,48 @@ export default function QuiSuisJePage() {
               alt="Nathalie séance"
               width={300}
               height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "380px",
-              }}
+              style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Bloc 4 — image gauche, texte droite */}
-      <section className="container py-5">
+      <motion.section
+        className="container py-5"
+        variants={slideFromLeft}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className="row align-items-center g-4">
-              <div className="col-12 col-md-7 order-md-2 text-md-end">
-                <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                  Ma rencontre avec le Janzu est une expérience incroyable ! Dès ma première séance, j&apos;en découvre les
-                  bienfaits et la puissance. C&apos;est un voyage aquatique inédit ! Ressentant le besoin de partager cette
-                  expérience, je deviens praticienne certifiée, formée par l&apos;école française Ojanzu.
-                </p>
-              </div>
+          <div className="col-12 col-md-7 order-md-2 text-md-end">
+            <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+              Ma rencontre avec le Janzu est une expérience incroyable ! Dès ma première séance, j&apos;en découvre les
+              bienfaits et la puissance. C&apos;est un voyage aquatique inédit ! Ressentant le besoin de partager cette
+              expérience, je deviens praticienne certifiée, formée par l&apos;école française Ojanzu.
+            </p>
+          </div>
           <div className="col-12 col-md-5 order-md-1">
             <Image
               src="/assets/perso-4.jpg"
               alt="Nathalie certifiée"
               width={300}
               height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "380px",
-              }}
+              style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Bloc 5 — texte gauche, image droite */}
-      <section className="container py-5">
+      <motion.section
+        className="container py-5"
+        variants={slideFromRight}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className="row align-items-center g-4">
           <div className="col-12 col-md-7">
             <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
@@ -190,22 +202,23 @@ export default function QuiSuisJePage() {
               alt="Nathalie partenariats"
               width={300}
               height={380}
-              style={{
-                borderRadius: "16px",
-                objectFit: "cover",
-                width: "100%",
-                height: "380px",
-              }}
+              style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/*Séparateur algue */}
       <AlgueSeparator />
 
       {/* text + logo avant contact  */}
-      <section style={{ padding: "60px 40px", textAlign: "center" }}>
+      <motion.section
+        style={{ padding: "60px 40px", textAlign: "center" }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div
           style={{
             display: "inline-block",
@@ -213,7 +226,7 @@ export default function QuiSuisJePage() {
             borderRadius: "8px",
             padding: "20px 40px",
             marginBottom: "30px",
-            colo: "#5b7a8a",
+            color: "#5b7a8a",
             fontSize: "1rem",
             fontStyle: "italic",
             lineHeight: 1.7,
@@ -223,7 +236,6 @@ export default function QuiSuisJePage() {
           <br />
           contactez-moi
         </div>
-        {/* logo bulle */}
         <div style={{ marginBottom: "40px" }}>
           <Image
             src="/assets/logo_bulle.jpg"
@@ -233,7 +245,7 @@ export default function QuiSuisJePage() {
             style={{ borderRadius: "50%" }}
           />
         </div>
-      </section>
+      </motion.section>
 
       {/* form de contact  */}
       <ContactForm />
