@@ -16,6 +16,15 @@ const nextConfig = {
         hostname: "backendodise.vercel.app",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.odise-janzu.com",
+        pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "imagedelivery.net",
+      },
     ],
   },
 };
