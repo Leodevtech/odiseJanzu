@@ -13,7 +13,7 @@ export default function Footer() {
       }}
     >
       <p style={{ margin: "0 0 6px" }}> Ô di Sé Janzu par Nathalie | 2026</p>
-       <p style={{ margin: "0 0 6px" }}>
+      <p style={{ margin: "0 0 6px" }}>
         <Link
           href="/mentions-legales"
           target="_blank"
@@ -24,9 +24,8 @@ export default function Footer() {
         </Link>
       </p>
       <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7, textDecoration: "underline" }}>
-        
         <Link
-          href="leodevtech.fr"
+          href="https://leodevtech.fr/"
           target="_blank"
           style={{
             color: "#ffffff",
@@ -34,11 +33,8 @@ export default function Footer() {
             fontSize: "1rem",
           }}
         >
-          created with
-          💙
-        by leodevtech
+          created with 💙 by leodevtech
         </Link>
-        
       </p>
     </footer>
   );
