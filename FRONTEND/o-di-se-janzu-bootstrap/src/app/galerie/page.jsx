@@ -23,8 +23,7 @@ export default function GaleriePage() {
     fetchPhotos();
   }, []);
 
-  // Construit l'URL complète vers l'image sur le serveur backend
-  // Si filepath commence par http, c'est une URL Cloudflare complète — on l'utilise directement
+  // Si filepath commence par http, c'est une URL Cloudflare — on l'utilise directement
   // Sinon c'est un ancien chemin local — on reconstruit l'URL backend (legacy)
   const getImageUrl = (filepath) => {
     if (!filepath) return "";

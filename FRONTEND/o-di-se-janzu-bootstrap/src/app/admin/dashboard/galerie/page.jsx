@@ -38,9 +38,13 @@ export default function GaleriePage() {
     fetchData();
   }, []);
 
-  // construit l'url complet vers l'image du serveurbackend
-  const getImageUrl = (filepath) =>
-    `${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${filepath?.replace(/^\//, "")}`;
+  // Si filepath commence par http, c'est une URL Cloudflare — on l'utilise directement
+  // Sinon c'est un ancien chemin local — on reconstruit l'URL backend (legacy)
+  const getImageUrl = (filepath) => {
+    if (!filepath) return "";
+    if (filepath.startsWith("http")) return filepath;
+    return `${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${filepath.replace(/^\//, "")}`;
+  };
 
   // quand l'admin sélectionne un fichier
   const handleFileChange = (e) => {
@@ -63,7 +67,6 @@ export default function GaleriePage() {
   const handleDragOver = (e) => e.preventDefault();
 
   // soumet le form d'upload
-
   const handleUpload = async (e) => {
     e.preventDefault();
     if (!fichier) return setError("Veuillez sélectionner une image");
@@ -113,7 +116,7 @@ export default function GaleriePage() {
     if (!confirm("Supprimer cette photo ?")) return;
     try {
       await api.delete(`/photos/${id}`, { withCredentials: true });
-      //retire la photo  supprimé du state sans recharger toute la liste
+      //retire la photo supprimé du state sans recharger toute la liste
       setPhotos((prev) => prev.filter((p) => p.id !== id));
     } catch (err) {
       setError("Erreur suppression");
@@ -122,10 +125,7 @@ export default function GaleriePage() {
 
   if (loading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "60vh" }}
-      >
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
         <div className="spinner-border text-primary" role="status" />
       </div>
     );
@@ -185,24 +185,16 @@ export default function GaleriePage() {
               >
                 {/*Aperçu de l'image sélectionnée 
                   J'ai utilisé la balise <img> native pour l'aperçu avant upload
-                   car l'image vient d'une URL temporaire blob: générée par URL.createObjectURL()
-                   Le composant <Image> de Next.js est prévu pour optimiser des images distantes ou statiques
-                    pas des URLs blob temporaires. J'ai fait ce choix conscient pour éviter une configuration 
-                    supplémentaire dans next.config.mjs sur un élément purement fonctionnel côté admin
-                  
-                  */}
+                  car l'image vient d'une URL temporaire blob: générée par URL.createObjectURL()
+                  Le composant <Image> de Next.js est prévu pour optimiser des images distantes ou statiques
+                  pas des URLs blob temporaires. J'ai fait ce choix conscient pour éviter une configuration 
+                  supplémentaire dans next.config.mjs sur un élément purement fonctionnel côté admin
+                */}
                 {preview ? (
-                  <img
-                    src={preview}
-                    alt="aperçu"
-                    style={{ maxHeight: "140px", borderRadius: "8px" }}
-                  />
+                  <img src={preview} alt="aperçu" style={{ maxHeight: "140px", borderRadius: "8px" }} />
                 ) : (
                   <>
-                    <i
-                      className="bi bi-cloud-arrow-up"
-                      style={{ fontSize: "2rem", color: "#a78bfa" }}
-                    />
+                    <i className="bi bi-cloud-arrow-up" style={{ fontSize: "2rem", color: "#a78bfa" }} />
                     <p className="mb-1 mt-2">Drag & Drop file here</p>
                     <small className="text-muted">or</small>
                     <button
@@ -212,9 +204,7 @@ export default function GaleriePage() {
                     >
                       <i className="bi bi-paperclip me-1" /> Choose File
                     </button>
-                    <small className="text-muted mt-2">
-                      Formats acceptés : JPG, PNG, WEBP
-                    </small>
+                    <small className="text-muted mt-2">Formats acceptés : JPG, PNG, WEBP</small>
                   </>
                 )}
               </div>
@@ -223,24 +213,17 @@ export default function GaleriePage() {
                 type="file"
                 ref={inputRef}
                 onChange={handleFileChange}
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm"
                 style={{ display: "none" }}
               />
             </div>
           </div>
 
           <div className="d-flex justify-content-end mt-3">
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={uploading || !fichier}
-            >
+            <button type="submit" className="btn btn-primary" disabled={uploading || !fichier}>
               {uploading ? (
                 <>
-                  <span
-                    className="spinner-border spinner-border-sm me-2"
-                    role="status"
-                  />
+                  <span className="spinner-border spinner-border-sm me-2" role="status" />
                   Upload en cours...
                 </>
               ) : (
@@ -250,6 +233,7 @@ export default function GaleriePage() {
           </div>
         </form>
       </div>
+
       {/* LIGHTBOX — s'affiche par dessus tout quand une photo est sélectionnée */}
       {selectedPhoto && (
         <div
@@ -284,10 +268,7 @@ export default function GaleriePage() {
           </button>
 
           {/* Image agrandie — stopPropagation empêche la fermeture au clic sur l'image */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: "90vw", maxHeight: "85vh" }}
-          >
+          <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: "90vw", maxHeight: "85vh" }}>
             <img
               src={getImageUrl(selectedPhoto.filepath)}
               alt={selectedPhoto.alt || "photo"}
@@ -360,6 +341,7 @@ export default function GaleriePage() {
           </button>
         </div>
       )}
+
       {/*Grille des photos */}
       <div className="photo-grid">
         {photos.map((photo) => (
@@ -375,24 +357,15 @@ export default function GaleriePage() {
               onClick={() => setSelectedPhoto(photo)}
             >
               <img
-                src={`${process.env.NEXT_PUBLIC_BASE_URL}${photo.filepath}`}
+                src={getImageUrl(photo.filepath)}
                 alt={photo.alt || "Photo galerie"}
-                fill
-                unoptimized
-                style={{ objectFit: "cover" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
-            <button
-              className="photo-delete-btn"
-              onClick={() => handleDelete(photo.id)}
-            >
+            <button className="photo-delete-btn" onClick={() => handleDelete(photo.id)}>
               <i className="bi bi-trash" />
             </button>
-            {photo.description && (
-              <small className="text-muted d-block mt-1 text-truncate">
-                {photo.description}
-              </small>
-            )}
+            {photo.description && <small className="text-muted d-block mt-1 text-truncate">{photo.description}</small>}
           </div>
         ))}
       </div>
