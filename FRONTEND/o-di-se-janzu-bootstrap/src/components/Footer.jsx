@@ -12,7 +12,7 @@ export default function Footer() {
         fontSize: "0.85rem",
       }}
     >
-      <p style={{ margin: "0 0 6px" }}>2026 Ô di Sé Janzu par Nathalie</p>
+      <p style={{ margin: "0 0 6px" }}> Ô di Sé Janzu par Nathalie | 2026</p>
        <p style={{ margin: "0 0 6px" }}>
         <Link
           href="/mentions-legales"
@@ -23,19 +23,22 @@ export default function Footer() {
           Mentions légales
         </Link>
       </p>
-      <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
-        created with{" "}
+      <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7, textDecoration: "underline" }}>
+        
         <Link
-          href="#"
+          href="leodevtech.fr"
+          target="_blank"
           style={{
-            color: "#7ec8e3",
+            color: "#ffffff",
             textDecoration: "none",
-            fontSize: "1rem",
+            fontSize: "0.75rem",
           }}
         >
+          created with
           💙
-        </Link>{" "}
         by leodevtech
+        </Link>
+        
       </p>
     </footer>
   );
