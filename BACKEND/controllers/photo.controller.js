@@ -91,7 +91,7 @@ export const uploadPhoto = async (req, res) => {
 
       // Images retourne une URL directe et un id
       cloudflareId = data.result.id
-      cloudflareUrl = data.result.variants[0]
+      cloudflareUrl = `https://imagedelivery.net/${CF_ACCOUNT_ID}/${data.result.id}/public`
     }
 
     // Sauvegarde en DB — filepath = URL Cloudflare, type = 'image' ou 'video'
