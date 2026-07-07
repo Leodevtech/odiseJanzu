@@ -1,38 +1,40 @@
-import express from 'express'
-import multer from 'multer'
-import path from 'path'
-import { getPhotos, uploadPhoto, removePhoto } from '../controllers/photo.controller.js'
-import { authMiddleware, authorize } from '../middleware/auth.middleware.js'
+import express from "express";
+import multer from "multer";
+import { getPhotos, uploadPhoto, removePhoto } from "../controllers/photo.controller.js";
+import { authMiddleware, authorize } from "../middleware/auth.middleware.js";
 
-const router = express.Router()
+const router = express.Router();
 
-//Config multer
+// Config multer — memoryStorage : fichier en RAM, jamais écrit sur disque
+const storage = multer.memoryStorage();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/uploads/')
-  },
-  // Renomme le fichier avec un timestamp pour éviter les doublons
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname)
-    cb(null, `${Date.now()}${ext}`)
-  }
-})
-
-// Filtre pour les image (jpeg,png,webp)
+// Filtre pour les images ET vidéos
 const fileFilter = (req, file, cb) => {
-  const allowed = ['image/jpeg', 'image/png', 'image/webp']
-  allowed.includes(file.mimetype) ? cb(null, true) : cb(new Error('Format non supporté'))
-}
+  const allowed = [
+    // Images
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    // Vidéos
+    "video/mp4",
+    "video/quicktime", // .mov
+    "video/webm",
+  ];
+  allowed.includes(file.mimetype) ? cb(null, true) : cb(new Error("Format non supporté"));
+};
 
-const upload = multer({ storage, fileFilter })
+// Limite de taille : 10MB pour les images, 500MB pour les vidéos
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 500 * 1024 * 1024 }, // 500MB max
+});
 
-// Route public -galerie du site affiche en public
-  router.get('/', getPhotos)
+// Route publique — galerie du site
+router.get("/", getPhotos);
 
+// Routes protégées — admin
+router.post("/", authMiddleware, authorize(["ADMIN"]), upload.single("photo"), uploadPhoto);
+router.delete("/:id", authMiddleware, authorize(["ADMIN"]), removePhoto);
 
-//Routes protégées - admin
-  router.post('/', authMiddleware, authorize(['ADMIN']), upload.single('photo'), uploadPhoto)
-  router.delete('/:id', authMiddleware, authorize(['ADMIN']), removePhoto)
-
-  export default router
+export default router;

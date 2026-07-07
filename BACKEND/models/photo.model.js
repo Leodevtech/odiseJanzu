@@ -7,16 +7,19 @@ export const getAllPhotos = async () => {
   return rows;
 };
 
+// Ajout de cloudflare_id et type (image/vidéo) pour gérer Cloudflare Images + Stream
 export const createPhoto = async (
   filepath,
   originalName,
   alt,
   description,
   userId,
+  cloudflareId,
+  type,
 ) => {
   const [result] = await db.query(
-    "INSERT INTO photos (filepath, original_name, alt, description, user_id) VALUES (?, ?, ?, ?, ?)",
-    [filepath, originalName, alt, description, userId],
+    "INSERT INTO photos (filepath, original_name, alt, description, user_id, cloudflare_id, type) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    [filepath, originalName, alt, description, userId, cloudflareId, type],
   );
   return result;
 };
