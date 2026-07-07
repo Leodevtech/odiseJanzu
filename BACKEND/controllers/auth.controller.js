@@ -20,6 +20,7 @@ const COOKIE_OPTIONS = {
   //(protection XSS) inccaessible au JS du nav
   secure: process.env.NODE_ENV === "production",
   sameSite: "none",
+  domain: process.env.NODE_ENV === "production" ? ".odise-janzu.com" : undefined,
   maxAge: 7 * 24 * 60 * 60 * 1000,
   // 7jours en millisecondes
 };
@@ -50,9 +51,7 @@ export const register = async (req, res) => {
 
     await sendVerificationMail(username, verifyToken);
 
-    res
-      .status(201)
-      .json({ message: "Compte créé, veuillez vérifier votre mail", username });
+    res.status(201).json({ message: "Compte créé, veuillez vérifier votre mail", username });
   } catch (error) {
     res.status(500).json({ message: "erreur serveur ", error: error.message });
   }
@@ -77,31 +76,24 @@ export const login = async (req, res) => {
     const { username, password } = req.body;
 
     const user = await findUserByUsername(username);
-    if (!user)
-      return res
-        .status(400)
-        .json({ message: "Identifiant ou mot de passe incorrect" });
+    if (!user) return res.status(400).json({ message: "Identifiant ou mot de passe incorrect" });
 
-    if (!user.is_verified)
-      return res.status(403).json({ message: "Compte non vérifié" });
+    if (!user.is_verified) return res.status(403).json({ message: "Compte non vérifié" });
 
     const valid = await argon2.verify(user.password_hash, password);
-    if (!valid)
-      return res
-        .status(400)
-        .json({ message: "Identifiant ou mot de passe incorrect" });
+    if (!valid) return res.status(400).json({ message: "Identifiant ou mot de passe incorrect" });
 
     // Payload embarqué dans les tokens
     const payload = { id: user.id, username: user.username, role: user.role };
     const { accessToken, refreshToken } = generateTokens(payload);
 
     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
-    res.cookie('sessions', '1', {
+    res.cookie("sessions", "1", {
       httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    })
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
     // accessToken renvoyé dans le body — stocké en mémoire JS côté front
     return res.status(200).json({ accessToken });
   } catch (error) {
@@ -111,38 +103,32 @@ export const login = async (req, res) => {
 
 // POST /api/auth/refresh génère un accesToken depuis le refreshToken en cookie
 export const refresh = async (req, res) => {
-  console.log("Cookie reçu:", req.cookies); // a supprimer --------
   try {
     const refreshToken = req.cookies.refreshToken;
 
-    if (!refreshToken)
-      return res.status(401).json({ message: "Refresh token manquant " });
+    if (!refreshToken) return res.status(401).json({ message: "Refresh token manquant " });
     let payload;
     try {
       payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
     } catch {
-      return res
-        .status(401)
-        .json({ message: "Refresh token invalide ou expiré" });
+      return res.status(401).json({ message: "Refresh token invalide ou expiré" });
     }
     const user = await findUserById(payload.id);
-    if (!user)
-      return res.status(401).json({ message: "Utilisateur introuvable" });
+    if (!user) return res.status(401).json({ message: "Utilisateur introuvable" });
     const newPayload = {
       id: user.id,
       username: user.username,
       role: user.role,
     };
-    const { accessToken, refreshToken: newRefreshToken } =
-      generateTokens(newPayload);
+    const { accessToken, refreshToken: newRefreshToken } = generateTokens(newPayload);
 
     res.cookie("refreshToken", newRefreshToken, COOKIE_OPTIONS);
-    res.cookie('session', '1', {
+    res.cookie("session", "1", {
       httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    })
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
     res.json({ accessToken });
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur" });
@@ -152,11 +138,11 @@ export const refresh = async (req, res) => {
 // POST /api/auth/logout supprime le cookie refreshToken pour déco
 export const logout = async (req, res) => {
   res.clearCookie("refreshToken", COOKIE_OPTIONS);
-  res.clearCookie('session', {
+  res.clearCookie("session", {
     httpOnly: false,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'none',
-  })
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+  });
   res.json({ message: "Déconnecté" });
 };
 
