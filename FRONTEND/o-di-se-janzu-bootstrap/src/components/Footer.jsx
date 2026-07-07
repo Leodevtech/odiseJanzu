@@ -27,6 +27,7 @@ export default function Footer() {
         <Link
           href="https://leodevtech.fr/"
           target="_blank"
+          rel="noopener noreferrer"
           style={{
             color: "#ffffff",
             textDecoration: "none",
