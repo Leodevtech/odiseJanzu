@@ -52,6 +52,14 @@ export default function Home() {
     fetchAvis();
   }, []);
 
+  // Si filepath commence par http, c'est une URL Cloudflare — on l'utilise directement
+  // Sinon c'est un ancien chemin local — on reconstruit l'URL backend (legacy)
+  const getImageUrl = (filepath) => {
+    if (!filepath) return "";
+    if (filepath.startsWith("http")) return filepath;
+    return `${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${filepath.replace(/^\//, "")}`;
+  };
+
   //Fonctions carousel
   const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
 
@@ -350,11 +358,11 @@ export default function Home() {
             },
           ].map((p) => (
             <motion.div
-             key={p.titre} 
-             className="col-6 col-md-3" 
-             style={{ flex: "0 0 220px", textAlign: "center" }}
-             variants={staggerItem}
-             >
+              key={p.titre}
+              className="col-6 col-md-3"
+              style={{ flex: "0 0 220px", textAlign: "center" }}
+              variants={staggerItem}
+            >
               {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
               <Image
                 src={p.img}
@@ -579,8 +587,8 @@ export default function Home() {
                   margin: "0 auto",
                 }}
               >
-                <Image // construit url complet vers image sur serveur back
-                  src={`${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${photos[currentSlide]?.filepath.replace(/^\//, "")}`}
+                <Image
+                  src={getImageUrl(photos[currentSlide]?.filepath)}
                   alt={photos[currentSlide]?.alt || "photo galerie"}
                   fill
                   unoptimized

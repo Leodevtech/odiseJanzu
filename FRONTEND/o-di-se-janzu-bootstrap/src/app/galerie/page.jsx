@@ -24,8 +24,13 @@ export default function GaleriePage() {
   }, []);
 
   // Construit l'URL complète vers l'image sur le serveur backend
-  const getImageUrl = (filepath) =>
-    `${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${filepath?.replace(/^\//, "")}`;
+  // Si filepath commence par http, c'est une URL Cloudflare complète — on l'utilise directement
+  // Sinon c'est un ancien chemin local — on reconstruit l'URL backend (legacy)
+  const getImageUrl = (filepath) => {
+    if (!filepath) return "";
+    if (filepath.startsWith("http")) return filepath;
+    return `${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}/${filepath.replace(/^\//, "")}`;
+  };
 
   return (
     <main style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: "#2d3748", backgroundColor: "#fff" }}>
