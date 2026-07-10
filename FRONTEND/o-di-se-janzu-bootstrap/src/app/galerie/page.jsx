@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import api from "@/api/axios.js";
+import Footer from "@/components/Footer";
 
 export default function GaleriePage() {
   const [photos, setPhotos] = useState([]);
@@ -241,24 +242,7 @@ export default function GaleriePage() {
       )}
 
       {/* FOOTER */}
-      <footer
-        style={{
-          background: "#5b6f8a",
-          color: "white",
-          textAlign: "center",
-          padding: "24px 40px",
-          fontSize: "0.85rem",
-        }}
-      >
-        <p style={{ margin: "0 0 6px" }}>2026 Ô di Sé Janzu par Nathalie</p>
-        <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.7 }}>
-          created with{" "}
-          <Link href="/admin/login" style={{ color: "#7ec8e3", textDecoration: "none", fontSize: "1rem" }}>
-            💙
-          </Link>{" "}
-          by leodevtech
-        </p>
-      </footer>
+      <Footer />
     </main>
   );
 }
