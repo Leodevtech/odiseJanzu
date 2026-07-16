@@ -41,6 +41,7 @@ export default function DashboardLayout({ children }) {
               alt="Logo"
               width={40}
               height={40}
+              quality={90}
               style={{ borderRadius: "50%" }}
             />
           </Link>
@@ -65,6 +66,7 @@ export default function DashboardLayout({ children }) {
                 alt="Ô di Sé Janzu"
                 width={100}
                 height={100}
+                quality={90}
                 style={{ borderRadius: "50%" }}
                 onClick={handleNavClick}
               />

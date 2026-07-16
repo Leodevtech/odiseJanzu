@@ -43,6 +43,7 @@ export default function GaleriePage() {
           src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
           fill
+          quality={90}
           style={{ objectFit: "cover", objectPosition: "center" }}
           priority
         />
@@ -56,7 +57,14 @@ export default function GaleriePage() {
             zIndex: 2,
           }}
         >
-          <Image src="/assets/logo_bulle.jpg" alt="Logo" width={110} height={110} style={{ borderRadius: "50%" }} />
+          <Image
+            src="/assets/logo_bulle.jpg"
+            alt="Logo"
+            width={110}
+            height={110}
+            quality={90}
+            style={{ borderRadius: "50%" }}
+          />
         </div>
       </section>
 
@@ -103,7 +111,7 @@ export default function GaleriePage() {
                   onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
                   onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
                 />
-                {photo.alt && (
+                {photo.description && (
                   <div
                     style={{
                       position: "absolute",
@@ -121,7 +129,7 @@ export default function GaleriePage() {
                     onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
                   >
-                    {photo.alt}
+                    {photo.description}
                   </div>
                 )}
               </div>
@@ -178,7 +186,7 @@ export default function GaleriePage() {
               }}
             />
             {/* Légende */}
-            {selectedPhoto.alt && (
+            {selectedPhoto.description && (
               <p
                 style={{
                   color: "rgba(255,255,255,0.8)",
@@ -188,7 +196,7 @@ export default function GaleriePage() {
                   fontSize: "0.9rem",
                 }}
               >
-                {selectedPhoto.alt}
+                {selectedPhoto.description}
               </p>
             )}
           </div>

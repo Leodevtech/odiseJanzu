@@ -81,6 +81,7 @@ export default function LoginPage() {
               alt="ô di sé Janzu"
               width={90}
               height={90}
+              quality={90}
               style={{ borderRadius: "50%" }}
             />
           </Link>

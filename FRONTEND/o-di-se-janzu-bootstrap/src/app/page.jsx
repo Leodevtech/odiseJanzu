@@ -121,6 +121,7 @@ export default function Home() {
             alt="Logo Ô di Sé Janzu"
             width={130}
             height={130}
+            quality={90}
             style={{ borderRadius: "50%", objectFit: "cover" }}
           />
         </div>
@@ -177,8 +178,9 @@ export default function Home() {
               src="/assets/perso-3.jpg"
               alt="Qui suis-je"
               className="img-fluid rounded"
-              width={600}
-              height={380}
+              width={1200}
+              height={760}
+              quality={90}
               style={{ objectFit: "cover", width: "100%", height: "380px" }}
             />
           </div>
@@ -233,8 +235,9 @@ export default function Home() {
               src="/assets/perso-1.jpg"
               alt="Le Janzu"
               className="img-fluid rounded"
-              width={600}
-              height={380}
+              width={1200}
+              height={760}
+              quality={90}
               style={{ objectFit: "cover", width: "100%", height: "380px" }}
             />
           </div>
@@ -273,7 +276,7 @@ export default function Home() {
       <section
         className="py-5 text-center"
         style={{
-          background: "#f7fbfe",
+          background: "rgb(165,190,224)",
           padding: "60px 40px",
           textAlign: "center",
         }}
@@ -320,7 +323,7 @@ export default function Home() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
+        viewport={{ once: false, amount: 0.15 }}
       >
         <motion.div
           className="row g-4 justify-content-center"
@@ -336,25 +339,25 @@ export default function Home() {
               titre: siteContent?.prestation1_titre || "Prestation 1",
               duree: siteContent?.prestation1_duree || "0.45h",
               prix: siteContent?.prestation1_prix || "100€",
-              img: "/assets/perso-1.jpg",
+              img: "/assets/presta1.jpg",
             },
             {
               titre: siteContent?.prestation2_titre || "Prestation 2",
               duree: siteContent?.prestation2_duree || "1h",
               prix: siteContent?.prestation2_prix || "100€",
-              img: "/assets/perso-3.jpg",
+              img: "/assets/presta2.jpg",
             },
             {
               titre: siteContent?.prestation3_titre || "Prestation 3",
               duree: siteContent?.prestation3_duree || "2h",
               prix: siteContent?.prestation3_prix || "200€",
-              img: "/assets/perso-2.jpg",
+              img: "/assets/presta3.jpg",
             },
             {
               titre: siteContent?.prestation4_titre || "Prestation 4",
               duree: siteContent?.prestation4_duree || "2h",
               prix: siteContent?.prestation4_prix || "200€",
-              img: "/assets/perso-4.jpg",
+              img: "/assets/presta4.jpg",
             },
           ].map((p) => (
             <motion.div
@@ -363,19 +366,17 @@ export default function Home() {
               style={{ flex: "0 0 220px", textAlign: "center" }}
               variants={staggerItem}
             >
-              {/* img classique — images statiques locales, pas besoin de l'optimisation Next.js Image */}
-              <Image
-                src={p.img}
-                alt={p.titre}
-                width={220}
-                height={200}
-                style={{
-                  borderRadius: "12px",
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "200px",
-                }}
-              />
+              {/* Conteneur taille fixe + fill : évite le warning Next.js "width/height modifié sans l'autre en auto" */}
+              <div style={{ position: "relative", width: "100%", height: "200px", borderRadius: "12px", overflow: "hidden" }}>
+                <Image
+                  src={p.img}
+                  alt={p.titre}
+                  fill
+                  sizes="220px"
+                  quality={90}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
               <p style={{ marginTop: "12px", fontWeight: 500 }}>{p.titre}</p>
               <p style={{ color: "#888", fontSize: "0.9rem", margin: "2px 0" }}>{p.duree}</p>
               <p style={{ color: "#2d3748", fontWeight: 600 }}>{p.prix}</p>
@@ -436,7 +437,7 @@ export default function Home() {
                 className="flex-grow-1 rounded p-4"
                 style={{
                   flex: 1,
-                  background: "#f7fbfe",
+                  background: "rgb(165,190,224)",
                   borderRadius: "12px",
                   padding: "30px",
                   boxShadow: "0 2px 12px rgba(0,0,0,0.06)",

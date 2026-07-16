@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "Tarifs & Lieux", href:"/#prestation"},
   { label: "Galerie Photo", href: "/galerie" },
   { label: "Contactez-moi", href: "/#contact" },
-  { label: "Liens", href: "/#liens" },
+  { label: "Liens-Vidéos", href: "/lien-videos" },
 ];
 
 // Navbar commune à toutes les pages — gère son propre état de menu burger
@@ -36,6 +36,7 @@ export default function Navbar() {
           alt="Logo"
           width={40}
           height={40}
+          quality={90}
           style={{ borderRadius: "50%" }}
         />
       </Link>

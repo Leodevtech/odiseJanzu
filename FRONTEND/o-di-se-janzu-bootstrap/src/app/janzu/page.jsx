@@ -28,6 +28,7 @@ export default function JanzuPage() {
           src="/assets/4K-sous-eau-2.jpg"
           alt="Fond sous-marin"
           fill
+          quality={90}
           style={{ objectFit: "cover", objectPosition: "50% 40%" }}
           priority
         />
@@ -49,7 +50,14 @@ export default function JanzuPage() {
             zIndex: 2,
           }}
         >
-          <Image src="/assets/logo_bulle.jpg" alt="Logo" width={110} height={110} style={{ borderRadius: "50%" }} />
+          <Image
+            src="/assets/logo_bulle.jpg"
+            alt="Logo"
+            width={110}
+            height={110}
+            quality={90}
+            style={{ borderRadius: "50%" }}
+          />
         </div>
       </section>
 
@@ -71,11 +79,10 @@ export default function JanzuPage() {
       >
         <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Le Janzu</h1>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
-          Janzu signifie en Chinois « rivière pacifique » et le but d&apos;une séance est de vous apaiser, de relaxer
-          votre corps grâce à la portance de l&apos;eau et aux mouvements fluides initiés par le thérapeute. Le Janzu
-          est dit-la « thérapie de la renaissance » et repose sur les vertus thérapeutiques de l&apos;élément. Il
-          s&apos;apparente à une danse où la personne se laisse bercer comme une algue à la surface de l&apos;eau, par
-          des mouvements doux, souples et au rythme de son souffle.
+          <strong>Une Odyssée à la rencontre de soi (&quot;di sè&quot; en italien.)</strong> Janzu signifie
+          &apos;rivière pacifique&apos;. Il s&apos;agit d&apos;un soin aquatique qui se pratique en eau chaude et permet
+          un relâchement profond de l&apos;esprit et du corps. Chaque séance est unique, une parenthèse personnelle, un
+          voyage aquatique hors du temps.
         </p>
       </motion.section>
 
@@ -99,6 +106,7 @@ export default function JanzuPage() {
           src="/assets/fond_mer2.jpg"
           alt="Fond marin"
           fill
+          quality={90}
           style={{ objectFit: "cover", objectPosition: "50% 40%" }}
         />
         {/* Overlay léger pour améliorer la lisibilité */}
@@ -142,6 +150,7 @@ export default function JanzuPage() {
               alt="bulle"
               fill
               sizes="368px"
+              quality={90}
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
@@ -170,7 +179,7 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Principe
+                  L&apos;eau
                 </h3>
                 <p
                   style={{
@@ -180,9 +189,8 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Le Janzu est un soin aquatique qui se pratique en eau chaude et permet un relâchement profond de
-                  l&apos;esprit et du corps. L&apos;eau chaude est idéale pour libérer la colonne vertébrale et relâcher
-                  les muscles.
+                  Une eau chaude à 30°C pour libérer la colonne, enlever le poids sur les vertèbres et les
+                  articulations, relâcher les muscles
                 </p>
               </div>
             </div>
@@ -208,10 +216,11 @@ export default function JanzuPage() {
               alt="bulle"
               fill
               sizes="368px"
+              quality={90}
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
-                opacity: 0.70,
+                opacity: 0.7,
               }}
             />
             <div
@@ -235,7 +244,7 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Origines
+                  L&apos;espace
                 </h3>
                 <p
                   style={{
@@ -245,8 +254,8 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Le Janzu tire son origine de multiples pratiques, dont celles des chamanes mexicains. Son fondateur,
-                  Juan Villatoro, dans les années 80, a créé le Janzu, qui signifie « rivière pacifique ».
+                  Un bassin privatisé dédié à votre séance, un espace protégé pour favoriser un climat de confiance et
+                  de sécurité
                 </p>
               </div>
             </div>
@@ -272,10 +281,11 @@ export default function JanzuPage() {
               alt="bulle"
               fill
               sizes="368px"
+              quality={90}
               style={{
                 objectFit: "cover",
                 borderRadius: "50%",
-                opacity: 0.70,
+                opacity: 0.7,
               }}
             />
             <div
@@ -299,7 +309,7 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Au Tibet
+                  Le mouvement
                 </h3>
                 <p
                   style={{
@@ -309,8 +319,8 @@ export default function JanzuPage() {
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  De nombreux esprits bénéfiques sont liés à l&apos;eau et habitent lacs, rivières et autres plans
-                  d&apos;eau. Les habitants leur contèrent des propriétés extraordinaires.
+                  Une mise en mouvement progressive de tout votre corps, sans effort, pour un lâcher-prise physique,
+                  mental, émotionnel
                 </p>
               </div>
             </div>
@@ -330,19 +340,22 @@ export default function JanzuPage() {
         >
           <div className="row align-items-center g-4">
             <div className="col-12 col-md-7">
-              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Déroulé d&apos;une séance</h2>
+              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Origines</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                Tout d&apos;abord je vous accueille et nous prenons le temps d&apos;échanger sur le déroulé de la séance
-                et vos besoins et éventuelles contraintes de santé. Je vous équipe de flotteurs aux jambes, d&apos;un
-                pince-nez et d&apos;une veste néoprène pour un confort maximum.
+                Le <strong>Janzu®</strong> tire son origine de pratiques ancestrales, notamment des séances aquatiques
+                réalisées par les chamanes mexicains. Son fondateur, Juan Villatoro, dans les années 80, s&apos;en est
+                inspiré, ainsi que de ses découvertes lors de voyages en Asie. En créant le <strong>Janzu®</strong>, qui
+                signifie &apos;rivière pacifique&apos;, il a gardé le principe fondamental de la mise en mouvement du
+                corps dans l&apos;eau.
               </p>
             </div>
             <div className="col-12 col-md-5">
               <Image
-                src="/assets/perso-1.jpg"
+                src="/assets/bloc1-janzu.jpg"
                 alt="Séance Janzu"
-                width={300}
-                height={380}
+                width={600}
+                height={760}
+                quality={90}
                 style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
@@ -359,18 +372,24 @@ export default function JanzuPage() {
         >
           <div className="row align-items-center g-4">
             <div className="col-12 col-md-7 order-md-2 text-md-end">
+              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Principes et bienfaits</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                En flottaison, je vous soutiens et mets votre corps en mouvement, à la surface de l&apos;eau, puis
-                également en immersion. Les mouvements sont doux, fluides, pour favoriser la détente et le lâcher-prise
-                du corps et du mental.
+                <strong>Ne rien faire.</strong> Le corps est soutenu dans l&apos;eau chaude, délicatement mis en
+                mouvement, en confiance et sans aucun effort à fournir, sauf celui de &quot;faire l&apos;algue&quot;
+                pour se laisser aller à la douce résistance de l&apos;eau. <strong>Trois éléments fondamentaux.</strong>{" "}
+                L&apos;eau chaude, le corps soutenu et les mouvements. <strong>Chaque séance est unique.</strong>{" "}
+                L&apos;alternance des mouvements en surface et en immersion favorise le lâcher-prise et permet de
+                développer, renforcer, améliorer l&apos;écoute de soi (&quot;di sé&quot; en italien), au niveau
+                corporel, mental, émotionnel.
               </p>
             </div>
             <div className="col-12 col-md-5 order-md-1">
               <Image
-                src="/assets/perso-3.jpg"
+                src="/assets/bloc2-janzu.jpg"
                 alt="Séance Janzu immersion"
-                width={300}
-                height={380}
+                width={600}
+                height={760}
+                quality={90}
                 style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
@@ -387,19 +406,90 @@ export default function JanzuPage() {
         >
           <div className="row align-items-center g-4">
             <div className="col-12 col-md-7">
+              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Exploration personnelle</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                Les mouvements en immersion ne sont pas systématiques, ils sont amenés progressivement, si vous le
-                souhaitez et permettent une expérience aquatique et intérieure complète. La séance se termine par le
-                temps qui vous est nécessaire afin de « revenir à vous » en douceur et reprendre contact lentement avec
-                la position debout.
+                <strong>Perdre le contrôle pour mieux se connecter à soi-même.</strong> Les gestes techniques de la
+                praticienne Janzu® se font oublier pour ne garder que le ressenti des mouvements doux, fluides,
+                progressifs... Et le contact de l&apos;eau sur le corps, <strong>telle une danse aquatique. </strong>Les
+                bienfaits physiologiques permettent aussi au mental de relâcher le flux des pensées et
+                d&apos;expérimenter <strong>un état profond de relaxation.</strong>
               </p>
             </div>
             <div className="col-12 col-md-5">
               <Image
-                src="/assets/perso-5.jpg"
+                src="/assets/bloc3-janzu.jpg"
                 alt="Fin de séance"
-                width={300}
-                height={380}
+                width={600}
+                height={760}
+                quality={90}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bloc 4 — image gauche, texte droite */}
+        <motion.div
+          className="container py-5"
+          variants={slideFromRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <div className="row align-items-center g-4">
+            <div className="col-12 col-md-7 order-md-2 text-md-end">
+              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Déroulé séance d&apos;1 heure</h2>
+              <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                <strong>Accueil et préparation (10 -15 mn)</strong> Nous prenons le temps d&apos;échanger sur le déroulé
+                de la séance, vos besoins et vos éventuelles contraintes de santé. Je vous équipe d&apos;une veste
+                néoprène pour un confort maximum, de flotteurs aux jambes et d&apos;un pince-nez.{" "}
+                <strong>Séance aquatique (30 - 40 mn)</strong> En flottaison, je vous soutiens et mets votre corps en
+                mouvement, à la surface de l&apos;eau. Les mouvements en immersion ne sont pas systématiques. Si vous le
+                souhaitez, ils sont amenés progressivement et permettent une expérience aquatique et intérieure
+                approfondie.<strong> Retour à soi</strong> La séance se termine par le temps qui vous est nécessaire
+                afin de &quot;revenir à vous&quot; en douceur et reprendre contact lentement avec la position debout.
+              </p>
+            </div>
+            <div className="col-12 col-md-5 order-md-1">
+              <Image
+                src="/assets/bloc4-janzu.jpg"
+                alt="Séance Janzu immersion"
+                width={600}
+                height={760}
+                quality={90}
+                style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bloc 5 — texte gauche, image droite */}
+        <motion.div
+          className="container py-5"
+          variants={slideFromLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <div className="row align-items-center g-4">
+            <div className="col-12 col-md-7">
+              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Pour qui ?</h2>
+              <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
+                Le Janzu s&apos;adresse à toute personne, de 10 ans jusqu&apos;à plus de 90 ans... qui ressent le besoin
+                ou l&apos;envie d&apos;une séance douce et naturelle d&apos;amélioration de la santé générale, au niveau
+                physique, mental, émotionnel. Nous prenons le temps au préalable d&apos;échanger sur votre état de
+                santé. <br></br><strong>Indications favorables</strong> : Grossesse Arthrite, arthrose Nervosité, anxiété Problèmes liés au
+                sommeil Contre-indications principales : Insuffisance pulmonaire ou cardiaque Infection contagieuse ou
+                plaie récente Certains troubles de l&apos;oreille interne
+              </p>
+            </div>
+            <div className="col-12 col-md-5">
+              <Image
+                src="/assets/bloc5-janzu.jpg"
+                alt="Fin de séance"
+                width={600}
+                height={760}
+                quality={90}
                 style={{ borderRadius: "16px", objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
@@ -415,6 +505,7 @@ export default function JanzuPage() {
           src="/assets/fond_mer2.jpg"
           alt="Fond marin"
           fill
+          quality={90}
           style={{ objectFit: "cover", objectPosition: "center" }}
         />
         <div
@@ -461,6 +552,7 @@ export default function JanzuPage() {
                 alt="Logo Ô di Sé Janzu"
                 width={100}
                 height={100}
+                quality={90}
                 style={{ borderRadius: "50%" }}
               />
             </div>

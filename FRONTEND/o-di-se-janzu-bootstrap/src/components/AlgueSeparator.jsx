@@ -15,8 +15,9 @@ const AlgueSeparator = () => {
       <Image
         src="/assets/bannière v3.png"
         alt="séparateur décoratif algues"
-        width={500}
-        height={150}
+        width={1000}
+        height={300}
+        quality={90}
         style={{
           width: "clamp(280px, 50%, 650px)",
           height: "auto",

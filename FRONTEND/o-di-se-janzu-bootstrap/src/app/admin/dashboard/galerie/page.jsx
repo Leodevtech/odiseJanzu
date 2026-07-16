@@ -281,7 +281,7 @@ export default function GaleriePage() {
               }}
             />
             {/* Légende */}
-            {selectedPhoto.alt && (
+            {selectedPhoto.description && (
               <p
                 style={{
                   color: "rgba(255,255,255,0.8)",
@@ -291,7 +291,7 @@ export default function GaleriePage() {
                   fontSize: "0.9rem",
                 }}
               >
-                {selectedPhoto.alt}
+                {selectedPhoto.description}
               </p>
             )}
           </div>
