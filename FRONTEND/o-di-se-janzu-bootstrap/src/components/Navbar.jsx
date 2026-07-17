@@ -7,10 +7,10 @@ import { useState } from "react";
 const NAV_LINKS = [
   { label: "Qui suis-je ?", href: "/qui-suis-je" },
   { label: "Janzu", href: "/janzu" },
-  { label: "Tarifs & Lieux", href:"/#prestation"},
+  { label: "Tarifs & Lieux", href: "/#prestation" },
   { label: "Galerie Photo", href: "/galerie" },
   { label: "Contactez-moi", href: "/#contact" },
-  { label: "Liens-Vidéos", href: "/lien-videos" },
+  { label: "Liens & Vidéos", href: "/lien-videos" },
 ];
 
 // Navbar commune à toutes les pages — gère son propre état de menu burger

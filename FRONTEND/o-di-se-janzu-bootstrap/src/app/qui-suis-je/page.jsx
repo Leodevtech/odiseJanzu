@@ -57,10 +57,10 @@ export default function QuiSuisJePage() {
       >
         <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Qui suis-je ?</h1>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
-          Le Janzu est entré dans ma vie, sans que je le sache, en découvrant, par hasard, la vidéo d&apos;une séance
-          sur un réseau social. Impressionnée et fortement attirée par ce que je voyais, je réservais, quelques temps
-          plus tard, ma première séance... Depuis, le Janzu ne m&apos;a pas quittée et poursuit son chemin dans ma vie,
-          telle une rivière sereine et pacifique.
+          Je m&apos;appelle Nathalie. Forte d&apos;une expérience de plus de 20 ans dans l&apos;accompagnement et animée
+          par une grande sensibilité émotionnelle, j’ai trouvé dans le Janzu ma « rivière pacifique ».<br></br>{" "}
+          Aujourd&apos;hui, je mets la « magie de l&apos;eau » au service de votre bien-être, pour vous guider vers un
+          lâcher-prise régénérant et une profonde reconnexion à soi.
         </p>
       </motion.section>
 
@@ -144,12 +144,13 @@ export default function QuiSuisJePage() {
           <div className="col-12 col-md-7">
             <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Les valeurs humaines</h2>
             <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-              Aujourd&apos;hui, c&apos;est dans l&apos;eau que je soutiens et accompagne les personnes vers un lâcher-prise régénérant,
-              une reconnexion à soi, le temps d&apos;une séance aquatique. Très heureuse de contribuer à faire découvrir le
-              soin Janzu et ses bienfaits, je propose des séances dans des bassins privatisés au Pays Basque et Sud des
-              Landes. En parallèle, je mets en place des partenariats medico-sociaux, afin de permettre au plus grand
-              nombre d&apos;accéder à ce soin et de bénéficier de la douceur et de la &apos;magie de l&apos;eau&apos;.<br></br> N&apos;hésitez pas à me
-              contacter. À bientôt dans l&apos;eau 👌 !
+              Aujourd&apos;hui, c&apos;est dans l&apos;eau que je soutiens et accompagne les personnes vers un
+              lâcher-prise régénérant, une reconnexion à soi, le temps d&apos;une séance aquatique. Très heureuse de
+              contribuer à faire découvrir le soin Janzu et ses bienfaits, je propose des séances dans des bassins
+              privatisés au Pays Basque et Sud des Landes. En parallèle, je mets en place des partenariats
+              medico-sociaux, afin de permettre au plus grand nombre d&apos;accéder à ce soin et de bénéficier de la
+              douceur et de la &apos;magie de l&apos;eau&apos;.<br></br> N&apos;hésitez pas à me contacter. <br></br>À
+              bientôt dans l&apos;eau !
             </p>
           </div>
           <div className="col-12 col-md-5">

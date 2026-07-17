@@ -78,9 +78,9 @@ export default function JanzuPage() {
         viewport={{ once: true, amount: 0.15 }}
       >
         <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Le Janzu</h1>
+        <h2 style={{ fontSize: "1.2rem", fontWeight: 400,  }}><strong>Une Odyssée à la rencontre de soi, &quot;di sè&quot; en italien.</strong></h2>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
-          <strong>Une Odyssée à la rencontre de soi (&quot;di sè&quot; en italien.)</strong> Janzu signifie
-          &apos;rivière pacifique&apos;. Il s&apos;agit d&apos;un soin aquatique qui se pratique en eau chaude et permet
+           Janzu signifie &quot;rivière pacifique&quot;. Il s&apos;agit d&apos;un soin aquatique qui se pratique en eau chaude et permet
           un relâchement profond de l&apos;esprit et du corps. Chaque séance est unique, une parenthèse personnelle, un
           voyage aquatique hors du temps.
         </p>
@@ -184,7 +184,7 @@ export default function JanzuPage() {
                 <p
                   style={{
                     color: "white",
-                    fontSize: "0.82rem",
+                    fontSize: "0.9rem",
                     lineHeight: 1.7,
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
@@ -249,7 +249,7 @@ export default function JanzuPage() {
                 <p
                   style={{
                     color: "white",
-                    fontSize: "0.82rem",
+                    fontSize: "0.9rem",
                     lineHeight: 1.7,
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
@@ -314,7 +314,7 @@ export default function JanzuPage() {
                 <p
                   style={{
                     color: "white",
-                    fontSize: "0.82rem",
+                    fontSize: "0.9rem",
                     lineHeight: 1.7,
                     textShadow: "0 1px 4px rgba(0,0,0,0.5)",
                   }}
@@ -371,7 +371,7 @@ export default function JanzuPage() {
           viewport={{ once: true, amount: 0.15 }}
         >
           <div className="row align-items-center g-4">
-            <div className="col-12 col-md-7 order-md-2 text-md-end">
+            <div className="col-12 col-md-7 order-md-2">
               <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Principes et bienfaits</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
                 <strong>Ne rien faire.</strong> Le corps est soutenu dans l&apos;eau chaude, délicatement mis en
@@ -379,7 +379,7 @@ export default function JanzuPage() {
                 pour se laisser aller à la douce résistance de l&apos;eau. <strong>Trois éléments fondamentaux.</strong>{" "}
                 L&apos;eau chaude, le corps soutenu et les mouvements. <strong>Chaque séance est unique.</strong>{" "}
                 L&apos;alternance des mouvements en surface et en immersion favorise le lâcher-prise et permet de
-                développer, renforcer, améliorer l&apos;écoute de soi (&quot;di sé&quot; en italien), au niveau
+                développer, renforcer, améliorer l&apos;écoute de soi, &quot;di sé&quot; en italien, au niveau
                 corporel, mental, émotionnel.
               </p>
             </div>
@@ -409,7 +409,7 @@ export default function JanzuPage() {
               <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Exploration personnelle</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
                 <strong>Perdre le contrôle pour mieux se connecter à soi-même.</strong> Les gestes techniques de la
-                praticienne Janzu® se font oublier pour ne garder que le ressenti des mouvements doux, fluides,
+                praticienne <strong>Janzu®</strong> se font oublier pour ne garder que le ressenti des mouvements doux, fluides,
                 progressifs... Et le contact de l&apos;eau sur le corps, <strong>telle une danse aquatique. </strong>Les
                 bienfaits physiologiques permettent aussi au mental de relâcher le flux des pensées et
                 d&apos;expérimenter <strong>un état profond de relaxation.</strong>
@@ -417,7 +417,7 @@ export default function JanzuPage() {
             </div>
             <div className="col-12 col-md-5">
               <Image
-                src="/assets/bloc3-janzu.jpg"
+                src="/assets/presta2.jpg"
                 alt="Fin de séance"
                 width={600}
                 height={760}
@@ -437,16 +437,16 @@ export default function JanzuPage() {
           viewport={{ once: true, amount: 0.15 }}
         >
           <div className="row align-items-center g-4">
-            <div className="col-12 col-md-7 order-md-2 text-md-end">
-              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Déroulé séance d&apos;1 heure</h2>
+            <div className="col-12 col-md-7 order-md-2">
+              <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Déroulé d&apos;une séance d&apos;une heure</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
                 <strong>Accueil et préparation (10 -15 mn)</strong> Nous prenons le temps d&apos;échanger sur le déroulé
                 de la séance, vos besoins et vos éventuelles contraintes de santé. Je vous équipe d&apos;une veste
                 néoprène pour un confort maximum, de flotteurs aux jambes et d&apos;un pince-nez.{" "}
-                <strong>Séance aquatique (30 - 40 mn)</strong> En flottaison, je vous soutiens et mets votre corps en
+                <strong><br></br>Séance aquatique (30 - 40 mn)</strong> En flottaison, je vous soutiens et mets votre corps en
                 mouvement, à la surface de l&apos;eau. Les mouvements en immersion ne sont pas systématiques. Si vous le
                 souhaitez, ils sont amenés progressivement et permettent une expérience aquatique et intérieure
-                approfondie.<strong> Retour à soi</strong> La séance se termine par le temps qui vous est nécessaire
+                approfondie.<strong><br></br> Retour à soi</strong> La séance se termine par le temps qui vous est nécessaire
                 afin de &quot;revenir à vous&quot; en douceur et reprendre contact lentement avec la position debout.
               </p>
             </div>
@@ -475,13 +475,28 @@ export default function JanzuPage() {
             <div className="col-12 col-md-7">
               <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Pour qui ?</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                Le Janzu s&apos;adresse à toute personne, de 10 ans jusqu&apos;à plus de 90 ans... qui ressent le besoin
+                Le <strong>Janzu®</strong> s&apos;adresse à toute personne, de 10 ans jusqu&apos;à plus de 90 ans... qui ressent le besoin
                 ou l&apos;envie d&apos;une séance douce et naturelle d&apos;amélioration de la santé générale, au niveau
                 physique, mental, émotionnel. Nous prenons le temps au préalable d&apos;échanger sur votre état de
-                santé. <br></br><strong>Indications favorables</strong> : Grossesse Arthrite, arthrose Nervosité, anxiété Problèmes liés au
-                sommeil Contre-indications principales : Insuffisance pulmonaire ou cardiaque Infection contagieuse ou
-                plaie récente Certains troubles de l&apos;oreille interne
+                santé.
               </p>
+              <p style={{ color: "#555", fontSize: "0.95rem", marginBottom: "8px" }}>
+                <strong>Indications favorables</strong>
+              </p>
+              <ul style={{ lineHeight: 1.7, color: "#555", fontSize: "0.95rem", marginBottom: "20px" }}>
+                <li>Grossesse</li>
+                <li>Arthrite, arthrose</li>
+                <li>Nervosité, anxiété</li>
+                <li>Problèmes liés au sommeil</li>
+              </ul>
+              <p style={{ color: "#555", fontSize: "0.95rem", marginBottom: "8px" }}>
+                <strong>Contre-indications principales</strong>
+              </p>
+              <ul style={{ lineHeight: 1.7, color: "#555", fontSize: "0.95rem" }}>
+                <li>Insuffisance pulmonaire ou cardiaque</li>
+                <li>Infection contagieuse ou plaie récente</li>
+                <li>Certains troubles de l&apos;oreille interne</li>
+              </ul>
             </div>
             <div className="col-12 col-md-5">
               <Image

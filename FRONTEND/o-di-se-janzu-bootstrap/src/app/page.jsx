@@ -195,11 +195,10 @@ export default function Home() {
               Qui suis-je ?
             </h2>
             <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
-              Le Janzu est entré dans ma vie, sans que je le sache, en découvrant, par hasard, la vidéo d&apos;une
-              séance sur un réseau social. Impressionnée et fortement attirée par ce que je voyais, je reservais,
-              quelques semaines plus tard, ma première séance... Depuis, le Janzu ne m&apos;a pas quittée et poursuit
-              son chemin dans ma vie, telle une rivière pacifique. Je m&apos;appelle Nathalie, je suis dotée d&apos;une
-              grande sensibilité émotionnelle et relationnelle et depuis toujours, l&apos;eau m&apos;est familière.
+              Je m&apos;appelle Nathalie. Forte d&apos;une expérience de plus de 20 ans dans l&apos;accompagnement et animée par une
+              grande sensibilité émotionnelle, j’ai trouvé dans le Janzu ma « rivière pacifique ».<br></br> Aujourd&apos;hui, je mets
+              la « magie de l&apos;eau » au service de votre bien-être, pour vous guider vers un lâcher-prise régénérant et
+              une profonde reconnexion à soi.
             </p>
             {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
             <Link
@@ -367,15 +366,16 @@ export default function Home() {
               variants={staggerItem}
             >
               {/* Conteneur taille fixe + fill : évite le warning Next.js "width/height modifié sans l'autre en auto" */}
-              <div style={{ position: "relative", width: "100%", height: "200px", borderRadius: "12px", overflow: "hidden" }}>
-                <Image
-                  src={p.img}
-                  alt={p.titre}
-                  fill
-                  sizes="220px"
-                  quality={90}
-                  style={{ objectFit: "cover" }}
-                />
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  height: "200px",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                }}
+              >
+                <Image src={p.img} alt={p.titre} fill sizes="220px" quality={90} style={{ objectFit: "cover" }} />
               </div>
               <p style={{ marginTop: "12px", fontWeight: 500 }}>{p.titre}</p>
               <p style={{ color: "#888", fontSize: "0.9rem", margin: "2px 0" }}>{p.duree}</p>
