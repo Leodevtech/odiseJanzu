@@ -57,10 +57,9 @@ export default function QuiSuisJePage() {
       >
         <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Qui suis-je ?</h1>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
-          Je m&apos;appelle Nathalie. Forte d&apos;une expérience de plus de 20 ans dans l&apos;accompagnement et animée
-          par une grande sensibilité émotionnelle, j’ai trouvé dans le Janzu ma « rivière pacifique ».<br></br>{" "}
-          Aujourd&apos;hui, je mets la « magie de l&apos;eau » au service de votre bien-être, pour vous guider vers un
-          lâcher-prise régénérant et une profonde reconnexion à soi.
+          Le Janzu est entré dans ma vie, sans que je le sache, en découvrant la vidéo d&apos;une séance. Impressionnée et
+          fortement attirée par ce que je voyais, je réservais, quelques temps plus tard, ma première séance... Depuis,
+          le Janzu ne m&apos;a pas quittée et poursuit son chemin dans ma vie, telle une rivière sereine et pacifique.
         </p>
       </motion.section>
 
