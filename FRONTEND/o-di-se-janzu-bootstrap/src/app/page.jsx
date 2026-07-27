@@ -195,12 +195,12 @@ export default function Home() {
               Qui suis-je ?
             </h2>
             <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
-              Je m&apos;appelle Nathalie. Forte d&apos;une expérience de plus de 20 ans dans l&apos;accompagnement et animée par une
-              grande sensibilité émotionnelle, j&apos;ai trouvé dans le Janzu ma «rivière pacifique».
+              Je m&apos;appelle Nathalie. Forte d&apos;une expérience de plus de 20 ans dans l&apos;accompagnement et
+              animée par une grande sensibilité émotionnelle, j&apos;ai trouvé dans le Janzu ma &quot;rivière
+              pacifique&quot;.
               <br />
-              Aujourd&apos;hui, je mets
-              la «magie de l&apos;eau» au service de votre bien-être, pour vous accompagner vers un lâcher-prise régénérant et
-              une profonde reconnexion à soi.
+              Aujourd&apos;hui, je mets la «magie de l&apos;eau» au service de votre bien-être, pour vous accompagner
+              vers un lâcher-prise régénérant et une profonde reconnexion à soi.
             </p>
             {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
             <Link
