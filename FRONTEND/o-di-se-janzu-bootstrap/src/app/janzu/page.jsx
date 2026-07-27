@@ -345,7 +345,7 @@ export default function JanzuPage() {
                 Le <strong>Janzu®</strong> tire son origine de pratiques ancestrales, notamment des séances aquatiques
                 réalisées par les chamanes mexicains. Son fondateur, Juan Villatoro, dans les années 80, s&apos;en est
                 inspiré, ainsi que de ses découvertes lors de voyages en Asie. En créant le <strong>Janzu®</strong>, qui
-                signifie &apos;rivière pacifique&apos;, il a gardé le principe fondamental de la mise en mouvement du
+                signifie &quot;rivière pacifique&quot;, il a gardé le principe fondamental de la mise en mouvement du
                 corps dans l&apos;eau.
               </p>
             </div>
@@ -376,8 +376,12 @@ export default function JanzuPage() {
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
                 <strong>Ne rien faire.</strong> Le corps est soutenu dans l&apos;eau chaude, délicatement mis en
                 mouvement, en confiance et sans aucun effort à fournir, sauf celui de &quot;faire l&apos;algue&quot;
-                pour se laisser aller à la douce résistance de l&apos;eau. <strong>Trois éléments fondamentaux.</strong>{" "}
-                L&apos;eau chaude, le corps soutenu et les mouvements. <strong>Chaque séance est unique.</strong>{" "}
+                pour se laisser aller à la douce résistance de l&apos;eau.
+                <br></br>
+                <strong>Trois éléments fondamentaux.</strong>{" "}
+                L&apos;eau chaude, le corps soutenu et les mouvements.
+                <br></br>
+                <strong>Chaque séance est unique.</strong>{" "}
                 L&apos;alternance des mouvements en surface et en immersion favorise le lâcher-prise et permet de
                 développer, renforcer, améliorer l&apos;écoute de soi, &quot;di sé&quot; en italien, au niveau
                 corporel, mental, émotionnel.
@@ -408,7 +412,7 @@ export default function JanzuPage() {
             <div className="col-12 col-md-7">
               <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Exploration personnelle</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                <strong>Perdre le contrôle pour mieux se connecter à soi-même.</strong> Les gestes techniques de la
+                <strong>Se défaire du contrôle pour mieux se connecter à soi.</strong> Les gestes techniques de la
                 praticienne <strong>Janzu®</strong> se font oublier pour ne garder que le ressenti des mouvements doux, fluides,
                 progressifs... Et le contact de l&apos;eau sur le corps, <strong>telle une danse aquatique. </strong>Les
                 bienfaits physiologiques permettent aussi au mental de relâcher le flux des pensées et
@@ -440,13 +444,22 @@ export default function JanzuPage() {
             <div className="col-12 col-md-7 order-md-2">
               <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>Déroulé d&apos;une séance d&apos;une heure</h2>
               <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-                <strong>Accueil et préparation (10 -15 mn)</strong> Nous prenons le temps d&apos;échanger sur le déroulé
+                <strong>Accueil et préparation (10-15 mn)</strong>
+                <br></br>
+                Nous prenons le temps d&apos;échanger sur le déroulé
                 de la séance, vos besoins et vos éventuelles contraintes de santé. Je vous équipe d&apos;une veste
-                néoprène pour un confort maximum, de flotteurs aux jambes et d&apos;un pince-nez.{" "}
-                <strong><br></br>Séance aquatique (30 - 40 mn)</strong> En flottaison, je vous soutiens et mets votre corps en
+                néoprène pour un confort maximum, de flotteurs aux jambes et d&apos;un pince-nez.
+                <br></br>
+                <strong>Séance aquatique (30-40 mn)</strong>
+                <br></br>
+                En flottaison, je vous soutiens et mets votre corps en
                 mouvement, à la surface de l&apos;eau. Les mouvements en immersion ne sont pas systématiques. Si vous le
                 souhaitez, ils sont amenés progressivement et permettent une expérience aquatique et intérieure
-                approfondie.<strong><br></br> Retour à soi</strong> La séance se termine par le temps qui vous est nécessaire
+                approfondie.
+                <br></br>
+                <strong>Retour à soi</strong>
+                <br></br>
+                La séance se termine par le temps qui vous est nécessaire
                 afin de &quot;revenir à vous&quot; en douceur et reprendre contact lentement avec la position debout.
               </p>
             </div>

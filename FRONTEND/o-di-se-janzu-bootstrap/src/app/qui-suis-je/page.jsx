@@ -57,8 +57,8 @@ export default function QuiSuisJePage() {
       >
         <h1 style={{ fontSize: "2.4rem", fontWeight: 400, marginBottom: "24px" }}>Qui suis-je ?</h1>
         <p style={{ lineHeight: 1.9, color: "#555", fontSize: "1rem" }}>
-          Le Janzu est entré dans ma vie, sans que je le sache, en découvrant la vidéo d&apos;une séance. Impressionnée et
-          fortement attirée par ce que je voyais, je réservais, quelques temps plus tard, ma première séance... Depuis,
+          Le Janzu est entré dans ma vie en découvrant la vidéo d&apos;une séance. Impressionnée et
+          fortement attirée par ce que je voyais, je réservais, quelque temps plus tard, ma première séance... Depuis,
           le Janzu ne m&apos;a pas quittée et poursuit son chemin dans ma vie, telle une rivière sereine et pacifique.
         </p>
       </motion.section>
@@ -78,11 +78,11 @@ export default function QuiSuisJePage() {
           <div className="col-12 col-md-7">
             <h2 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "20px" }}>L&apos;accompagnement</h2>
             <p style={{ lineHeight: 1.9, color: "#555", fontSize: "0.95rem" }}>
-              Je m&apos;appelle Nathalie, je suis dotée d&apos;une grande sensibilité émotionnelle et relationnelle
+              Je m&apos;appelle Nathalie, je suis dotée d&apos;une grande sensibilité émotionnelle et relationnelle.
               Professionnellement, mes activités sont multiples et souvent simultanées, en tant que salariée ou
               indépendante. Les mots clés qui caractérisent mon parcours sont : enseigner, transmettre, accompagner.
               Cela fait plus de 20 ans que j&apos;accompagne les personnes dans leurs apprentissages et leurs projets,
-              avec un souci d&apos;être toujours aidante.
+              dans une démarche aidante et bienveillante.
             </p>
           </div>
           <div className="col-12 col-md-5">
@@ -148,7 +148,7 @@ export default function QuiSuisJePage() {
               contribuer à faire découvrir le soin Janzu et ses bienfaits, je propose des séances dans des bassins
               privatisés au Pays Basque et Sud des Landes. En parallèle, je mets en place des partenariats
               medico-sociaux, afin de permettre au plus grand nombre d&apos;accéder à ce soin et de bénéficier de la
-              douceur et de la &apos;magie de l&apos;eau&apos;.<br></br> N&apos;hésitez pas à me contacter. <br></br>À
+              douceur et de la &quot;magie de l&apos;eau&quot;.<br></br> N&apos;hésitez pas à me contacter. <br></br>À
               bientôt dans l&apos;eau !
             </p>
           </div>
