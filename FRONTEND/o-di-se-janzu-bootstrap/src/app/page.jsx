@@ -196,7 +196,9 @@ export default function Home() {
             </h2>
             <p style={{ lineHeight: 1.8, color: "#555", fontSize: "0.95rem" }}>
               Je m&apos;appelle Nathalie. Forte d&apos;une expérience de plus de 20 ans dans l&apos;accompagnement et animée par une
-              grande sensibilité émotionnelle, j’ai trouvé dans le Janzu ma «rivière pacifique».<br></br> Aujourd&apos;hui, je mets
+              grande sensibilité émotionnelle, j&apos;ai trouvé dans le Janzu ma «rivière pacifique».
+              <br />
+              Aujourd&apos;hui, je mets
               la «magie de l&apos;eau» au service de votre bien-être, pour vous accompagner vers un lâcher-prise régénérant et
               une profonde reconnexion à soi.
             </p>
@@ -322,7 +324,7 @@ export default function Home() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.15 }}
+        viewport={{ once: true, amount: 0.15 }}
       >
         <motion.div
           className="row g-4 justify-content-center"
@@ -360,7 +362,7 @@ export default function Home() {
             },
           ].map((p) => (
             <motion.div
-              key={p.titre}
+              key={p.img}
               className="col-6 col-md-3"
               style={{ flex: "0 0 220px", textAlign: "center" }}
               variants={staggerItem}

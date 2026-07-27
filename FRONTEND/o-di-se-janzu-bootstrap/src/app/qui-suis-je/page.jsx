@@ -148,8 +148,11 @@ export default function QuiSuisJePage() {
               contribuer à faire découvrir le soin Janzu et ses bienfaits, je propose des séances dans des bassins
               privatisés au Pays Basque et Sud des Landes. En parallèle, je mets en place des partenariats
               medico-sociaux, afin de permettre au plus grand nombre d&apos;accéder à ce soin et de bénéficier de la
-              douceur et de la &quot;magie de l&apos;eau&quot;.<br></br> N&apos;hésitez pas à me contacter. <br></br>À
-              bientôt dans l&apos;eau !
+              douceur et de la &quot;magie de l&apos;eau&quot;.
+              <br />
+              N&apos;hésitez pas à me contacter.
+              <br />
+              À bientôt dans l&apos;eau !
             </p>
           </div>
           <div className="col-12 col-md-5">
