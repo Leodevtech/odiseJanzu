@@ -199,7 +199,7 @@ export default function Home() {
               animée par une grande sensibilité émotionnelle, j&apos;ai trouvé dans le Janzu ma &quot;rivière
               pacifique&quot;.
               <br />
-              Aujourd&apos;hui, je mets la «magie de l&apos;eau» au service de votre bien-être, pour vous accompagner
+              Aujourd&apos;hui, je mets la &quot;magie de l&apos;eau&quot; au service de votre bien-être, pour vous accompagner
               vers un lâcher-prise régénérant et une profonde reconnexion à soi.
             </p>
             {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
