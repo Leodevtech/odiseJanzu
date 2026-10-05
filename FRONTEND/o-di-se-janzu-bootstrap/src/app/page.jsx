@@ -69,6 +69,14 @@ export default function Home() {
 
   const nextAvis = () => setCurrentAvis((prev) => (prev === avis.length - 1 ? 0 : prev + 1));
 
+  //Couleur lieux
+  const couleursLieux = [
+    { bg: "#FFD073", text: "#3a3a3a" }, // Anglet – jaune
+    { bg: "#5FC2B0", text: "#ffffff" }, // Bayonne – vert d'eau
+    { bg: "#7AB3E0", text: "#ffffff" }, // Tarnos – bleu
+    { bg: "#F4936B", text: "#3a3a3a" }, // Piscine – orange corail
+  ];
+
   // Rendu jsx
 
   return (
@@ -199,8 +207,8 @@ export default function Home() {
               animée par une grande sensibilité émotionnelle, j&apos;ai trouvé dans le Janzu ma &quot;rivière
               pacifique&quot;.
               <br />
-              Aujourd&apos;hui, je mets la &quot;magie de l&apos;eau&quot; au service de votre bien-être, pour vous accompagner
-              vers un lâcher-prise régénérant et une profonde reconnexion à soi.
+              Aujourd&apos;hui, je mets la &quot;magie de l&apos;eau&quot; au service de votre bien-être, pour vous
+              accompagner vers un lâcher-prise régénérant et une profonde reconnexion à soi.
             </p>
             {/* Link Next.js pour navigation — /qui-suis-je à créer plus tard */}
             <Link
@@ -528,11 +536,13 @@ export default function Home() {
                 className="rounded d-flex align-items-center justify-content-center"
                 style={{
                   height: "140px",
-                  background: "#dce8f0",
-                  color: "#555",
-                  fontStyle: "italic",
+                  background: couleursLieux[i].bg,
+                  color: couleursLieux[i].text,
                   textAlign: "center",
                   padding: "12px",
+                  fontSize: "1.2rem",
+                  borderRadius: "16px",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.12)",
                 }}
               >
                 {titre}
